@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:56:00 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/10 16:52:22 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/08/10 17:17:17 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 typedef struct s_ray_cast
 {
 	char	view_point;
+	int		view_dir;
 	int		view_left;
 	int		view_right;
 	int		player_x;
@@ -63,21 +64,25 @@ void	angle_view_start(t_ray_cast *rays)
 	{
 		rays->view_left = 120;
 		rays->view_right = 60;
+		rays->view_dir = 90;
 	}
 	if (rays->view_point == 'S')
 	{
 		rays->view_left = 300;
 		rays->view_right = 240;
+		rays->view_dir = 270;
 	}
 	if (rays->view_point == 'W')
 	{
 		rays->view_left = 210;
 		rays->view_right = 150;
+		rays->view_dir = 180;
 	}
 	if (rays->view_point == 'E')
 	{
 		rays->view_left = 30;
 		rays->view_right = 330;
+		rays->view_dir = 0;
 	}
 }
 
