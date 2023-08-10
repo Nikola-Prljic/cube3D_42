@@ -48,3 +48,38 @@ char	*ft_strj(char const *s1, char const *s2)
 	jstr[j] = '\0';
 	return (jstr);
 }
+
+int puterror(char *str)
+{
+	write(2, str, ft_strlen(str));
+	return (1);
+}
+
+void printmap(char **map)
+{
+	int y;
+	int x;
+
+	if(!map)
+		return ;
+	y = -1;
+	while(map[++y])
+	{
+		x = -1;
+		while(map[y][++x])
+			write(1, &map[y][x], 1);
+		write(1, "\n", 1);
+	}
+}
+
+void free2d(char **map)
+{
+	int y;
+
+	if(!map)
+		return ;
+	y = -1;
+	while(map[++y])
+		free(map[y]);
+	free(map);
+}

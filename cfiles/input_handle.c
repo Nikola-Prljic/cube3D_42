@@ -44,7 +44,7 @@ int	input_handle(int argc, char **argv)
 	int		check;
 	char	*map_file;
 
-	if (argc <= 1 || argc >= 3)
+	if (argc != 2)
 	{
 		ft_putstr_fd("Invalid number of parameters\n", 2);
 		return (1);
