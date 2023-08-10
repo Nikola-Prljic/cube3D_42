@@ -1,5 +1,5 @@
 
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 int map_check( char ***map, char *map_name )
 {

@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 static char	*ft_cpynonull(char *dest, char const *s1, int i)
 {

@@ -5,13 +5,13 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRC = 	./cfiles/ft_split.c \
-		./cfiles/ft_substr.c \
-		./cfiles/main.c \
+SRC = 	./cfiles/map_check/ft_split.c \
+		./cfiles/map_check/ft_substr.c \
+		./cfiles/map_check/map_check.c \
+		./cfiles/map_check/map_open.c \
+		./cfiles/map_check/map_open_utils.c \
 		./cfiles/input_handle.c \
-		./cfiles/map_check.c \
-		./cfiles/map_open.c \
-		./cfiles/map_open_utils.c \
+		./cfiles/main.c \
 		./cfiles/utils.c \
 
 all : $(NAME)
