@@ -51,8 +51,7 @@ int	input_handle(int argc, char **argv)
 	}
 	map_file = ft_strj("maps/", argv[1]);
 	check = check_input(map_file);
-	free(map_file);
-	if (check)
-		return (1);
+	if (map_file != NULL)
+		free(map_file);
 	return (0);
 }

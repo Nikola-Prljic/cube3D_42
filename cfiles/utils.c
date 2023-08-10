@@ -35,13 +35,11 @@ char	*ft_strj(char const *s1, char const *s2)
 	j = 0;
 	str1 = (char *)s1;
 	str2 = (char *)s2;
-	if (!s1)
+	if (!s1 || !s2)
 		return (NULL);
-	if (!s2)
-		return (str1);
 	jstr = malloc((ft_strlen(str1) + ft_strlen(str2)) + 1);
 	if (!jstr)
-		return (jstr);
+		return (NULL);
 	while (str1[i])
 		jstr[j++] = str1[i++];
 	i = 0;
