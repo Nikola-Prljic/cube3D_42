@@ -1,5 +1,5 @@
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int	map_extension(char *map_path)
 {

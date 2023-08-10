@@ -5,10 +5,10 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRC = 	input_handle.c \
-		main.c \
-		map_check.c \
-		utils.c \
+SRC = 	./cfiles/main.c \
+		./cfiles/input_handle.c \
+		./cfiles/map_check.c \
+		./cfiles/utils.c \
 
 all : $(NAME)
 
