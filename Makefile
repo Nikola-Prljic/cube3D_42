@@ -5,16 +5,18 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRC = 	main.c \
+SRC = 	input_handle.c \
+		main.c \
 		map_check.c \
+		utils.c \
 
 all : $(NAME)
 
 OBJ  =	$(SRC:.c=.o)
 
 $(NAME) : $(OBJ)
-		@$(CC) $(OBJ) $(CFLAGS) -lXext -lX11 -o $(NAME)
-		@echo "$(NAME) created"
+	@$(CC) $(OBJ) $(CFLAGS) -lXext -lX11 -o $(NAME)
+	@echo "$(NAME) created"
 
 clean :
 	@rm -f $(OBJ)
