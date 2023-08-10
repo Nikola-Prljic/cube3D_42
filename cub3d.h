@@ -27,11 +27,11 @@ int		input_handle(int argc, char **argv);
 //main.c
 
 //map_check.c
-int map_check( char ***map, char *map_name );
+int     map_check( char ***map, char *map_name );
 
 //map_open.c
-int map_open( char *map_name, int *fd );
-int map_read( int fd, char **mapstr );
+int     map_open( char *map_name, int *fd );
+int     map_read( int fd, char **mapstr );
 
 //map_open_utils.c
 char	*ft_linejoin(char *s1, char *s2);
