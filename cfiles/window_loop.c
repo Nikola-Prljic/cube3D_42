@@ -1,4 +1,4 @@
-# include "../cub3d.h"
+#include "../cub3d.h"
 
 int	make_window(t_data *data, int heigt, int with)
 {
@@ -14,7 +14,7 @@ int	make_window(t_data *data, int heigt, int with)
 	return (0);
 }
 
-int x_close(t_data *data)
+int	x_close(t_data *data)
 {
 	mlx_loop_end(data->mlx_ptr);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
@@ -22,16 +22,55 @@ int x_close(t_data *data)
 	return (0);
 }
 
-int keypress(int keysum, t_data *data)
+int	keypress(int keysum, t_data *data)
 {
-	if(keysum == XK_Escape)
+	double	degrees;
+
+	degrees = data->rays->player_dir * (180.0 / PI);
+	printf("X & Y position of the player : %f	%f\n", data->rays->player_x,
+				data->rays->player_y);
+	printf("player view direction in degrees : %f\n", degrees);
+	printf("---------------------------------------------------\n");
+	if (keysum == XK_Escape)
 		return (x_close(data));
+	else if (keysum == XK_A || keysum == XK_Left)
+	{
+		data->rays->player_dir += 0.1;
+		if (data->rays->player_dir > 2 * PI)
+			data->rays->player_dir -= 2 * PI;
+		data->rays->player_dir_x = cos(data->rays->player_dir) * 5;
+		data->rays->player_dir_y = sin(data->rays->player_dir) * 5;
+	}
+	else if (keysum == XK_D || keysum == XK_Right)
+	{
+		data->rays->player_dir -= 0.1;
+		if (data->rays->player_dir < 0)
+			data->rays->player_dir += 2 * PI;
+		data->rays->player_dir_x = cos(data->rays->player_dir) * 5;
+		data->rays->player_dir_y = sin(data->rays->player_dir) * 5;
+	}
+	else if (keysum == XK_W || keysum == XK_Up)
+	{
+		data->rays->player_x += data->rays->player_dir_x;
+		data->rays->player_y += data->rays->player_dir_y;
+	}
+	else if (keysum == XK_S || keysum == XK_Down)
+	{
+		data->rays->player_x -= data->rays->player_dir_x;
+		data->rays->player_y -= data->rays->player_dir_y;
+	}
+	degrees = data->rays->player_dir * (180.0 / PI);
+	printf("X & Y position of the player : %f	%f\n", data->rays->player_x,
+				data->rays->player_y);
+	printf("player view direction in degrees : %f\n", degrees);
+	printf("\n\n");
 	return (1);
 }
 
-int window_loop( t_data *data )
+int	window_loop(t_data *data)
 {
-	if(make_window(data, WINDOW_HEIGT, WINDOW_WITH))
+	ray_functions(data);
+	if (make_window(data, WINDOW_HEIGT, WINDOW_WITH))
 		return (1);
 	mlx_hook(data->win_ptr, 17, 0, &x_close, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &keypress, data);

@@ -3,7 +3,7 @@ NAME = cub3D
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 SRC = 	./cfiles/map_check/ft_split.c \
 		./cfiles/map_check/ft_substr.c \

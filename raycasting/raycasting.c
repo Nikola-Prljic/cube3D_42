@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:56:00 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/10 18:52:58 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/08/10 19:31:16 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ void	rays_init(t_ray_cast *rays)
 	rays->player_y = 0;
 	rays->player_exists = 0;
 	rays->view_point = 'N';
+	rays->player_dir_x = 0;
+	rays->player_dir_y = 0;
+	rays->player_dir = PI / 2;
 }
 
 int	raycasting(char **map, t_ray_cast *rays)
