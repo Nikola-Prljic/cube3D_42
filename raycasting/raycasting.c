@@ -6,35 +6,11 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:56:00 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/10 18:19:43 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/08/10 18:52:58 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include <stdlib.h>
-#define PI 3.1415926535
-
-typedef struct s_ray_cast
-{
-	char	view_point;
-	int		player_exists;
-	float	player_dir;
-	float	player_dir_x;
-	float	player_dir_y;
-	float	player_x;
-	float	player_y;
-}			t_ray_cast;
-
-void	free_raycasting(char **map, t_ray_cast *rays)
-{
-	int	i;
-
-	i = -1;
-	while (map[++i])
-		free(map[i]);
-	free(&map);
-	free(rays);
-}
+#include "../cub3d.h"
 
 void	get_position(char **map, t_ray_cast *rays)
 {
@@ -93,47 +69,22 @@ int	raycasting(char **map, t_ray_cast *rays)
 	rays_init(rays);
 	get_position(map, rays);
 	if (rays->player_exists == 0)
-	{
-		free_raycasting(map, rays);
 		return (0);
-	}
 	angle_view_start(rays);
+	return (0);
 }
 
-int	main(void)
+int	ray_functions(t_data *data)
 {
-	int			i;
-	char		**map;
-	t_ray_cast	*rays;
+	t_ray_cast	*my_rays;
 
-	i = -1;
-	rays = malloc(sizeof(t_ray_cast));
-	if (!rays)
-		return (0);
-	map = malloc(8 * sizeof(char *));
-	if (!map)
+	if (!data->rays)
 	{
-		free(rays);
-		return (0);
+		data->rays = malloc(sizeof(t_ray_cast));
+		if (!data->rays)
+			return (1);
 	}
-	while (++i < 8)
-	{
-		map[i] = malloc(9);
-		if (!map[i])
-		{
-			while (--i > -1)
-				free(map[i]);
-			free(rays);
-			return (0);
-		}
-	}
-	map[0] = "1, 1, 1, 1, 1, 1, 1, 1";
-	map[1] = "1, 0, 0, 0, 0, 0, 0, 1";
-	map[2] = "1, 0, 0, 0, 0, S, 0, 1";
-	map[3] = "1, 0, 0, 0, 0, 0, 0, 1";
-	map[4] = "1, 0, 1, 1, 0, 0, 0, 1";
-	map[5] = "1, 0, 1, 1, 0, 0, 0, 1";
-	map[6] = "1, 0, 1, 0, 0, 0, 0, 1";
-	map[7] = "1, 1, 1, 1, 1, 1, 1, 1";
-	return (raycasting(rays, map));
+	my_rays = data->rays;
+	raycasting(data->map, my_rays);
+	return (0);
 }

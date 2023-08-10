@@ -14,6 +14,7 @@ SRC = 	./cfiles/map_check/ft_split.c \
 		./cfiles/main.c \
 		./cfiles/utils.c \
 		./cfiles/window_loop.c \
+		./raycasting/raycasting.c \
 
 all : $(NAME)
 
