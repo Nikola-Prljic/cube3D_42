@@ -10,9 +10,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# define WINDOW_HEIGT 400
+# define WINDOW_WITH 400
+
 typedef struct s_data
 {
     char **map;
+    void *mlx_ptr;
+    void *win_ptr;
 }t_data;
 
 //ft_split.c
@@ -42,5 +47,9 @@ char	*ft_strj(char const *s1, char const *s2);
 void	ft_putstr_fd(char *s, int fd);
 int     puterror(char *str);
 void    printmap(char **map);
+void    free2d(char **map);
+
+//window_loop.c
+int     window_loop( t_data *data );
 
 #endif
