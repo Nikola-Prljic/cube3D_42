@@ -27,7 +27,7 @@ int	keypress(int keysum, t_data *data)
 	double	degrees;
 
 	degrees = data->rays->player_dir * (180.0 / PI);
-	printf("X & Y position of the player : %f	%f\n", data->rays->player_x,
+	printf("X & Y position of the player : %i	%i\n", data->rays->player_x,
 				data->rays->player_y);
 	printf("player view direction in degrees : %f\n", degrees);
 	printf("---------------------------------------------------\n");
@@ -60,14 +60,15 @@ int	keypress(int keysum, t_data *data)
 		data->rays->player_y += data->rays->player_dir_y;
 	}
 	degrees = data->rays->player_dir * (180.0 / PI);
-	printf("X & Y position of the player : %f	%f\n", data->rays->player_x,
+	printf("X & Y position of the player : %i	%i\n", data->rays->player_x,
 				data->rays->player_y);
 	printf("player view direction in degrees : %f\n", degrees);
 	printf("\n\n");
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-		data->rays->player, data->rays->player_x,
-		data->rays->player_y);
+		data->rays->player, data->rays->player_x - 21.5,
+		data->rays->player_y - 21.5);
+	raylen(data, 0, 0);
 	return (1);
 }
 
@@ -78,8 +79,8 @@ int	window_loop(t_data *data)
 		return (1);
 	prepare_player(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-		data->rays->player, data->rays->player_x,
-		data->rays->player_y);
+		data->rays->player, data->rays->player_x - 21.5,
+		data->rays->player_y - 21.5);
 	mlx_hook(data->win_ptr, 17, 0, &x_close, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &keypress, data);
 	mlx_loop(data->mlx_ptr);

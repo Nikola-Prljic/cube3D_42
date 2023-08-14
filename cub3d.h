@@ -29,15 +29,15 @@ typedef struct s_ray_cast
 
 typedef struct s_texture
 {
-	char *north;
-	char *south;
-	char *west;
-	char *east;
+	char		*north;
+	char		*south;
+	char		*west;
+	char		*east;
 }				t_texture;
 
 typedef struct s_data
 {
-	t_texture 	*texture;
+	t_texture	*texture;
 	char		**map;
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -47,7 +47,7 @@ typedef struct s_data
 typedef struct s_map
 {
 	int			fd;
-	char 		*buffer;
+	char		*buffer;
 }				t_map;
 
 //input_handle.c
@@ -76,6 +76,9 @@ int				ft_strcmp(const char *s1, const char *s2);
 
 //raycasting.cs
 int				ray_functions(t_data *data);
+
+//raylen.c
+void			raylen(t_data *data, float rd, int *re);
 
 //utils.c
 int				ft_strlen(const char *str);
