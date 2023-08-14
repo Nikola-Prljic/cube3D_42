@@ -5,11 +5,11 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra -g
 
-SRC =	./cfiles/map_check/ft_split.c \
-		./cfiles/map_check/ft_substr.c \
+SRC =	./cfiles/map_check/ft_getline/ft_getline_ultis.c \
+		./cfiles/map_check/ft_getline/ft_getline.c \
 		./cfiles/map_check/map_check.c \
-		./cfiles/map_check/map_open.c \
-		./cfiles/map_check/map_open_utils.c \
+		./cfiles/map_check/map_textures.c \
+		./cfiles/map_check/map_utils.c \
 		./cfiles/2d_map.c \
 		./cfiles/input_handle.c \
 		./cfiles/main.c \

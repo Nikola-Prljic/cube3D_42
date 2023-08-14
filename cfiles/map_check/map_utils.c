@@ -1,5 +1,24 @@
-
 #include "../../cub3d.h"
+
+char	*ft_strdup(const char *s)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	if(!s)
+		return(NULL);
+	tmp = malloc(ft_strlen(s) * sizeof(char) + 1);
+	if (!tmp)
+		return (NULL);
+	while (s[i])
+	{
+		tmp[i] = s[i];
+		i++;
+	}
+	tmp[i] = '\0';
+	return (tmp);
+}
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

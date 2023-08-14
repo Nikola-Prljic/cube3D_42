@@ -83,6 +83,9 @@ int	window_loop(t_data *data)
 	mlx_hook(data->win_ptr, 17, 0, &x_close, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &keypress, data);
 	mlx_loop(data->mlx_ptr);
+	mlx_destroy_image(data->mlx_ptr,data->rays->player);
+	if(data->rays)
+		free(data->rays);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 	return (0);
