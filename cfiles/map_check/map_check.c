@@ -5,19 +5,23 @@
 int isValidchar(char *mapstr, char *valid_chars)
 {
 	int i;
+	int x;
 
-	while(*mapstr)
+	x = 0;
+	if(!mapstr)
+		return(0);
+	while(mapstr[x])
 	{
 		i = 0;
 		while(valid_chars[i])
 		{
-			if(*mapstr == valid_chars[i])
+			if(mapstr[x] == valid_chars[i])
 				break ;
 			i++;
 			if(valid_chars[i] == 0)
 				return (1);
 		}
-		mapstr++;
+		x++;
 	}
 	return (0);
 }
@@ -77,32 +81,48 @@ int ft_matrix_push_back(t_data *data, char *str)
 	return 0;
 }
 
+void malloc_data_map_first_line(t_data *data, t_map *file)
+{
+	data->map = malloc(sizeof(char*) * 2);
+	if(!data->map)
+		free_map_exit(data, file, "Error: map_open faild");
+	data->map[0] = NULL;
+}
+
+char *saveline(t_data *data, t_map *file)
+{
+	char *line;
+
+	line = NULL;
+	line = ft_getline(file->fd, &file->buffer, '\n');
+	if(isValidchar(line, " 01NEWS") == 1)
+	{
+		free(line);
+		free_map_exit(data, file, "Error: wrong char in map\n");
+	}
+	ft_matrix_push_back(data, line);
+	return (line);
+}
+
 int map_check(t_data *data, char *map_name )
 {
 	t_map file;
 	char *line;
 
+	line = NULL;
 	file.buffer = NULL;
 	if(map_open(&file.fd, map_name))
 		return (free_map_exit(data, &file, "Error: map_open faild"));
 	handel_textures(data, &file);
-	data->map = malloc(sizeof(char*) * 2);
-	if(!data->map)
-		exit(puterror("Error: Malloc faild\n"));
-	line = ft_getline(file.fd, &file.buffer, '\n');
-	data->map[0] = ft_strdup(line);
-	data->map[1] = NULL;
+	malloc_data_map_first_line(data, &file);
+	line = saveline(data, &file);
 	while(line)
 	{
 		free(line);
-		line = ft_getline(file.fd, &file.buffer, '\n');
-		ft_matrix_push_back(data, line);
+		line = saveline(data, &file);
 	}
 	printmap(data->map);
 	if(file.buffer)
 		free(file.buffer);
-
-	/* exit(1); */
-
 	return (0);
 }
