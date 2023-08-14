@@ -24,13 +24,13 @@ int is_possible_direction(t_data *data, t_map *file)
 
 	direction = ft_getline(file->fd, &file->buffer, ' ');
 	texture_path = ft_getline(file->fd, &file->buffer, '\n');
-	if(!ft_strcmp(direction, "NO"))
+	if(!data->texture->north && !ft_strcmp(direction, "NO"))
 		data->texture->north = ft_strdup(texture_path);
-	else if(!ft_strcmp(direction, "SO"))
+	else if(!data->texture->south && !ft_strcmp(direction, "SO"))
 		data->texture->south = ft_strdup(texture_path);
-	else if(!ft_strcmp(direction, "WE"))
+	else if(!data->texture->west && !ft_strcmp(direction, "WE"))
 		data->texture->west = ft_strdup(texture_path);
-	else if(!ft_strcmp(direction, "EA"))
+	else if(!data->texture->east && !ft_strcmp(direction, "EA"))
 		data->texture->east = ft_strdup(texture_path);
 	else
 		return(free_texture_lines(&texture_path, &direction));

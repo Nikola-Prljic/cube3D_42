@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 14:52:09 by nprljic           #+#    #+#             */
-/*   Updated: 2023/08/13 16:49:13 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/08/14 17:42:46 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 50
 # endif
 
 size_t	int_strlen(char *s);
