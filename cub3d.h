@@ -22,8 +22,8 @@ typedef struct s_ray_cast
 	float		player_dir;
 	float		player_dir_x;
 	float		player_dir_y;
-	float		player_x;
-	float		player_y;
+	int			player_x;
+	int			player_y;
 	void		*player;
 }				t_ray_cast;
 
