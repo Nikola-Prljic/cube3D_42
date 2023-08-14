@@ -65,6 +65,7 @@ int	keypress(int keysum, t_data *data)
 	printf("player view direction in degrees : %f\n", degrees);
 	printf("\n\n");
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	print_2d(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->rays->player, data->rays->player_x - 21.5,
 		data->rays->player_y - 21.5);
@@ -78,6 +79,7 @@ int	window_loop(t_data *data)
 	if (make_window(data, WINDOW_HEIGT, WINDOW_WITH))
 		return (1);
 	prepare_player(data);
+	print_2d(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->rays->player, data->rays->player_x - 21.5,
 		data->rays->player_y - 21.5);
