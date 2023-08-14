@@ -11,8 +11,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WINDOW_HEIGT 400
-# define WINDOW_WITH 400
+# define WINDOW_HEIGT 600
+# define WINDOW_WITH 800
 # define PI 3.1415926535
 
 typedef struct s_ray_cast
@@ -24,6 +24,7 @@ typedef struct s_ray_cast
 	float		player_dir_y;
 	float		player_x;
 	float		player_y;
+	void		*player;
 }				t_ray_cast;
 
 typedef struct s_texture
@@ -58,6 +59,9 @@ int				free_data(t_data *data);
 //map_check.c
 int				map_check(t_data *data, char *map_name);
 
+//2d_map.c
+void			prepare_player(t_data *data);
+
 //map_open.c
 int				map_open(int *fd, char *map_name);
 
@@ -66,7 +70,7 @@ char			*ft_strdup(const char *s);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 
 
-//raycasting.c
+//raycasting.cs
 int				ray_functions(t_data *data);
 
 //utils.c
