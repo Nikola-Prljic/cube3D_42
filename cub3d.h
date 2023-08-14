@@ -24,6 +24,7 @@ typedef struct s_ray_cast
 	float		player_dir_y;
 	float		player_x;
 	float		player_y;
+	void		*player;
 }				t_ray_cast;
 
 typedef struct s_data
@@ -48,6 +49,9 @@ int				input_handle(int argc, char **argv);
 //map_check.c
 int				map_check(char ***map, char *map_name);
 
+//2d_map.c
+void			prepare_player(t_data *data);
+
 //map_open.c
 int				map_open(char *map_name, int *fd);
 int				map_read(int fd, char **mapstr);
@@ -55,7 +59,7 @@ int				map_read(int fd, char **mapstr);
 //map_open_utils.c
 char			*ft_linejoin(char *s1, char *s2);
 
-//raycasting.c
+//raycasting.cs
 int				ray_functions(t_data *data);
 
 //utils.c

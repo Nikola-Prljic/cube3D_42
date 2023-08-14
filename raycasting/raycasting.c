@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:56:00 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/14 13:01:27 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:21:19 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	get_position(char **map, t_ray_cast *rays)
 				rays->player_y = y * 64;
 				rays->player_exists = 1;
 				rays->view_point = map[y][x];
+				map[y][x] = 'P';
 				return ;
 			}
 		}
@@ -43,9 +44,9 @@ void	angle_view_start(t_ray_cast *rays)
 	if (rays->view_point == 'S')
 		rays->player_dir = 3 * PI / 2;
 	if (rays->view_point == 'W')
-		rays->player_dir = PI;
-	if (rays->view_point == 'E')
 		rays->player_dir = 2 * PI;
+	if (rays->view_point == 'E')
+		rays->player_dir = PI;
 }
 
 void	rays_init(t_ray_cast *rays)

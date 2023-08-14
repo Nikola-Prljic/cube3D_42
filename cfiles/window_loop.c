@@ -64,7 +64,10 @@ int	keypress(int keysum, t_data *data)
 				data->rays->player_y);
 	printf("player view direction in degrees : %f\n", degrees);
 	printf("\n\n");
-	mlx_pixel_put(data->mlx_ptr, data->win_ptr, data->rays->player_x, data->rays->player_y, 0x00FF0000);
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->rays->player, data->rays->player_x,
+		data->rays->player_y);
 	return (1);
 }
 
@@ -73,6 +76,10 @@ int	window_loop(t_data *data)
 	ray_functions(data);
 	if (make_window(data, WINDOW_HEIGT, WINDOW_WITH))
 		return (1);
+	prepare_player(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->rays->player, data->rays->player_x,
+		data->rays->player_y);
 	mlx_hook(data->win_ptr, 17, 0, &x_close, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &keypress, data);
 	mlx_loop(data->mlx_ptr);
