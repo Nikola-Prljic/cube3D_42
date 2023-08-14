@@ -57,6 +57,7 @@ int				input_handle(int argc, char **argv);
 int				free_data(t_data *data);
 
 //map_check.c
+int 			free_map_exit(t_data *data, t_map *file, char *msg);
 int				map_check(t_data *data, char *map_name);
 
 //2d_map.c
@@ -65,11 +66,15 @@ void			prepare_player(t_data *data);
 //map_open.c
 int				map_open(int *fd, char *map_name);
 
+//map_textures
+void handel_textures(t_data *data, t_map *file);
+
 //map_utils.c
 char			*ft_strdup(const char *s);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
+int				ft_strcmp(const char *s1, const char *s2);
 
-//raycasting.c
+//raycasting.cs
 int				ray_functions(t_data *data);
 
 //raylen.c
