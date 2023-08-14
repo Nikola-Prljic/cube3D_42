@@ -26,34 +26,45 @@ typedef struct s_ray_cast
 	float		player_y;
 }				t_ray_cast;
 
+typedef struct s_texture
+{
+	char *north;
+	char *south;
+	char *west;
+	char *east;
+}				t_texture;
+
 typedef struct s_data
 {
+	t_texture 	*texture;
 	char		**map;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_ray_cast	*rays;
 }				t_data;
 
-//ft_split.c
-char			**ft_split(char const *s, char c);
-
-//ft_substr.c
-char			*ft_substr(char const *s, unsigned int start, size_t len);
+typedef struct s_map
+{
+	int			fd;
+	char 		*buffer;
+}				t_map;
 
 //input_handle.c
 int				input_handle(int argc, char **argv);
 
 //main.c
+int				free_data(t_data *data);
 
 //map_check.c
-int				map_check(char ***map, char *map_name);
+int				map_check(t_data *data, char *map_name);
 
 //map_open.c
-int				map_open(char *map_name, int *fd);
-int				map_read(int fd, char **mapstr);
+int				map_open(int *fd, char *map_name);
 
-//map_open_utils.c
-char			*ft_linejoin(char *s1, char *s2);
+//map_utils.c
+char			*ft_strdup(const char *s);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+
 
 //raycasting.c
 int				ray_functions(t_data *data);
