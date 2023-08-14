@@ -77,7 +77,7 @@ int ft_matrix_push_back(t_data *data, char *str)
 	return 0;
 }
 
-int map_check( t_data *data, char *map_name )
+int map_check(t_data *data, char *map_name )
 {
 	t_map file;
 	char *line;
@@ -85,6 +85,7 @@ int map_check( t_data *data, char *map_name )
 	file.buffer = NULL;
 	if(map_open(&file.fd, map_name))
 		return (free_map_exit(data, &file, "Error: map_open faild"));
+	handel_textures(data, &file);
 	data->map = malloc(sizeof(char*) * 2);
 	if(!data->map)
 		exit(puterror("Error: Malloc faild\n"));
