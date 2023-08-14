@@ -11,8 +11,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WINDOW_HEIGT 400
-# define WINDOW_WITH 400
+# define WINDOW_HEIGT 600
+# define WINDOW_WITH 800
 # define PI 3.1415926535
 
 typedef struct s_ray_cast

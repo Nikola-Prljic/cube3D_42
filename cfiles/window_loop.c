@@ -35,35 +35,36 @@ int	keypress(int keysum, t_data *data)
 		return (x_close(data));
 	else if (keysum == XK_A || keysum == XK_Left)
 	{
-		data->rays->player_dir += 0.1;
-		if (data->rays->player_dir > 2 * PI)
-			data->rays->player_dir -= 2 * PI;
-		data->rays->player_dir_x = cos(data->rays->player_dir) * 5;
-		data->rays->player_dir_y = sin(data->rays->player_dir) * 5;
-	}
-	else if (keysum == XK_D || keysum == XK_Right)
-	{
 		data->rays->player_dir -= 0.1;
 		if (data->rays->player_dir < 0)
 			data->rays->player_dir += 2 * PI;
 		data->rays->player_dir_x = cos(data->rays->player_dir) * 5;
 		data->rays->player_dir_y = sin(data->rays->player_dir) * 5;
 	}
-	else if (keysum == XK_W || keysum == XK_Up)
+	else if (keysum == XK_D || keysum == XK_Right)
 	{
-		data->rays->player_x += data->rays->player_dir_x;
-		data->rays->player_y += data->rays->player_dir_y;
+		data->rays->player_dir += 0.1;
+		if (data->rays->player_dir > 2 * PI)
+			data->rays->player_dir -= 2 * PI;
+		data->rays->player_dir_x = cos(data->rays->player_dir) * 5;
+		data->rays->player_dir_y = sin(data->rays->player_dir) * 5;
 	}
-	else if (keysum == XK_S || keysum == XK_Down)
+	else if (keysum == XK_W || keysum == XK_Up)
 	{
 		data->rays->player_x -= data->rays->player_dir_x;
 		data->rays->player_y -= data->rays->player_dir_y;
+	}
+	else if (keysum == XK_S || keysum == XK_Down)
+	{
+		data->rays->player_x += data->rays->player_dir_x;
+		data->rays->player_y += data->rays->player_dir_y;
 	}
 	degrees = data->rays->player_dir * (180.0 / PI);
 	printf("X & Y position of the player : %f	%f\n", data->rays->player_x,
 				data->rays->player_y);
 	printf("player view direction in degrees : %f\n", degrees);
 	printf("\n\n");
+	mlx_pixel_put(data->mlx_ptr, data->win_ptr, data->rays->player_x, data->rays->player_y, 0x00FF0000);
 	return (1);
 }
 
