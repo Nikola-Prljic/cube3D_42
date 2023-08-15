@@ -1,16 +1,6 @@
 
 #include "../cub3d.h"
 
-void	ft_putstr_fd(char *s, int fd)
-{
-	int	i;
-
-	i = -1;
-	if (s)
-		while (s[++i])
-			write(fd, &s[i], 1);
-}
-
 int	ft_strlen(const char *str)
 {
 	int	i;
@@ -49,37 +39,37 @@ char	*ft_strj(char const *s1, char const *s2)
 	return (jstr);
 }
 
-int puterror(char *str)
+int	puterror(char *str)
 {
 	write(2, str, ft_strlen(str));
 	return (1);
 }
 
-void printmap(char **map)
+void	printmap(char **map)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
-	if(!map)
+	if (!map)
 		return ;
 	y = -1;
-	while(map[++y])
+	while (map[++y])
 	{
 		x = -1;
-		while(map[y][++x])
+		while (map[y][++x])
 			write(1, &map[y][x], 1);
 		write(1, "\n", 1);
 	}
 }
 
-void free2d(char **map)
+void	free2d(char **map)
 {
-	int y;
+	int	y;
 
-	if(!map)
+	if (!map)
 		return ;
 	y = -1;
-	while(map[++y])
+	while (map[++y])
 		free(map[y]);
 	free(map);
 }

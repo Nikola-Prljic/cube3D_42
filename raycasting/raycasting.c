@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:56:00 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/14 14:21:19 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/08/15 13:08:21 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ void	get_position(char **map, t_ray_cast *rays)
 			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E'
 				|| map[y][x] == 'W')
 			{
-				rays->player_x = x * 64;
-				rays->player_y = y * 64;
+				rays->pm_x = x;
+				rays->pm_y = y;
+				rays->pcor_x = x * 64;
+				rays->pcor_y = y * 64;
 				rays->player_exists = 1;
 				rays->view_point = map[y][x];
 				map[y][x] = 'P';
@@ -47,12 +49,20 @@ void	angle_view_start(t_ray_cast *rays)
 		rays->player_dir = 2 * PI;
 	if (rays->view_point == 'E')
 		rays->player_dir = PI;
+	rays->plane = WINDOW_WITH;
 }
 
 void	rays_init(t_ray_cast *rays)
 {
-	rays->player_x = 0;
-	rays->player_y = 0;
+	rays->h_x = 0;
+	rays->h_y = 0;
+	rays->v_x = 0;
+	rays->v_y = 0;
+	rays->pm_x = 0;
+	rays->pm_y = 0;
+	rays->pcor_x = 0;
+	rays->pcor_y = 0;
+	rays->plane = 0;
 	rays->player_exists = 0;
 	rays->view_point = 'N';
 	rays->player_dir_x = 0;
