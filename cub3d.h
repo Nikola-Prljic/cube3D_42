@@ -17,6 +17,8 @@
 
 typedef struct s_ray_cast
 {
+	int			f_h_x;
+	int			f_h_y;
 	int			v_x;
 	int			v_y;
 	int			h_x;
