@@ -25,12 +25,9 @@ void	print_2d(t_data *data)
 		x = -1;
 		while (data->map[y][++x])
 		{
-			if (data->map[y][x] == '0' || data->map[y][x] == 'P')
+			if (data->map[y][x] == '1')
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->rays->space, (x * 43), (y * 43));
-			else if (data->map[y][x] == '1')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->rays->wall, (x * 43), (y * 43));
+					data->rays->wall, (x * 64), (y * 64));
 		}
 	}
 }
