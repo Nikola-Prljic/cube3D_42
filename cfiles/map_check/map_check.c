@@ -134,6 +134,7 @@ int map_check(t_data *data, int fd)
 		line = saveline(data, &file, y);
 		y++;
 	}
+	data->map_y = y - 1;
 	printmap(data->map);
 	if(data->px == -1 || data->py == -1)
 		free_map_exit(data, &file, "Error\nStart position was not found on map");

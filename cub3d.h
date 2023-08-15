@@ -54,6 +54,7 @@ typedef struct s_data
 	void		*win_ptr;
 	int			py;
 	int			px;
+	int			map_y; 
 	t_ray_cast	*rays;
 }				t_data;
 
