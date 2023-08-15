@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:56:00 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/15 15:35:50 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:32:21 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	rays_init(t_ray_cast *rays)
 	rays->pm_y = 0;
 	rays->pcor_x = 0;
 	rays->pcor_y = 0;
-	rays->plane = 0;
+	rays->plane = WINDOW_WITH;
 	rays->player_exists = 0;
 	rays->view_point = 'N';
 	rays->player_dir_x = 0;
