@@ -26,19 +26,6 @@ int isValidchar(char *mapstr, char *valid_chars)
 	return (0);
 }
 
-/* int map_open(int *fd, char *map_name)
-{
-	char	*path;
-
-	path = ft_strj( "maps/", map_name );
-	*fd = open( path, O_RDONLY );
-    if(path)
-	    free(path);
-	if(*fd == -1)
-        return (puterror("Error: map open faild\n"));
-	return (0);
-}  */
-
 int free_map_exit(t_data *data, t_map *file, char *msg)
 {
 	free_data(data);
@@ -57,7 +44,7 @@ int free_map_exit(t_data *data, t_map *file, char *msg)
 	exit(1);
 }
 
-int ft_matrix_push_back(t_data *data, char *str)
+int ft_matrix_push_back(t_data *data, t_map *file, char *str)
 {
 	int i;
 	char **new_matrix;
@@ -69,7 +56,7 @@ int ft_matrix_push_back(t_data *data, char *str)
 		i++;
 	new_matrix = malloc(sizeof(char*) * (i + 2));
 	if(!new_matrix)
-		return (1);
+		return (free_map_exit(data, file, "Error: malloc faild in ft_matrix_push_back\n"));
 	i = 0;
 	while(data->map[i])
 	{
@@ -108,7 +95,7 @@ char *saveline(t_data *data, t_map *file)
 		free(line);
 		free_map_exit(data, file, "Error: wrong char in map\n");
 	}
-	ft_matrix_push_back(data, line);
+	ft_matrix_push_back(data, file, line);
 	return (line);
 }
 

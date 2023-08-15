@@ -23,15 +23,11 @@ int	check_input(char *map_path, int *fd)
 		return (1);
 	*fd = open(map_path, O_RDONLY);
 	if (*fd <= 0)
-	{
-		ft_putstr_fd("Cant find/access map!\n", 2);
-		return (1);
-	}
+		return (puterror("Cant find/access map!\n"));
 	if (map_extension(map_path))
 	{
-		ft_putstr_fd("Invalid map extension!\n", 2);
 		close(*fd);
-		return (1);
+		return (puterror("Invalid map extension!\n"));
 	}
 	return (0);
 }
