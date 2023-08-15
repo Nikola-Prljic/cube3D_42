@@ -11,19 +11,26 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WINDOW_HEIGT 600
-# define WINDOW_WITH 800
+# define WINDOW_HEIGT 320
+# define WINDOW_WITH 200
 # define PI 3.1415926535
 
 typedef struct s_ray_cast
 {
+	int			v_x;
+	int			v_y;
+	int			h_x;
+	int			h_y;
 	char		view_point;
 	int			player_exists;
 	float		player_dir;
 	float		player_dir_x;
 	float		player_dir_y;
-	int			player_x;
-	int			player_y;
+	int			plane;
+	int			pm_x;
+	int			pm_y;
+	int			pcor_x;
+	int			pcor_y;
 	void		*player;
 	void		*space;
 	void		*wall;
@@ -81,12 +88,11 @@ int				ft_strcmp(const char *s1, const char *s2);
 int				ray_functions(t_data *data);
 
 //raylen.c
-void			raylen(t_data *data, float rd, int *re);
+void			raylen(t_data *data);
 
 //utils.c
 int				ft_strlen(const char *str);
 char			*ft_strj(char const *s1, char const *s2);
-void			ft_putstr_fd(char *s, int fd);
 int				puterror(char *str);
 void			printmap(char **map);
 void			free2d(char **map);
