@@ -26,12 +26,12 @@ int	check_input(char *map_path)
 	fd = open(map_path, O_RDONLY);
 	if (fd <= 0)
 	{
-		ft_putstr_fd("Cant find/access map!\n", 2);
+		puterror("Cant find/access map!\n");
 		return (1);
 	}
 	if (map_extension(map_path))
 	{
-		ft_putstr_fd("Invalid map extension!\n", 2);
+		puterror("Invalid map extension!\n");
 		close(fd);
 		return (1);
 	}
@@ -46,7 +46,7 @@ int	input_handle(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("Invalid number of parameters\n", 2);
+		puterror("Invalid number of parameters\n");
 		return (1);
 	}
 	map_file = ft_strj("maps/", argv[1]);
