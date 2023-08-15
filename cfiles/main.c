@@ -3,6 +3,8 @@
 
 void	init_data(t_data *data)
 {
+	data->px = -1;
+	data->py = -1;
 	data->map = NULL;
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;

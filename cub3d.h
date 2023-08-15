@@ -50,6 +50,8 @@ typedef struct s_data
 	char		**map;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	int			py;
+	int			px;
 	t_ray_cast	*rays;
 }				t_data;
 
@@ -59,6 +61,12 @@ typedef struct s_map
 	char		*buffer;
 }				t_map;
 
+typedef struct s_path
+{
+	int x;
+	int y;
+}				t_path;
+
 //input_handle.c
 int				input_handle(int argc, char **argv, int *fd);
 
@@ -66,6 +74,7 @@ int				input_handle(int argc, char **argv, int *fd);
 int				free_data(t_data *data);
 
 //map_check.c
+int				charInStr(char c, char *valid_chars);
 int				free_map_exit(t_data *data, t_map *file, char *msg);
 int				map_check(t_data *data, int fd);
 
@@ -81,8 +90,8 @@ void			handel_textures(t_data *data, t_map *file);
 
 //map_utils.c
 char			*ft_strdup(const char *s);
-char			*ft_substr(char const *s, unsigned int start, size_t len);
 int				ft_strcmp(const char *s1, const char *s2);
+int				ft_fillmap(t_data *data, int x, int y);
 
 //raycasting.cs
 int				ray_functions(t_data *data);

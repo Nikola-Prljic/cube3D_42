@@ -2,9 +2,24 @@
 #include "../../cub3d.h"
 #include "ft_getline/ft_getline.h"
 
-int isValidchar(char *mapstr, char *valid_chars)
+int charInStr(char c, char *valid_chars)
 {
 	int i;
+
+	i = 0;
+	if(!valid_chars || c == 0)
+		return (1);
+	while(valid_chars[i])
+	{
+		if(c == valid_chars[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int isValidchar(t_data *data, char *mapstr, char *valid_chars, int y)
+{
 	int x;
 
 	x = 0;
@@ -12,15 +27,15 @@ int isValidchar(char *mapstr, char *valid_chars)
 		return(0);
 	while(mapstr[x])
 	{
-		i = 0;
-		while(valid_chars[i])
+		if(mapstr[x] == 'N' || mapstr[x] == 'E' || mapstr[x] == 'w' || mapstr[x] == 'S')
 		{
-			if(mapstr[x] == valid_chars[i])
-				break ;
-			i++;
-			if(valid_chars[i] == 0)
-				return (1);
+			if(data->px != -1)
+				return(1);
+			data->px = x;
+			data->py = y;
 		}
+		if(charInStr(mapstr[x], valid_chars))
+			return(1);
 		x++;
 	}
 	return (0);
@@ -80,20 +95,20 @@ void malloc_data_map_first_line(t_data *data, t_map *file)
 {
 	data->map = malloc(sizeof(char*) * 2);
 	if(!data->map)
-		free_map_exit(data, file, "Error: map_open faild");
+		free_map_exit(data, file, "Error\nmap_open faild\n");
 	data->map[0] = NULL;
 }
 
-char *saveline(t_data *data, t_map *file)
+char *saveline(t_data *data, t_map *file, int y)
 {
 	char *line;
 
 	line = NULL;
 	line = ft_getline(file->fd, &file->buffer, '\n');
-	if(isValidchar(line, " 01NEWS") == 1)
+	if(isValidchar(data, line, " 01NEWS", y) == 1)
 	{
 		free(line);
-		free_map_exit(data, file, "Error: wrong char in map\n");
+		free_map_exit(data, file, "Error\nwrong char in map\n");
 	}
 	ft_matrix_push_back(data, file, line);
 	return (line);
@@ -101,24 +116,32 @@ char *saveline(t_data *data, t_map *file)
 
 int map_check(t_data *data, int fd)
 {
+	int y;
 	char	*line;
 	t_map	file;
 
+	y = 0;
 	line = NULL;
 	file.fd = fd;
 	file.buffer = NULL;
 	handel_textures(data, &file);
 	malloc_data_map_first_line(data, &file);
-	line = saveline(data, &file);
+	line = saveline(data, &file, y);
+	y = 1;
 	while(line)
 	{
 		free(line);
-		line = saveline(data, &file);
+		line = saveline(data, &file, y);
+		y++;
 	}
 	printmap(data->map);
+	if(data->px == -1 || data->py == -1)
+		free_map_exit(data, &file, "Error\nStart position was not found on map");
 	if(file.buffer)
 		free(file.buffer);
 	if(fd != -1)
 		close(file.fd);
+	ft_fillmap(data, data->px, data->py);
+	printmap(data->map);
 	return (0);
 }
