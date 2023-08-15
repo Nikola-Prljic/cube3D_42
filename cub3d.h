@@ -53,14 +53,14 @@ typedef struct s_map
 }				t_map;
 
 //input_handle.c
-int				input_handle(int argc, char **argv);
+int				input_handle(int argc, char **argv, int *fd);
 
 //main.c
 int				free_data(t_data *data);
 
 //map_check.c
 int				free_map_exit(t_data *data, t_map *file, char *msg);
-int				map_check(t_data *data, char *map_name);
+int				map_check(t_data *data, int fd);
 
 //2d_map.c
 void			prepare_player(t_data *data);

@@ -30,14 +30,16 @@ int	free_data(t_data *data)
 
 int	main(int argc, char **argv)
 {
+	int fd;
 	t_data	data;
 	t_texture texture;
 
+	fd = -1;
 	data.texture = &texture;
 	init_data(&data);
-	if (input_handle(argc, argv))
+	if (input_handle(argc, argv, &fd))
 		return (1);
-	if (map_check(&data, argv[1]) || window_loop(&data))
+	if (map_check(&data, fd) || window_loop(&data))
 		return (free_data(&data));
 	free_data(&data);
 	return (0);

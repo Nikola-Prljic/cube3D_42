@@ -26,7 +26,7 @@ int isValidchar(char *mapstr, char *valid_chars)
 	return (0);
 }
 
-int map_open(int *fd, char *map_name)
+/* int map_open(int *fd, char *map_name)
 {
 	char	*path;
 
@@ -37,15 +37,23 @@ int map_open(int *fd, char *map_name)
 	if(*fd == -1)
         return (puterror("Error: map open faild\n"));
 	return (0);
-} 
+}  */
 
 int free_map_exit(t_data *data, t_map *file, char *msg)
 {
 	free_data(data);
 	if(file->buffer)
+	{
+		file->buffer = NULL;
 		free(file->buffer);
+	}
 	if(msg)
 		puterror(msg);
+	if(file->fd != -1)
+	{
+		file->fd = -1;
+		close(file->fd);
+	}
 	exit(1);
 }
 
@@ -104,15 +112,14 @@ char *saveline(t_data *data, t_map *file)
 	return (line);
 }
 
-int map_check(t_data *data, char *map_name )
+int map_check(t_data *data, int fd)
 {
-	t_map file;
-	char *line;
+	char	*line;
+	t_map	file;
 
 	line = NULL;
+	file.fd = fd;
 	file.buffer = NULL;
-	if(map_open(&file.fd, map_name))
-		return (free_map_exit(data, &file, "Error: map_open faild"));
 	handel_textures(data, &file);
 	malloc_data_map_first_line(data, &file);
 	line = saveline(data, &file);
@@ -124,5 +131,7 @@ int map_check(t_data *data, char *map_name )
 	printmap(data->map);
 	if(file.buffer)
 		free(file.buffer);
+	if(fd != -1)
+		close(file.fd);
 	return (0);
 }
