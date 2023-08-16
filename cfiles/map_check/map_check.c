@@ -6,7 +6,7 @@ void	malloc_data_map_first_line(t_data *data, t_map *file)
 {
 	data->map = malloc(sizeof(char*) * 2);
 	if(!data->map)
-		free_map_exit(data, file, "Error\nmap_open faild\n");
+		free_map_exit(data, file, "Error\nmalloc faild\n");
 	data->map[0] = NULL;
 }
 
@@ -38,7 +38,7 @@ int	map_check(t_data *data, int fd)
 	handel_textures(data, &file);
 	save_lines_loop(data, &file);
 
-	printmap(data->map); ///////delte
+	/* printmap(data->map);  *////////delte
 
 	if(data->px == -1 || data->py == -1)
 		free_map_exit(data, &file, "Error\nstart position was not found on map\n");
@@ -49,9 +49,9 @@ int	map_check(t_data *data, int fd)
 	
 	surrounded_by_walls(data, data->px, data->py);
 
-	printmap(data->map); ///////delte
+	/* printmap(data->map);  *////////delte
 
-	/* free_map_exit(data, &file, NULL); */
+	free_map_exit(data, &file, NULL);
 
 	return (0);
 }
