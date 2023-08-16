@@ -8,7 +8,7 @@ int free_texture_lines(char **texture_path, char **direction)
 		free(*texture_path);
 	if(*direction)
 		free(*direction);
-	return 1;
+	return (1);
 }
 
 int save_textures_path(t_data *data, char *texture_path, char *direction)
@@ -26,28 +26,29 @@ int save_textures_path(t_data *data, char *texture_path, char *direction)
 	return(0);
 }
 
-int is_possible_direction(t_data *data, t_map *file)
+int is_possible_direction(t_data *data, t_map *file, short first_line)
 {
-	char *direction;
-	char *texture_path;
+	short is_new_line;
+	char *direction = NULL;
+	char *texture_path = NULL;
 
-	direction = ft_getline(file->fd, &file->buffer, ' ');
+	is_new_line = 1;
+	while(is_new_line)
+	{
+		if(direction)
+		{
+			first_line = 1;
+			free(direction);
+		}
+		direction = ft_getline(file->fd, &file->buffer, ' ');
+		if(first_line == 0 && !direction)
+			free_map_exit(data, file, "Error\nempty map\n");
+		if(!direction)
+			free_map_exit(data, file, "Error\ntexture faild\n");
+		if(direction[0] != 0)
+			is_new_line = 0;
+	}
 	texture_path = ft_getline(file->fd, &file->buffer, '\n');
-	if(save_textures_path(data, texture_path, direction))
-		return(free_texture_lines(&texture_path, &direction));
-	free_texture_lines(&texture_path, &direction);
-	return (0);
-}
-
-int is_possible_first_direction(t_data *data, t_map *file)
-{
-	char *direction;
-	char *texture_path;
-
-	direction = ft_getline(file->fd, &file->buffer, ' ');
-	texture_path = ft_getline(file->fd, &file->buffer, '\n');
-	if(!direction)
-		free_map_exit(data, file, "Error\nempty map\n");
 	if(save_textures_path(data, texture_path, direction))
 		return(free_texture_lines(&texture_path, &direction));
 	free_texture_lines(&texture_path, &direction);
@@ -56,13 +57,13 @@ int is_possible_first_direction(t_data *data, t_map *file)
 
 void handel_textures(t_data *data, t_map *file)
 {
-	if(is_possible_first_direction(data, file))
+	if(is_possible_direction(data, file, 0))
 		free_map_exit(data, file, "Error\nfaild to open textures\n");
-	if(is_possible_direction(data, file))
+	if(is_possible_direction(data, file, 1))
 		free_map_exit(data, file, "Error\nfaild to open textures\n");
-	if(is_possible_direction(data, file))
+	if(is_possible_direction(data, file, 1))
 		free_map_exit(data, file, "Error\nfaild to open textures\n");
-	if(is_possible_direction(data, file))
+	if(is_possible_direction(data, file, 1))
 		free_map_exit(data, file, "Error\nfaild to open textures\n");
 	if(data->texture->north == NULL)
 		free_map_exit(data, file, "Error\nfaild to save north texture\n");

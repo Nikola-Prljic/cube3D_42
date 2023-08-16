@@ -15,12 +15,17 @@ ft_test()
     grep -q "All heap blocks were freed -- no leaks are possible" valgrind_test.txt
     val_blocks=$?
     num=$(($num + $val_error + $val_blocks))
+    if [ $num -ne 0 ]
+        then echo valgrind error @ $1
+    fi
 }
 
 ft_test empty.cub
 ft_test t1.cub
 ft_test t2.cub
 ft_test t3.cub
+ft_test t4.cub
+ft_test t5.cub
 
 if [ $num -eq 0 ]
     then echo valgrind: ok

@@ -48,15 +48,15 @@ int free_map_exit(t_data *data, t_map *file, char *msg)
 	free_data(data);
 	if(file->buffer)
 	{
-		file->buffer = NULL;
 		free(file->buffer);
+		file->buffer = NULL;
 	}
 	if(msg)
 		puterror(msg);
 	if(file->fd != -1)
 	{
-		file->fd = -1;
 		close(file->fd);
+		file->fd = -1;
 	}
 	exit(1);
 }
