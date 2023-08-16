@@ -86,12 +86,8 @@ char 			*saveline(t_data *data, t_map *file, int y);
 //map_check.c
 int				map_check(t_data *data, int fd);
 
-//2d_map.c
-void			prepare_player(t_data *data);
-void			print_2d(t_data *data);
-
-//map_open.c
-int				map_open(int *fd, char *map_name);
+//map_surrounded_by_walls.c
+int				surrounded_by_walls(t_data *data, int x, int y);
 
 //map_textures
 void			handel_textures(t_data *data, t_map *file);
@@ -99,7 +95,11 @@ void			handel_textures(t_data *data, t_map *file);
 //map_utils.c
 char			*ft_strdup(const char *s);
 int				ft_strcmp(const char *s1, const char *s2);
-int				ft_fillmap(t_data *data, int x, int y);
+void 			free_data_exit(t_data *data, char *msg);
+
+//2d_map.c
+void			prepare_player(t_data *data);
+void			print_2d(t_data *data);
 
 //raycasting.cs
 int				ray_functions(t_data *data);
