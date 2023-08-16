@@ -54,7 +54,8 @@ typedef struct s_data
 	void		*win_ptr;
 	int			py;
 	int			px;
-	int			map_y; 
+	int			map_y;
+	int			map_x;
 	t_ray_cast	*rays;
 }				t_data;
 
@@ -76,9 +77,13 @@ int				input_handle(int argc, char **argv, int *fd);
 //main.c
 int				free_data(t_data *data);
 
-//map_check.c
+//map_check_utils.c
 int				charInStr(char c, char *valid_chars);
+int 			isValidchar(t_data *data, char *mapstr, char *valid_chars, int y);
 int				free_map_exit(t_data *data, t_map *file, char *msg);
+char 			*saveline(t_data *data, t_map *file, int y);
+
+//map_check.c
 int				map_check(t_data *data, int fd);
 
 //2d_map.c
