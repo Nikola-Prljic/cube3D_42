@@ -21,11 +21,14 @@ ft_test()
 }
 
 ft_test empty.cub
+ft_test hi.cub
 ft_test t1.cub
 ft_test t2.cub
 ft_test t3.cub
 ft_test t4.cub
 ft_test t5.cub
+ft_test t6.cub
+ft_test t7.cub
 
 if [ $num -eq 0 ]
     then echo valgrind: ok

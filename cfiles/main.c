@@ -46,9 +46,9 @@ int	free_data(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	int fd;
-	t_data	data;
-	t_texture texture;
+	int			fd;
+	t_data		data;
+	t_texture	texture;
 
 	fd = -1;
 	data.texture = &texture;
