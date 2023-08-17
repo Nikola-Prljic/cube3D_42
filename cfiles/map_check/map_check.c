@@ -49,9 +49,10 @@ int	map_check(t_data *data, int fd)
 	
 	surrounded_by_walls(data, data->px, data->py);
 
-	/* printmap(data->map);  *////////delte
+	printmap(data->map); ///////delte
 
-	free_map_exit(data, &file, NULL);
+	/* printf("ok in mapcheck.c\n");
+	free_map_exit(data, &file, NULL); */
 
 	return (0);
 }

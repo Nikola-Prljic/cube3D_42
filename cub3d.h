@@ -50,6 +50,7 @@ typedef struct s_data
 {
 	t_texture	*texture;
 	char		**map;
+	char		**map_copy;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	int			py;
@@ -83,11 +84,15 @@ int 			isValidchar(t_data *data, char *mapstr, char *valid_chars, int y);
 int				free_map_exit(t_data *data, t_map *file, char *msg);
 char 			*saveline(t_data *data, t_map *file, int y);
 
+//map_check_walls.c
+void			map_check_walls(t_data *data);
+
 //map_check.c
 int				map_check(t_data *data, int fd);
 
 //map_surrounded_by_walls.c
 int				surrounded_by_walls(t_data *data, int x, int y);
+
 
 //map_textures
 void			handel_textures(t_data *data, t_map *file);

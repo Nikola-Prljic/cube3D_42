@@ -2,15 +2,16 @@
 
 void	floodfill(t_data *data, t_path pos, char fill, char fill_with)
 {
-	if(!data->map[pos.y] || pos.x > ft_strlen(data->map[pos.y]) || data->map[pos.y][pos.x] == 0)
-		free_data_exit(data, "Error\nmap not sourundet by 1\n");
-	if(data->map[pos.y][pos.x] != fill)
+	if(pos.y < 0 || pos.x < 0 )
 		return ;
-	if(pos.y < 1 || pos.x < 1 || charInStr(data->map[pos.y][pos.x], "01F") )
+	if(!data->map_copy[pos.y] || pos.x > ft_strlen(data->map_copy[pos.y]) || data->map_copy[pos.y][pos.x] == 0)
 		free_data_exit(data, "Error\nmap not sourundet by 1\n");
-	if (pos.y < 0 || pos.x < 0 || data->map[pos.y][pos.x] != fill)
+	if(pos.y < 0 || pos.x < 0 || charInStr(data->map_copy[pos.y][pos.x], "01F") )
+		free_data_exit(data, "Error\nmap not sourundet by 1\n");
+	if (pos.y < 0 || pos.x < 0 || data->map_copy[pos.y][pos.x] != fill)
 		return ;
-	data->map[pos.y][pos.x] = fill_with;
+	data->map_copy[pos.y][pos.x] = fill_with;
+
 	floodfill(data, (t_path){pos.x + 1, pos.y}, fill, fill_with);
 	floodfill(data, (t_path){pos.x + 1, pos.y + 1}, fill, fill_with);
 
@@ -30,12 +31,12 @@ int	look_for_zero_save_pos(t_data *data, t_path *pos)
 	int x;
 
 	y = 0;
-	while(data->map[y])
+	while(data->map_copy[y])
 	{
 		x = 0;
-		while(data->map[y][x])
+		while(data->map_copy[y][x])
 		{
-			if(data->map[y][x] == '0')
+			if(data->map_copy[y][x] == '0')
 			{
 				pos->y = y;
 				pos->x = x;
@@ -48,19 +49,50 @@ int	look_for_zero_save_pos(t_data *data, t_path *pos)
 	return (0);
 }
 
+char **deep_copy_matrix(t_data *data)
+{
+	int y;
+	int i;
+	char **new_matrix;
+
+	y = 0;
+	new_matrix = malloc(sizeof(char *) * ( data->map_y + 1));
+	if(!new_matrix)
+		free_data_exit(data, "Error:\nMalloc faild in deep_copy_matrix\n");
+	while(data->map[y])
+	{
+		new_matrix[y] = ft_strdup(data->map[y]);
+		if(!new_matrix)
+		{
+			i = 0;
+			while(i < y)
+			{
+				free(new_matrix[i]);
+				i++;
+			}
+			free(new_matrix);
+			free_data_exit(data, "Error:\nMalloc faild in deep_copy_matrix\n");
+		}
+		y++;
+	}
+	new_matrix[y] = NULL;
+	return new_matrix;
+}
+
 int	surrounded_by_walls(t_data *data, int x, int y)
 {
 	t_path	pos;
-	char	tmp;
 
 	pos.x = x;
 	pos.y = y;
-	tmp = data->map[y][x];
-	data->map[y][x] = '0';
+	data->map_copy = deep_copy_matrix(data);
+	data->map_copy[y][x] = '0';
 	floodfill(data, pos, '0', 'F');
 	while(look_for_zero_save_pos(data, &pos))
 		floodfill(data, pos, '0', 'F');
-	floodfill(data, pos, 'F', '0');
-	data->map[y][x] = tmp;
+	map_check_walls(data);
+	if(data->map_copy)
+		free2d(data->map_copy);
+	data->map_copy = NULL;
 	return (0);
 }
