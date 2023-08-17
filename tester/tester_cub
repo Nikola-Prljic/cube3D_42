@@ -29,6 +29,8 @@ ft_test t4.cub
 ft_test t5.cub
 ft_test t6.cub
 ft_test t7.cub
+ft_test t8.cub
+ft_test t9.cub
 
 if [ $num -eq 0 ]
     then echo valgrind: ok
