@@ -6,8 +6,8 @@ char	*ft_strdup(const char *s)
 	int		i;
 
 	i = 0;
-	if(!s)
-		return(NULL);
+	if (!s)
+		return (NULL);
 	tmp = malloc(ft_strlen(s) * sizeof(char) + 1);
 	if (!tmp)
 		return (NULL);
@@ -36,10 +36,17 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-void free_data_exit(t_data *data, char *msg)
+void	free_data_exit(t_data *data, char *msg)
 {
 	free_data(data);
-	if(msg)
+	if (msg)
 		puterror(msg);
 	exit(1);
+}
+
+void	free_set_null(char **ptr)
+{
+	if (*ptr)
+		free(*ptr);
+	*ptr = NULL;
 }

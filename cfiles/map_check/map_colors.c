@@ -70,8 +70,9 @@ int save_color(t_data *data, t_map *file, char *line, char color)
 	}
 	if(line[0] != color || line[1] != 0)
 	{
-		if(line)
-			free(line);
+		free_set_null(&line);
+		if(color_rgb)
+			free(color_rgb);
 		free_map_exit(data, file, "Error\nNo color found\n");
 	}
 	if(line)

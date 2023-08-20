@@ -110,6 +110,7 @@ void			handel_textures(t_data *data, t_map *file);
 char			*ft_strdup(const char *s);
 int				ft_strcmp(const char *s1, const char *s2);
 void 			free_data_exit(t_data *data, char *msg);
+void 			free_set_null(char **ptr);
 
 //2d_map.c
 void			prepare_player(t_data *data);

@@ -30,17 +30,10 @@ int	free_data(t_data *data)
 		free2d(data->map_copy);
 		data->map_copy = NULL;
 	}
-	if(data->texture->north)
-	{
-		free(data->texture->north);
-		data->texture->north = NULL;
-	}
-	if(data->texture->south)
-		free(data->texture->south);
-	if(data->texture->west)
-		free(data->texture->west);
-	if(data->texture->east)
-		free(data->texture->east);
+	free_set_null(&data->texture->north);
+	free_set_null(&data->texture->south);
+	free_set_null(&data->texture->west);
+	free_set_null(&data->texture->east);
 	return (1);
 }
 
