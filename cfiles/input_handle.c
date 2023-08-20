@@ -23,11 +23,11 @@ int	check_input(char *map_path, int *fd)
 		return (1);
 	*fd = open(map_path, O_RDONLY);
 	if (*fd <= 0)
-		return (puterror("Cant find/access map!\n"));
+		return (puterror("Error\ncant find/access map!\n"));
 	if (map_extension(map_path))
 	{
 		close(*fd);
-		return (puterror("Invalid map extension!\n"));
+		return (puterror("Error\nInvalid map extension!\n"));
 	}
 	return (0);
 }
@@ -42,7 +42,10 @@ int	input_handle(int argc, char **argv, int *fd)
 		return(puterror("Error: argv[1] is empty string\n"));
 	map_file = ft_strj("maps/", argv[1]);
 	if(check_input(map_file, fd))
+	{
+		free(map_file);
 		return (1);
+	}
 	if (map_file != NULL)
 		free(map_file);
 	return (0);
