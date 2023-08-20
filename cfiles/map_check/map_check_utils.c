@@ -89,16 +89,26 @@ int	ft_matrix_push_back(t_data *data, t_map *file, char *str)
 	return (0);
 }
 
-char	*saveline(t_data *data, t_map *file, int y)
+char	*saveline(t_data *data, t_map *file, int y, short *map_parts_after_nl)
 {
 	char	*line;
 
 	line = NULL;
 	line = ft_getline(file->fd, &file->buffer, '\n');
-	if (isValidchar(data, line, " 01NEWS", y) == 1)
+	if(line && line[0] == 0)
+	{
+		*map_parts_after_nl = 1;
+		return (line);
+	}
+	if (line && (isValidchar(data, line, " 01NEWS", y) == 1))
 	{
 		free(line);
 		free_map_exit(data, file, "Error\nwrong char in map\n");
+	}
+	if (line && *map_parts_after_nl)
+	{
+		free(line);
+		free_map_exit(data, file, "Error\nmap seperated by new line\n");
 	}
 	ft_matrix_push_back(data, file, line);
 	return (line);

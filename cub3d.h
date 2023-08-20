@@ -49,6 +49,8 @@ typedef struct s_texture
 typedef struct s_data
 {
 	t_texture	*texture;
+	int			floor_rgb;
+	int			sky_rgb;
 	char		**map;
 	char		**map_copy;
 	void		*mlx_ptr;
@@ -78,17 +80,24 @@ int				input_handle(int argc, char **argv, int *fd);
 //main.c
 int				free_data(t_data *data);
 
+//ft_atoi
+int				ft_atoi(const char *nptr);
+
 //map_check_utils.c
 int				charInStr(char c, char *valid_chars);
 int 			isValidchar(t_data *data, char *mapstr, char *valid_chars, int y);
 int				free_map_exit(t_data *data, t_map *file, char *msg);
-char 			*saveline(t_data *data, t_map *file, int y);
+int 			ft_matrix_push_back(t_data *data, t_map *file, char *str);
+char 			*saveline(t_data *data, t_map *file, int y, short *map_parts_after_nl);
 
 //map_check_walls.c
 void			map_check_walls(t_data *data);
 
 //map_check.c
 int				map_check(t_data *data, int fd);
+
+//map_colors.c
+void			handel_color_codes( t_data *data, t_map *file );
 
 //map_surrounded_by_walls.c
 int				surrounded_by_walls(t_data *data, int x, int y);
