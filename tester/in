@@ -1,4 +1,6 @@
 Error
+invalid number of parameters
+Error
 empty map
 Error
 map not sourundet by 1
@@ -11,11 +13,12 @@ map not sourundet by 1
 Error
 map not sourundet by 1
 Error
-faild to open textures
+faild to read textures
 Error
-maps not connected
+map seperated by new line
 Error
-faild to open textures
+faild to read textures
 Error
-maps not connected
+map seperated by new line
+ok in mapcheck.c
 ok in mapcheck.c

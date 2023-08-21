@@ -10,7 +10,6 @@ int is_number(char *color_rgb, int *color)
 		return (0);
 	}
 	*color = ft_atoi(color_rgb);
-	printf("%i, ", *color);
 	if(*color == 0)
 		return (puterror("Error: color ist not a number\n"));
 	if(*color < 0)

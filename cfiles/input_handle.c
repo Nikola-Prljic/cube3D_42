@@ -37,9 +37,9 @@ int	input_handle(int argc, char **argv, int *fd)
 	char	*map_file;
 
 	if (argc != 2)
-		return(puterror("Error: invalid number of parameters\n"));
+		return(puterror("Error\ninvalid number of parameters\n"));
 	if(argv[1][0] == 0 && ft_strlen(argv[1]) == 0)
-		return(puterror("Error: argv[1] is empty string\n"));
+		return(puterror("Error\nargv[1] is empty string\n"));
 	map_file = ft_strj("maps/", argv[1]);
 	if(check_input(map_file, fd))
 	{

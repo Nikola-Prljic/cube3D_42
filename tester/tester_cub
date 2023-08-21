@@ -1,13 +1,18 @@
 #!/bin/sh
 num=0
+count=0
 cd ..
 make
 mv cub3D tester
 make clean
 cd tester
 > out
+echo "\n#############################"
+echo "##### Cube Input Tester #####"
+echo "#############################\n"
 ft_test()
 {
+    count=$((count+1))
     ./cub3D $1 >> out 2>&1
     valgrind ./cub3D $1 > valgrind_test.txt 2>&1
     grep -q "ERROR SUMMARY: 0 errors" valgrind_test.txt
@@ -17,9 +22,12 @@ ft_test()
     num=$(($num + $val_error + $val_blocks))
     if [ $num -ne 0 ]
         then echo valgrind error @ $1
+    else
+        echo -n "$count ok | "
     fi
 }
 
+ft_test
 ft_test empty.cub
 ft_test hi.cub
 ft_test t1.cub
@@ -31,17 +39,18 @@ ft_test t6.cub
 ft_test t7.cub
 ft_test t8.cub
 ft_test t9.cub
+ft_test t10.cub
 
 if [ $num -eq 0 ]
-    then echo valgrind: ok
+    then echo -n "valgrind: ok | "
 else
-    echo valgrind: ko
+    echo -n "valgrind: ko"
 fi
 
 diff out in
 
 if [ $? -eq 0 ]
-    then echo "tests:    ok"
+    then echo -n "tests:    ok\n"
     rm out valgrind_test.txt
 else
     echo ko
