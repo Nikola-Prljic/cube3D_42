@@ -1,4 +1,3 @@
-
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -111,6 +110,10 @@ char			*ft_strdup(const char *s);
 int				ft_strcmp(const char *s1, const char *s2);
 void 			free_data_exit(t_data *data, char *msg);
 void 			free_set_null(char **ptr);
+
+//convertions.c
+double			deg2rad(double degrees);
+double 			rad2deg(double radians);
 
 //2d_map.c
 void			prepare_player(t_data *data);

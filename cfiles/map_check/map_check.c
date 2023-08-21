@@ -2,14 +2,6 @@
 #include "../../cub3d.h"
 #include "ft_getline/ft_getline.h"
 
-/* void free_set_null(char **str)
-{
-	if(!str)
-		return ;
-	free(*str);
-	*str = NULL;
-} */
-
 void	malloc_data_map_first_line(t_data *data, t_map *file)
 {
 	data->map = malloc(sizeof(char *) * 2);
@@ -80,7 +72,7 @@ int	map_check(t_data *data, int fd)
 
 
 	/* printmap(data->map); */ ///////delte
-/* 	printf("ok in mapcheck.c\n");
+	/* 	printf("ok in mapcheck.c\n");
 	free_map_exit(data, &file, NULL); */
 	return (0);
 }
