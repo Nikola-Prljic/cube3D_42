@@ -7,9 +7,11 @@ mv cub3D tester
 make clean
 cd tester
 > out
-echo "\n#############################"
-echo "##### Cube Input Tester #####"
-echo "#############################\n"
+echo "\n"
+echo "               #############################"
+echo "               ##### Cube Input Tester #####"
+echo "               #############################\n"
+echo "       loading......        50%     just asking cats...."
 ft_test()
 {
     count=$((count+1))
@@ -57,7 +59,7 @@ ft_test t24.cub
 ft_test t25.cub
 
 if [ $num -eq 0 ]
-    then echo -n "\nvalgrind: ok 😻 | "
+    then echo -n "\n\nvalgrind: ok 😻 | "
 else
     echo -n "\nvalgrind: ko 🙀 | "
 fi
