@@ -12,7 +12,7 @@
 
 # define WINDOW_HEIGT 512
 # define WINDOW_WITH 512
-# define PI 3.1415926535
+# define PI 3.141592
 
 typedef struct s_ray_cast
 {
