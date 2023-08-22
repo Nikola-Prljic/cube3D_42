@@ -11,11 +11,11 @@ int is_number(char *color_rgb, int *color)
 	}
 	*color = ft_atoi(color_rgb);
 	if(*color == 0)
-		return (puterror("Error: color ist not a number\n"));
+		return (puterror("Error\ncolor ist not a number\n"));
 	if(*color < 0)
-		return (puterror("Error: color is smaller than 0\n"));
+		return (puterror("Error\ncolor is smaller than 0\n"));
 	if(*color > 255)
-		return (puterror("Error: color is bigger than 255\n"));
+		return (puterror("Error\ncolor is bigger than 255\n"));
 	return(0);
 }
 
