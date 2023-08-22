@@ -1,24 +1,105 @@
+
+-> Test 1:
 Error
 invalid number of parameters
+
+-> Test 2:
 Error
 empty map
+
+-> Test 3:
 Error
 map not sourundet by 1
+
+-> Test 4:
 Error
 map not sourundet by 1
+
+-> Test 5:
 Error
 map not sourundet by 1
+
+-> Test 6:
 Error
 map not sourundet by 1
+
+-> Test 7:
 Error
 map not sourundet by 1
+
+-> Test 8:
 Error
 faild to read textures
+
+-> Test 9:
 Error
 map seperated by new line
+
+-> Test 10:
 Error
 faild to read textures
+
+-> Test 11:
 Error
 map seperated by new line
+
+-> Test 12:
 ok in mapcheck.c
+
+-> Test 13:
 ok in mapcheck.c
+
+-> Test 14:
+Error
+start position was not found on map
+
+-> Test 15:
+ok in mapcheck.c
+
+-> Test 16:
+Error
+color is smaller than 0
+
+-> Test 17:
+Error
+No color found
+
+-> Test 18:
+Error
+map not sourundet by 1
+
+-> Test 19:
+Error
+map not sourundet by 1
+
+-> Test 20:
+ok in mapcheck.c
+
+-> Test 21:
+Error
+map not sourundet by 1
+
+-> Test 22:
+ok in mapcheck.c
+
+-> Test 23:
+Error
+map not sourundet by 1
+
+-> Test 24:
+Error
+map seperated by new line
+
+-> Test 25:
+ok in mapcheck.c
+
+-> Test 26:
+Error
+maps not connected
+
+-> Test 27:
+ok in mapcheck.c
+
+-> Test 28:
+Error
+map not sourundet by 1

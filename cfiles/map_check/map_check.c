@@ -72,7 +72,7 @@ int	map_check(t_data *data, int fd)
 
 
 	/* printmap(data->map); */ ///////delte
-	/* 	printf("ok in mapcheck.c\n");
+	/* printf("ok in mapcheck.c\n");
 	free_map_exit(data, &file, NULL); */
 	return (0);
 }

@@ -35,6 +35,30 @@ int	is_all_w(t_data *data)
 	return (0);
 }
 
+int	find_first_wall_pos(t_path *pos, char **map)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == '1')
+			{
+				pos->y = y;
+				pos->x = x;
+				return (0);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (1);
+}
+
 void	map_check_walls(t_data *data)
 {
 	t_path	pos;
@@ -42,8 +66,8 @@ void	map_check_walls(t_data *data)
 
 	fill[0] = '1';
 	fill[1] = 'F';
-	pos.x = 0;
-	pos.y = 0;
+	if (find_first_wall_pos(&pos, data->map_copy))
+		free_data_exit(data, "Error\nno wall was found\n");
 	floodwalls(data, pos, fill, 'W');
 	if (is_all_w(data))
 		free_data_exit(data, "Error\nmaps not connected\n");
