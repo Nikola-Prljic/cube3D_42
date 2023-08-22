@@ -1,6 +1,26 @@
 
 #include "../cub3d.h"
 
+int	collision(t_data *data, char c)
+{
+	int	ax;
+	int	ay;
+	int	bx;
+	int	by;
+
+	ax = data->rays->pcor_x;
+	ay = data->rays->pcor_y;
+	bx = data->rays->player_dir_x;
+	by = data->rays->player_dir_y;
+	if (c == '+')
+		if (data->map[(ay + by) / 64][(ax + bx) / 64] == '1')
+			return (1);
+	if (c == '-')
+		if (data->map[(ay - by) / 64][(ax - bx) / 64] == '1')
+			return (1);
+	return (0);
+}
+
 int	make_window(t_data *data, int heigt, int with)
 {
 	data->mlx_ptr = mlx_init();
@@ -32,7 +52,7 @@ int	keypress(int keysum, t_data *data)
 		return (x_close(data));
 	else if (keysum == XK_a || keysum == XK_Left)
 	{
-		data->rays->player_dir -= 3 * (PI / 180);
+		data->rays->player_dir -= deg2rad(3.0);
 		if (data->rays->player_dir < 0)
 			data->rays->player_dir += 2 * PI;
 		data->rays->player_dir_x = cos(data->rays->player_dir) * 3;
@@ -40,7 +60,7 @@ int	keypress(int keysum, t_data *data)
 	}
 	else if (keysum == XK_d || keysum == XK_Right)
 	{
-		data->rays->player_dir += 3 * (PI / 180);
+		data->rays->player_dir += deg2rad(3.0);
 		if (data->rays->player_dir > 2 * PI)
 			data->rays->player_dir -= 2 * PI;
 		data->rays->player_dir_x = cos(data->rays->player_dir) * 3;
@@ -48,13 +68,17 @@ int	keypress(int keysum, t_data *data)
 	}
 	else if (keysum == XK_w || keysum == XK_Up)
 	{
-		data->rays->pcor_x -= data->rays->player_dir_x;
-		data->rays->pcor_y -= data->rays->player_dir_y;
+		if (collision(data, '+') == 1)
+			return (1);
+		data->rays->pcor_x += data->rays->player_dir_x;
+		data->rays->pcor_y += data->rays->player_dir_y;
 	}
 	else if (keysum == XK_s || keysum == XK_Down)
 	{
-		data->rays->pcor_x += data->rays->player_dir_x;
-		data->rays->pcor_y += data->rays->player_dir_y;
+		if (collision(data, '-') == 1)
+			return (1);
+		data->rays->pcor_x -= data->rays->player_dir_x;
+		data->rays->pcor_y -= data->rays->player_dir_y;
 	}
 	degrees = data->rays->player_dir * (180 / PI);
 	printf("---------------------------------------------------\n");
