@@ -12,6 +12,7 @@
 
 # define WINDOW_HEIGT 512
 # define WINDOW_WITH 512
+# define TILE_SIZE 64
 # define PI 3.141592
 
 typedef struct s_ray_cast
@@ -25,8 +26,8 @@ typedef struct s_ray_cast
 	char		view_point;
 	int			player_exists;
 	float		player_dir;
-	float		player_dir_x;
-	float		player_dir_y;
+	int			player_dir_x;
+	int			player_dir_y;
 	int			plane;
 	int			pm_x;
 	int			pm_y;
@@ -69,8 +70,8 @@ typedef struct s_map
 
 typedef struct s_path
 {
-	int x;
-	int y;
+	int			x;
+	int			y;
 }				t_path;
 
 //input_handle.c
@@ -84,10 +85,12 @@ int				ft_atoi(const char *nptr);
 
 //map_check_utils.c
 int				charInStr(char c, char *valid_chars);
-int 			isValidchar(t_data *data, char *mapstr, char *valid_chars, int y);
+int				isValidchar(t_data *data, char *mapstr, char *valid_chars,
+					int y);
 int				free_map_exit(t_data *data, t_map *file, char *msg);
-int 			ft_matrix_push_back(t_data *data, t_map *file, char *str);
-char 			*saveline(t_data *data, t_map *file, int y, short *map_parts_after_nl);
+int				ft_matrix_push_back(t_data *data, t_map *file, char *str);
+char			*saveline(t_data *data, t_map *file, int y,
+					short *map_parts_after_nl);
 
 //map_check_walls.c
 void			map_check_walls(t_data *data);
@@ -96,11 +99,10 @@ void			map_check_walls(t_data *data);
 int				map_check(t_data *data, int fd);
 
 //map_colors.c
-void			handel_color_codes( t_data *data, t_map *file );
+void			handel_color_codes(t_data *data, t_map *file);
 
 //map_surrounded_by_walls.c
 int				surrounded_by_walls(t_data *data, int x, int y);
-
 
 //map_textures
 void			handel_textures(t_data *data, t_map *file);
@@ -108,12 +110,12 @@ void			handel_textures(t_data *data, t_map *file);
 //map_utils.c
 char			*ft_strdup(const char *s);
 int				ft_strcmp(const char *s1, const char *s2);
-void 			free_data_exit(t_data *data, char *msg);
-void 			free_set_null(char **ptr);
+void			free_data_exit(t_data *data, char *msg);
+void			free_set_null(char **ptr);
 
 //convertions.c
 double			deg2rad(double degrees);
-double 			rad2deg(double radians);
+double			rad2deg(double radians);
 
 //2d_map.c
 void			prepare_player(t_data *data);
