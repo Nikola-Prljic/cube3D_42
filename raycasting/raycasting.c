@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:56:00 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/23 14:34:54 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/08/23 17:32:33 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ void	get_position(char **map, t_ray_cast *rays)
 			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E'
 				|| map[y][x] == 'W')
 			{
-				rays->pm_x = x;
-				rays->pm_y = y;
-				rays->pcor_x = x * 64 - 32;
-				rays->pcor_y = y * 64 - 32;
+				rays->px = x * 64 - 32;
+				rays->py = y * 64 - 32;
 				rays->player_exists = 1;
 				rays->view_point = map[y][x];
 				map[y][x] = 'P';
@@ -58,10 +56,10 @@ void	rays_init(t_ray_cast *rays)
 	rays->h_y = 0;
 	rays->v_x = 0;
 	rays->v_y = 0;
-	rays->pm_x = 0;
-	rays->pm_y = 0;
-	rays->pcor_x = 0;
-	rays->pcor_y = 0;
+	rays->up_down = 0;
+	rays->left_right = 0;
+	rays->px = 0;
+	rays->py = 0;
 	rays->plane = WINDOW_WITH;
 	rays->player_exists = 0;
 	rays->view_point = 'N';

@@ -17,8 +17,8 @@
 
 typedef struct s_ray_cast
 {
-	int			f_h_x;
-	int			f_h_y;
+	int			up_down;
+	int			left_right;
 	int			v_x;
 	int			v_y;
 	int			h_x;
@@ -29,10 +29,8 @@ typedef struct s_ray_cast
 	int			player_dir_x;
 	int			player_dir_y;
 	int			plane;
-	int			pm_x;
-	int			pm_y;
-	int			pcor_x;
-	int			pcor_y;
+	int			px;
+	int			py;
 	void		*player;
 	void		*space;
 	void		*wall;

@@ -8,8 +8,8 @@ int	collision(t_data *data, char c)
 	int	bx;
 	int	by;
 
-	ax = data->rays->pcor_x;
-	ay = data->rays->pcor_y;
+	ax = data->rays->px;
+	ay = data->rays->py;
 	bx = data->rays->player_dir_x;
 	by = data->rays->player_dir_y;
 	if (c == '+')
@@ -70,15 +70,15 @@ int	keypress(int keysum, t_data *data)
 	{
 		if (collision(data, '+') == 1)
 			return (1);
-		data->rays->pcor_x += data->rays->player_dir_x;
-		data->rays->pcor_y += data->rays->player_dir_y;
+		data->rays->px += data->rays->player_dir_x;
+		data->rays->py += data->rays->player_dir_y;
 	}
 	else if (keysum == XK_s || keysum == XK_Down)
 	{
 		if (collision(data, '-') == 1)
 			return (1);
-		data->rays->pcor_x -= data->rays->player_dir_x;
-		data->rays->pcor_y -= data->rays->player_dir_y;
+		data->rays->px -= data->rays->player_dir_x;
+		data->rays->py -= data->rays->player_dir_y;
 	}
 	degrees = data->rays->player_dir * (180 / PI);
 	printf("---------------------------------------------------\n");
@@ -87,7 +87,7 @@ int	keypress(int keysum, t_data *data)
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	print_2d(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->rays->player,
-			data->rays->pcor_x - 21.5, data->rays->pcor_y - 21.5);
+			data->rays->px - 21.5, data->rays->py - 21.5);
 	raylen(data);
 	return (1);
 }
@@ -100,7 +100,7 @@ int	window_loop(t_data *data)
 	prepare_player(data);
 	print_2d(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->rays->player,
-			data->rays->pcor_x - 21.5, data->rays->pcor_y - 21.5);
+			data->rays->px - 21.5, data->rays->py - 21.5);
 	mlx_hook(data->win_ptr, 17, 0, &x_close, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &keypress, data);
 	mlx_loop(data->mlx_ptr);
