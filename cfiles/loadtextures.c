@@ -16,6 +16,7 @@ void	loadtextures(t_data *data, t_xpm_img *xpm_img, char **path)
 	{
 		if (data->rays)
 			free(data->rays);
+		free_set_null(path);
 		free_data_exit(data, "Error\nload texture faild\n");
 	}
 	free_set_null(path);
@@ -26,7 +27,7 @@ void	load_all_textures(t_data *data)
 {
 	loadtextures(data, data->north, &data->texture->north);
 	loadtextures(data, data->south, &data->texture->south);
-	loadtextures(data, data->east, &data->texture->east);
 	loadtextures(data, data->west, &data->texture->west);
+	loadtextures(data, data->east, &data->texture->east);
 	return ;
 }

@@ -34,6 +34,7 @@ void	free_imgs(t_data *data)
 {
 	if (!data->mlx_ptr)
 		return ;
+<<<<<<< HEAD
 	// if (data->north->img)
 	// 	mlx_destroy_image(data->mlx_ptr, data->north->img);
 	// if (data->west->img)
@@ -42,6 +43,16 @@ void	free_imgs(t_data *data)
 	// 	mlx_destroy_image(data->mlx_ptr, data->west->img);
 	// if (data->south->img)
 	// 	mlx_destroy_image(data->mlx_ptr, data->south->img);
+=======
+	if (data->north->img)
+		mlx_destroy_image(data->mlx_ptr, data->north->img);
+	if (data->west->img)
+		mlx_destroy_image(data->mlx_ptr, data->west->img);
+	if (data->east->img)
+		mlx_destroy_image(data->mlx_ptr, data->east->img);
+	if (data->south->img)
+		mlx_destroy_image(data->mlx_ptr, data->south->img);
+>>>>>>> refs/remotes/origin/main
 }
 
 int	free_data(t_data *data)
@@ -60,9 +71,9 @@ int	free_data(t_data *data)
 	free_set_null(&data->texture->south);
 	free_set_null(&data->texture->west);
 	free_set_null(&data->texture->east);
-	free_imgs(data);
 	if (data->mlx_ptr)
 	{
+		free_imgs(data);
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
 		data->mlx_ptr = NULL;
