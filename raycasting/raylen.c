@@ -66,7 +66,7 @@ void	raylen_v(t_data *data, float angle, char **map)
 	if (data->rays->up_down == 1 && y_step < 0)
 		y_step *= -1;
 	while (ay >= 0 && ay <= WINDOW_HEIGT && ax >= 0 && ax <= WINDOW_WITH
-		&& map[ax / 64][ay / 64] != '1')
+		&& map[ay / 64][ax / 64] != '1')
 	{
 		ax += x_step;
 		ay += y_step;
