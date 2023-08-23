@@ -47,6 +47,8 @@ void	free_data_exit(t_data *data, char *msg)
 void	free_set_null(char **ptr)
 {
 	if (*ptr)
+	{
 		free(*ptr);
-	*ptr = NULL;
+		*ptr = NULL;
+	}
 }
