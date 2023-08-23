@@ -26,6 +26,7 @@ int	make_window(t_data *data, int heigt, int with)
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 		return (1);
+	load_all_textures(data);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, with, heigt, "cub3d");
 	if (data->win_ptr == NULL)
 	{
@@ -103,10 +104,14 @@ int	window_loop(t_data *data)
 	mlx_hook(data->win_ptr, 17, 0, &x_close, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &keypress, data);
 	mlx_loop(data->mlx_ptr);
+
 	mlx_destroy_image(data->mlx_ptr, data->rays->player);
+	mlx_destroy_image(data->mlx_ptr, data->rays->wall);
+	mlx_destroy_image(data->mlx_ptr, data->rays->space);
+
 	if (data->rays)
 		free(data->rays);
-	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
+	//mlx_destroy_display(data->mlx_ptr);
+	free_data(data);
 	return (0);
 }

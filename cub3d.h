@@ -46,9 +46,20 @@ typedef struct s_texture
 	char		*east;
 }				t_texture;
 
+typedef struct s_xpm_img
+{
+	char		**img;
+	int			width;
+	int			height;
+}				t_xpm_img;
+
 typedef struct s_data
 {
 	t_texture	*texture;
+	t_xpm_img	*north;
+	t_xpm_img	*south;
+	t_xpm_img	*west;
+	t_xpm_img	*east;
 	int			floor_rgb;
 	int			sky_rgb;
 	char		**map;
@@ -126,6 +137,9 @@ int				ray_functions(t_data *data);
 
 //raylen.c
 void			raylen(t_data *data);
+
+//opentextures.c
+void load_all_textures(t_data *data);
 
 //utils.c
 int				ft_strlen(const char *str);
