@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:24:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/24 12:16:29 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/08/24 12:17:22 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	raylen_v(t_data *data, float angle, char **map)
 		y_step *= -1;
 	if (data->rays->up_down == 1 && y_step < 0)
 		y_step *= -1;
-	while (ay >= 0 && ay <= WINDOW_HEIGT && ax >= 0 && ax <= WINDOW_WITH
+	while (ay > 0 && ay < WINDOW_HEIGT && ax > 0 && ax < WINDOW_WITH
 		&& map[ay / 64][ax / 64] != '1')
 	{
 		ax += x_step;
@@ -82,7 +82,7 @@ void	raylen_h(t_data *data, float angle, char **map)
 		x_step *= -1;
 	if (data->rays->left_right == 1 && x_step < 0)
 		x_step *= -1;
-	while (ay >= 0 && ay <= WINDOW_HEIGT && ax >= 0 && ax <= WINDOW_WITH
+	while (ay > 0 && ay < WINDOW_HEIGT && ax > 0 && ax < WINDOW_WITH
 		&& map[ay / 64][ax / 64] != '1')
 	{
 		ax += x_step;
