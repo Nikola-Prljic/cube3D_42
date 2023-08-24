@@ -26,11 +26,11 @@ typedef struct s_ray_cast
 	char		view_point;
 	int			player_exists;
 	float		player_dir;
-	int			player_dir_x;
-	int			player_dir_y;
+	float		player_dir_x;
+	float		player_dir_y;
 	int			plane;
-	int			px;
-	int			py;
+	float		px;
+	float		py;
 	void		*player;
 	void		*space;
 	void		*spacev;
@@ -138,7 +138,7 @@ int				ray_functions(t_data *data);
 void			raylen(t_data *data);
 
 //opentextures.c
-void load_all_textures(t_data *data);
+void			load_all_textures(t_data *data);
 
 //utils.c
 int				ft_strlen(const char *str);

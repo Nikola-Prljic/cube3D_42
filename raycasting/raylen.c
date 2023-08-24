@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:24:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/24 16:07:54 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/08/24 17:36:44 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	hit(char **map, int ay, int ax)
 {
+	if (ay < 0 || ay > WINDOW_HEIGT || ax < 0 || ax > WINDOW_WITH)
+		return (0);
 	if (ay > 0 && ay < WINDOW_HEIGT && ax > 0 && ax < WINDOW_WITH && map[ay
 		/ 64][ax / 64] != '1')
 		return (1);
@@ -28,15 +30,11 @@ void	where_we_look(t_data *data, int reseting, float angle)
 		data->rays->up_down = 0;
 		return ;
 	}
-	if ((int)rad2deg(angle) == 0 && (int)rad2deg(angle) == 180)
-		data->rays->up_down = 0;
-	else if ((int)rad2deg(angle) > 0 && (int)rad2deg(angle) < 180)
+	if ((int)rad2deg(angle) > 0 && (int)rad2deg(angle) < 180)
 		data->rays->up_down = 1;
 	else if ((int)rad2deg(angle) > 180 && (int)rad2deg(angle) < 360)
 		data->rays->up_down = -1;
-	if ((int)rad2deg(angle) == 270 && (int)rad2deg(angle) == 90)
-		data->rays->left_right = 0;
-	else if ((int)rad2deg(angle) < 270 && (int)rad2deg(angle) > 90)
+	if ((int)rad2deg(angle) < 270 && (int)rad2deg(angle) > 90)
 		data->rays->left_right = -1;
 	else if ((int)rad2deg(angle) > 270 || (int)rad2deg(angle) < 90)
 		data->rays->left_right = 1;
@@ -44,18 +42,22 @@ void	where_we_look(t_data *data, int reseting, float angle)
 
 void	raylen_v(t_data *data, float angle, char **map)
 {
-	int	ax;
-	int	ay;
-	int	y_step;
-	int	x_step;
+	float	ax;
+	float	ay;
+	float	y_step;
+	float	x_step;
 
-	ax = ((int)(data->rays->px / TILE_SIZE)) * TILE_SIZE + 64;
+	ax = (floor(data->rays->px / TILE_SIZE)) * TILE_SIZE;
 	if (data->rays->left_right == -1)
-		ax = ((int)(data->rays->py / TILE_SIZE)) * TILE_SIZE - 1;
-	ay = data->rays->py + ((ax - data->rays->px) * tan(angle));
+		ax -= 1;
+	if (!(data->rays->left_right == -1))
+		ax += TILE_SIZE;
+	ay = data->rays->py + (ax - data->rays->px) * tan(angle);
 	x_step = TILE_SIZE;
 	if (data->rays->left_right == -1)
 		x_step *= -1;
+	if (data->rays->left_right == -1 && ax < 0)
+		ax *= -1;
 	y_step = TILE_SIZE * tan(angle);
 	if (data->rays->up_down == -1 && y_step > 0)
 		y_step *= -1;
@@ -72,14 +74,16 @@ void	raylen_v(t_data *data, float angle, char **map)
 
 void	raylen_h(t_data *data, float angle, char **map)
 {
-	int	ax;
-	int	ay;
-	int	y_step;
-	int	x_step;
+	float	ax;
+	float	ay;
+	float	y_step;
+	float	x_step;
 
-	ay = ((int)(data->rays->py / TILE_SIZE)) * TILE_SIZE + 64;
+	ay = (floor(data->rays->py / TILE_SIZE)) * TILE_SIZE;
 	if (data->rays->up_down == -1)
-		ay = ((int)(data->rays->py / TILE_SIZE)) * TILE_SIZE - 1;
+		ay -= 1;
+	if (!(data->rays->up_down == -1))
+		ay += TILE_SIZE;
 	ax = data->rays->px + ((ay - data->rays->py) / tan(angle));
 	y_step = TILE_SIZE;
 	if (data->rays->up_down == -1)
