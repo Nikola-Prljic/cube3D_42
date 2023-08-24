@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:24:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/24 13:03:27 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:07:54 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	raylen(t_data *data)
 					data->rays->space, data->rays->h_x, data->rays->h_y);
 		else
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->rays->space, data->rays->v_x, data->rays->v_y);
+					data->rays->spacev, data->rays->v_x, data->rays->v_y);
 		raycount++;
 		ray_angle += (float)deg2rad(60.0 / (float)WINDOW_WITH);
 	}

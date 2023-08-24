@@ -33,6 +33,7 @@ typedef struct s_ray_cast
 	int			py;
 	void		*player;
 	void		*space;
+	void		*spacev;
 	void		*wall;
 }				t_ray_cast;
 

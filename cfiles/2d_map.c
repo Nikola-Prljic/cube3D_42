@@ -11,6 +11,8 @@ void	prepare_player(t_data *data)
 			"./2d_imgs/wall.xpm", &size, &size);
 	data->rays->space = mlx_xpm_file_to_image(data->mlx_ptr,
 			"./2d_imgs/space.xpm", &size, &size);
+	data->rays->spacev = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./2d_imgs/spacev.xpm", &size, &size);
 
 }
 
