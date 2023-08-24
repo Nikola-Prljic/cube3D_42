@@ -3,20 +3,28 @@
 
 int	collision(t_data *data, char c)
 {
-	int	ax;
-	int	ay;
-	int	bx;
-	int	by;
+	float	ax;
+	float	ay;
+	float	bx;
+	float	by;
 
-	ax = data->rays->px;
 	ay = data->rays->py;
+	ax = data->rays->px;
+	if (data->rays->up_down == 1)
+		ay = data->rays->py + 20.0;
+	if (data->rays->up_down == -1)
+		ay = data->rays->py - 20.0;
+	if (data->rays->left_right == 1)
+		ax = data->rays->px + 20.0;
+	if (data->rays->left_right == -1)
+		ax = data->rays->px - 20.0;
 	bx = data->rays->player_dir_x;
 	by = data->rays->player_dir_y;
 	if (c == '+')
-		if (data->map[(ay + by) / 64][(ax + bx) / 64] == '1')
+		if (data->map[(int)(ay + by) / 64][(int)(ax + bx) / 64] == '1')
 			return (1);
 	if (c == '-')
-		if (data->map[(ay - by) / 64][(ax - bx) / 64] == '1')
+		if (data->map[(int)(ay - by) / 64][(int)(ax - bx) / 64] == '1')
 			return (1);
 	return (0);
 }
@@ -104,11 +112,9 @@ int	window_loop(t_data *data)
 	mlx_hook(data->win_ptr, 17, 0, &x_close, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &keypress, data);
 	mlx_loop(data->mlx_ptr);
-
 	mlx_destroy_image(data->mlx_ptr, data->rays->player);
 	mlx_destroy_image(data->mlx_ptr, data->rays->wall);
 	mlx_destroy_image(data->mlx_ptr, data->rays->space);
-
 	if (data->rays)
 		free(data->rays);
 	//mlx_destroy_display(data->mlx_ptr);

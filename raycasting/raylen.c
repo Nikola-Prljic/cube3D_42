@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:24:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/24 17:36:44 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/08/24 18:50:31 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	hit(char **map, int ay, int ax)
 	if (ay < 0 || ay > WINDOW_HEIGT || ax < 0 || ax > WINDOW_WITH)
 		return (0);
 	if (ay > 0 && ay < WINDOW_HEIGT && ax > 0 && ax < WINDOW_WITH && map[ay
-		/ 64][ax / 64] != '1')
+			/ 64][ax / 64] != '1')
 		return (1);
 	return (0);
 }
@@ -30,13 +30,13 @@ void	where_we_look(t_data *data, int reseting, float angle)
 		data->rays->up_down = 0;
 		return ;
 	}
-	if ((int)rad2deg(angle) > 0 && (int)rad2deg(angle) < 180)
+	if ((int)rad2deg(angle) >= 0 && (int)rad2deg(angle) < 180)
 		data->rays->up_down = 1;
-	else if ((int)rad2deg(angle) > 180 && (int)rad2deg(angle) < 360)
+	else if ((int)rad2deg(angle) >= 180 && (int)rad2deg(angle) < 360)
 		data->rays->up_down = -1;
-	if ((int)rad2deg(angle) < 270 && (int)rad2deg(angle) > 90)
+	if ((int)rad2deg(angle) < 270 && (int)rad2deg(angle) >= 90)
 		data->rays->left_right = -1;
-	else if ((int)rad2deg(angle) > 270 || (int)rad2deg(angle) < 90)
+	else if ((int)rad2deg(angle) >= 270 || (int)rad2deg(angle) < 90)
 		data->rays->left_right = 1;
 }
 
@@ -49,16 +49,16 @@ void	raylen_v(t_data *data, float angle, char **map)
 
 	ax = (floor(data->rays->px / TILE_SIZE)) * TILE_SIZE;
 	if (data->rays->left_right == -1)
-		ax -= 1;
+		ax -= (float)1;
 	if (!(data->rays->left_right == -1))
-		ax += TILE_SIZE;
+		ax += (float)TILE_SIZE;
 	ay = data->rays->py + (ax - data->rays->px) * tan(angle);
-	x_step = TILE_SIZE;
+	x_step = (float)TILE_SIZE;
 	if (data->rays->left_right == -1)
 		x_step *= -1;
 	if (data->rays->left_right == -1 && ax < 0)
 		ax *= -1;
-	y_step = TILE_SIZE * tan(angle);
+	y_step = (float)TILE_SIZE * tan(angle);
 	if (data->rays->up_down == -1 && y_step > 0)
 		y_step *= -1;
 	if (data->rays->up_down == 1 && y_step < 0)
@@ -81,14 +81,14 @@ void	raylen_h(t_data *data, float angle, char **map)
 
 	ay = (floor(data->rays->py / TILE_SIZE)) * TILE_SIZE;
 	if (data->rays->up_down == -1)
-		ay -= 1;
+		ay -= (float)1;
 	if (!(data->rays->up_down == -1))
-		ay += TILE_SIZE;
+		ay += (float)TILE_SIZE;
 	ax = data->rays->px + ((ay - data->rays->py) / tan(angle));
-	y_step = TILE_SIZE;
+	y_step = (float)TILE_SIZE;
 	if (data->rays->up_down == -1)
 		y_step *= -1;
-	x_step = TILE_SIZE / tan(angle);
+	x_step = (float)TILE_SIZE / tan(angle);
 	if (data->rays->left_right == -1 && x_step > 0)
 		x_step *= -1;
 	if (data->rays->left_right == 1 && x_step < 0)
@@ -120,10 +120,10 @@ void	raylen(t_data *data)
 		where_we_look(data, 0, ray_angle);
 		raylen_h(data, ray_angle, data->map);
 		raylen_v(data, ray_angle, data->map);
-		vl = sqrt(pow(data->rays->px - data->rays->v_x, 2) + pow(data->rays->py
-					- data->rays->v_y, 2));
-		hl = sqrt(pow(data->rays->px - data->rays->h_x, 2) + pow(data->rays->py
-					- data->rays->h_y, 2));
+		vl = sqrt(pow(data->rays->v_x - data->rays->px, 2) + pow(data->rays->v_y
+					- data->rays->py, 2));
+		hl = sqrt(pow(data->rays->h_x - data->rays->px, 2) + pow(data->rays->h_y
+					- data->rays->py, 2));
 		if (hl < vl)
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->rays->space, data->rays->h_x, data->rays->h_y);
