@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:24:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/23 19:55:07 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/08/24 10:20:31 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,13 @@ void	raylen_h(t_data *data, float angle, char **map)
 
 void	raylen(t_data *data)
 {
-	int		vl;
-	int		hl;
-	int		raycount;
-	float	ray_angle;
+	int vl;
+	int hl;
+	int raycount;
+	float ray_angle;
 
 	raycount = 0;
-	ray_angle = data->rays->player_dir;
+	ray_angle = data->rays->player_dir - (PI / 6);
 	while (raycount < WINDOW_HEIGT)
 	{
 		where_we_look(data, 0, ray_angle);
@@ -123,13 +123,18 @@ void	raylen(t_data *data)
 		hl = sqrt(pow(data->rays->px - data->rays->h_x, 2) + pow(data->rays->py
 					- data->rays->h_y, 2));
 		if (hl < vl)
+		{
+			printf("horizontal\n");
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->rays->space, data->rays->h_x, data->rays->h_y);
+		}
 		else
+		{
+			printf("vertical\n");
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->rays->space, data->rays->v_x, data->rays->v_y);
-		where_we_look(data, 1, ray_angle);
-		raycount ++;
-		ray_angle += (float)(deg2rad(60 / WINDOW_WITH));
+		}
+		raycount++;
+		ray_angle += (float)deg2rad(60.0 / (float)WINDOW_WITH);
 	}
 }
