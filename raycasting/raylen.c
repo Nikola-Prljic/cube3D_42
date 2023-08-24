@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:24:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/24 10:20:31 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/08/24 12:16:29 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,15 @@ void	where_we_look(t_data *data, int reseting, float angle)
 		return ;
 	}
 	if ((int)rad2deg(angle) > 0 && (int)rad2deg(angle) < 180)
-	{
-		printf("down\n");
 		data->rays->up_down = 1;
-	}
 	else if ((int)rad2deg(angle) > 180 && (int)rad2deg(angle) < 359)
-	{
-		printf("up\n");
 		data->rays->up_down = -1;
-	}
 	else
 		data->rays->up_down = 0;
 	if ((int)rad2deg(angle) < 270 && (int)rad2deg(angle) > 90)
-	{
-		printf("left\n");
 		data->rays->left_right = -1;
-	}
 	else if ((int)rad2deg(angle) > 270 || (int)rad2deg(angle) < 90)
-	{
-		printf("right\n");
 		data->rays->left_right = 1;
-	}
 	else
 		data->rays->left_right = 0;
 }
@@ -106,10 +94,10 @@ void	raylen_h(t_data *data, float angle, char **map)
 
 void	raylen(t_data *data)
 {
-	int vl;
-	int hl;
-	int raycount;
-	float ray_angle;
+	int		vl;
+	int		hl;
+	int		raycount;
+	float	ray_angle;
 
 	raycount = 0;
 	ray_angle = data->rays->player_dir - (PI / 6);
@@ -123,17 +111,11 @@ void	raylen(t_data *data)
 		hl = sqrt(pow(data->rays->px - data->rays->h_x, 2) + pow(data->rays->py
 					- data->rays->h_y, 2));
 		if (hl < vl)
-		{
-			printf("horizontal\n");
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->rays->space, data->rays->h_x, data->rays->h_y);
-		}
+				data->rays->space, data->rays->h_x, data->rays->h_y);
 		else
-		{
-			printf("vertical\n");
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->rays->space, data->rays->v_x, data->rays->v_y);
-		}
+				data->rays->space, data->rays->v_x, data->rays->v_y);
 		raycount++;
 		ray_angle += (float)deg2rad(60.0 / (float)WINDOW_WITH);
 	}
