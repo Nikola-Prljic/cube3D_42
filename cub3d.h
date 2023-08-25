@@ -1,11 +1,11 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <math.h>
-# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -131,7 +131,12 @@ double			rad2deg(double radians);
 void			prepare_player(t_data *data);
 void			print_2d(t_data *data);
 
-//raycasting.cs
+//raycasting_utils.c
+void			save_cor_ver(float *ay, float *ax, t_data *data);
+void			save_cor_hor(float *ay, float *ax, t_data *data);
+void			render(t_data *data);
+
+//raycasting.c
 int				ray_functions(t_data *data);
 
 //raylen.c

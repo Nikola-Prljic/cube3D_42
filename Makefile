@@ -24,6 +24,7 @@ SRC =	./cfiles/map_check/ft_getline/ft_getline_ultis.c \
 		./cfiles/window_loop.c \
 		./raycasting/raycasting.c \
 		./raycasting/raylen.c \
+		./raycasting/raycasting_utils1.c\
 
 all : $(NAME)
 
