@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raylen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:24:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/25 16:14:41 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/08/28 17:34:17 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,20 @@ void	raylen_v(t_data *data, float angle, char **map)
 	float	y_step;
 	float	x_step;
 
-	ax = (floor(data->rays->px / TILE_SIZE)) * TILE_SIZE;
-	if (data->rays->left_right == -1)
-		ax -= (float)1;
+	ax = (floor(data->rays->px / (float)TILE_SIZE)) * (float)TILE_SIZE;
 	if (!(data->rays->left_right == -1))
 		ax += (float)TILE_SIZE;
 	ay = data->rays->py + (ax - data->rays->px) * tan(angle);
 	x_step = (float)TILE_SIZE;
 	if (data->rays->left_right == -1)
-		x_step *= -1;
+		x_step *= (float)-1;
 	y_step = (float)TILE_SIZE * tan(angle);
 	if (data->rays->up_down == -1 && y_step > 0)
-		y_step *= -1;
+		y_step *= (float)-1;
 	if (data->rays->up_down == 1 && y_step < 0)
-		y_step *= -1;
+		y_step *= (float)-1;
+	if (data->rays->left_right == -1)
+		ax -= (float)1;
 	while (hit(map, ay, ax))
 	{
 		ax += x_step;
@@ -76,20 +76,20 @@ void	raylen_h(t_data *data, float angle, char **map)
 	float	y_step;
 	float	x_step;
 
-	ay = (floor(data->rays->py / TILE_SIZE)) * TILE_SIZE;
-	if (data->rays->up_down == -1)
-		ay -= (float)1;
+	ay = (floor(data->rays->py / (float)TILE_SIZE)) * (float)TILE_SIZE;
 	if (!(data->rays->up_down == -1))
 		ay += (float)TILE_SIZE;
 	ax = data->rays->px + ((ay - data->rays->py) / tan(angle));
 	y_step = (float)TILE_SIZE;
 	if (data->rays->up_down == -1)
-		y_step *= -1;
+		y_step *= (float)-1;
 	x_step = (float)TILE_SIZE / tan(angle);
 	if (data->rays->left_right == -1 && x_step > 0)
-		x_step *= -1;
+		x_step *= (float)-1;
 	if (data->rays->left_right == 1 && x_step < 0)
-		x_step *= -1;
+		x_step *= (float)-1;
+	if (data->rays->up_down == -1)
+		ay -= (float)1;
 	while (hit(map, ay, ax))
 	{
 		ax += x_step;
@@ -100,22 +100,19 @@ void	raylen_h(t_data *data, float angle, char **map)
 
 void	raylen(t_data *data)
 {
-	int		raycount;
-	double	ray_angle;
-
-	raycount = 0;
-	ray_angle = data->rays->player_dir - (PI / 6);
-	while (raycount < WINDOW_HEIGT)
+	data->raycount = 0;
+	data->rays->ray_angle = data->rays->player_dir - (PI / 6);
+	while (data->raycount < WINDOW_WITH)
 	{
-		if (ray_angle > 2 * PI)
-			ray_angle -= deg2rad(360.0);
-		if (ray_angle < 0)
-			ray_angle += deg2rad(360.0);
-		where_we_look(data, 0, ray_angle);
-		raylen_h(data, ray_angle, data->map);
-		raylen_v(data, ray_angle, data->map);
+		if (data->rays->ray_angle > 2 * PI)
+			data->rays->ray_angle -= deg2rad(360.0);
+		if (data->rays->ray_angle < 0)
+			data->rays->ray_angle += deg2rad(360.0);
+		where_we_look(data, 0, data->rays->ray_angle);
+		raylen_h(data, data->rays->ray_angle, data->map);
+		raylen_v(data, data->rays->ray_angle, data->map);
 		render(data);
-		raycount++;
-		ray_angle += (float)deg2rad(60.0 / (float)WINDOW_WITH);
+		data->raycount++;
+		data->rays->ray_angle += (float)deg2rad(60.0 / (float)WINDOW_WITH);
 	}
 }

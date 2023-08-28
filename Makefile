@@ -21,6 +21,7 @@ SRC =	./cfiles/map_check/ft_getline/ft_getline_ultis.c \
 		./cfiles/loadtextures.c \
 		./cfiles/main.c \
 		./cfiles/utils.c \
+		./cfiles/window_draw.c \
 		./cfiles/window_loop.c \
 		./raycasting/raycasting.c \
 		./raycasting/raylen.c \

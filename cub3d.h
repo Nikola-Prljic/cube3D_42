@@ -11,7 +11,7 @@
 # include <unistd.h>
 
 # define WINDOW_HEIGT 512
-# define WINDOW_WITH 512
+# define WINDOW_WITH 1080
 # define TILE_SIZE 64
 # define PI 3.141593
 
@@ -19,10 +19,10 @@ typedef struct s_ray_cast
 {
 	int			up_down;
 	int			left_right;
-	int			v_x;
-	int			v_y;
-	int			h_x;
-	int			h_y;
+	float			v_x;
+	float			v_y;
+	float			h_x;
+	float			h_y;
 	char		view_point;
 	int			player_exists;
 	float		player_dir;
@@ -35,6 +35,7 @@ typedef struct s_ray_cast
 	void		*space;
 	void		*spacev;
 	void		*wall;
+	double		ray_angle;
 }				t_ray_cast;
 
 typedef struct s_texture
@@ -47,18 +48,34 @@ typedef struct s_texture
 
 typedef struct s_xpm_img
 {
-	char		**img;
+	void		*img;
 	int			width;
 	int			height;
+	int			*addr;
+    int			bpp; /* bits per pixel */
+    int			line_len;
+    int			endian;
 }				t_xpm_img;
+
+typedef struct s_mlx_img
+{
+	void	*mlx_img;
+    char	*addr;
+    int		bpp; /* bits per pixel */
+    int		line_len;
+    int		endian;
+}				t_mlx_img;
 
 typedef struct s_data
 {
+	t_mlx_img	img;
 	t_texture	*texture;
 	t_xpm_img	*north;
 	t_xpm_img	*south;
 	t_xpm_img	*west;
 	t_xpm_img	*east;
+	int 		distance;
+	int			vertrical_hit;
 	int			floor_rgb;
 	int			sky_rgb;
 	char		**map;
@@ -70,6 +87,11 @@ typedef struct s_data
 	int			map_y;
 	int			map_x;
 	t_ray_cast	*rays;
+	int 		raycount;
+
+	//////
+	int 		zoom_faktor;
+	////////
 }				t_data;
 
 typedef struct s_map
@@ -83,6 +105,15 @@ typedef struct s_path
 	int			x;
 	int			y;
 }				t_path;
+
+typedef struct s_rect
+{
+	int start_y;
+	int start_x;
+	int size_y; 
+	int size_x;
+	int color;
+}				t_rect;
 
 //input_handle.c
 int				input_handle(int argc, char **argv, int *fd);
@@ -154,5 +185,11 @@ void			free2d(char **map);
 
 //window_loop.c
 int				window_loop(t_data *data);
+
+//window_draw.c
+void	img_pix_put(t_mlx_img *img, int x, int y, int color);
+void	ft_rect(t_data *data, t_rect rect);
+void	draw_walls(t_data *data, double distance);
+void	draw_texture(t_data *data);
 
 #endif
