@@ -10,8 +10,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WINDOW_HEIGT 512
-# define WINDOW_WITH 1080
+# define WINDOW_WITH 500
+# define WINDOW_HEIGT 500
 # define TILE_SIZE 64
 # define PI 3.141593
 
@@ -24,7 +24,6 @@ typedef struct s_ray_cast
 	float			h_x;
 	float			h_y;
 	char		view_point;
-	int			player_exists;
 	float		player_dir;
 	float		player_dir_x;
 	float		player_dir_y;

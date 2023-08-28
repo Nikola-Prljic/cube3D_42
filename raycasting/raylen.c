@@ -6,18 +6,22 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:24:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/28 17:34:17 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/08/28 18:28:26 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	hit(char **map, int ay, int ax)
+int	hit(t_data *data, char **map, int ay, int ax)
 {
+
 	if (ay < 0 || ay > WINDOW_HEIGT || ax < 0 || ax > WINDOW_WITH)
 		return (0);
-	if (ay > 0 && ay < WINDOW_HEIGT && ax > 0 && ax < WINDOW_WITH && map[ay
-			/ 64][ax / 64] != '1')
+	int map_y = ay / TILE_SIZE;
+	int map_x = ax / TILE_SIZE;
+	if(map_y >= data->map_y || map_x >= data->map_x)
+		return (0);
+	if (ay > 0 && ax > 0 && map[map_y][map_x] != '1')
 		return (1);
 	return (0);
 }
@@ -61,7 +65,7 @@ void	raylen_v(t_data *data, float angle, char **map)
 		y_step *= (float)-1;
 	if (data->rays->left_right == -1)
 		ax -= (float)1;
-	while (hit(map, ay, ax))
+	while (hit(data, map, ay, ax))
 	{
 		ax += x_step;
 		ay += y_step;
@@ -90,7 +94,7 @@ void	raylen_h(t_data *data, float angle, char **map)
 		x_step *= (float)-1;
 	if (data->rays->up_down == -1)
 		ay -= (float)1;
-	while (hit(map, ay, ax))
+	while (hit(data, map, ay, ax))
 	{
 		ax += x_step;
 		ay += y_step;

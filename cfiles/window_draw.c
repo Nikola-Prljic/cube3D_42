@@ -47,7 +47,7 @@ void draw_walls(t_data *data, double distance)
         double correctWallDistance = cos(data->rays->ray_angle - data->rays->player_dir) * distance;
         double distanceProjPlane = ((double)WINDOW_HEIGT / 2.0) / 0.57735026919;
         double wallStripHeight = ((double)TILE_SIZE / correctWallDistance) * distanceProjPlane;
-        if(wallStripHeight > WINDOW_HEIGT)
+        if(wallStripHeight >= WINDOW_HEIGT)
             wallStripHeight = WINDOW_HEIGT;
         ft_rect(data, (t_rect){(double)WINDOW_HEIGT / 2.0 - wallStripHeight / 2.0, data->raycount, wallStripHeight, 1, 0xFFFFFF});
 }
