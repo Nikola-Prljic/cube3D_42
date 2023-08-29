@@ -13,13 +13,13 @@ int	collision(t_data *data, char c)
 	bx = data->rays->player_dir_x;
 	by = data->rays->player_dir_y;
 	if (data->rays->up_down == 1)
-		ay = data->rays->py + 20.0;
+		ay = data->rays->py + 10.0;
 	if (data->rays->up_down == -1)
-		ay = data->rays->py - 20.0;
+		ay = data->rays->py - 10.0;
 	if (data->rays->left_right == 1)
-		ax = data->rays->px + 20.0;
+		ax = data->rays->px + 10.0;
 	if (data->rays->left_right == -1)
-		ax = data->rays->px - 20.0;
+		ax = data->rays->px - 10.0;
 	if (c == '+')
 		if (data->map[(int)(ay + by) / 64][(int)(ax + bx) / 64] == '1')
 			return (1);
