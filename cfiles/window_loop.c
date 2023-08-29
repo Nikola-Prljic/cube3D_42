@@ -12,20 +12,40 @@ int	collision(t_data *data, char c)
 	ax = data->rays->px;
 	bx = data->rays->player_dir_x;
 	by = data->rays->player_dir_y;
-	if (data->rays->up_down == 1)
-		ay = data->rays->py + 10.0;
-	if (data->rays->up_down == -1)
-		ay = data->rays->py - 10.0;
-	if (data->rays->left_right == 1)
-		ax = data->rays->px + 10.0;
-	if (data->rays->left_right == -1)
-		ax = data->rays->px - 10.0;
 	if (c == '+')
-		if (data->map[(int)(ay + by) / 64][(int)(ax + bx) / 64] == '1')
-			return (1);
+	{
+		if (data->rays->up_down == -1)
+			by = (by + 10) * -1;
+		if (data->rays->up_down == 1)
+			by += 10;
+		if (data->rays->left_right == -1)
+			bx = (bx + 10) * -1;
+		if (data->rays->left_right == 1)
+			bx += 10;
+	}
 	if (c == '-')
-		if (data->map[(int)(ay - by) / 64][(int)(ax - bx) / 64] == '1')
-			return (1);
+	{
+		if (data->rays->up_down == -1)
+			by += 10;
+		if (data->rays->up_down == 1)
+			by = (by + 10) * -1;
+		if (data->rays->left_right == -1)
+			bx += 10;
+		if (data->rays->left_right == 1)
+			bx = (bx + 10) * -1;
+	}
+	if (data->map[(int)((ay + 10 + by) / TILE_SIZE)][(int)((ax + bx)
+			/ TILE_SIZE)] == '1')
+		return (1);
+	else if (data->map[(int)((ay - 10 + by) / TILE_SIZE)][(int)((ax + bx)
+			/ TILE_SIZE)] == '1')
+		return (1);
+	else if (data->map[(int)((ay + by) / TILE_SIZE)][(int)((ax + 10 + bx)
+			/ TILE_SIZE)] == '1')
+		return (1);
+	else if (data->map[(int)((ay + by) / TILE_SIZE)][(int)((ax - 10 + bx)
+			/ TILE_SIZE)] == '1')
+		return (1);
 	return (0);
 }
 
@@ -123,9 +143,11 @@ int	keypress(int keysum, t_data *data)
 	/* ft_rect(data, (t_rect){0, 0, WINDOW_HEIGT, WINDOW_WITH, 0x89CFF0});
 	raylen(data); */
 	// draw_texture(data);
-	/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,
+	/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img,
+			0,
 		0); */
-	/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->north->img, 100,
+	/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->north->img,
+			100,
 		0); */
 	/* data->render_cub == STOP_RENDER; */
 	return (1);
@@ -135,7 +157,7 @@ void	create_img_addr(t_data *data)
 {
 	data->img.mlx_img = mlx_new_image(data->mlx_ptr, WINDOW_WITH, WINDOW_HEIGT);
 	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
-		&data->img.line_len, &data->img.endian);
+			&data->img.line_len, &data->img.endian);
 	if (!data->img.addr)
 	{
 		if (data->rays)
