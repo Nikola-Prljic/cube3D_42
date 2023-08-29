@@ -191,7 +191,7 @@ int				window_loop(t_data *data);
 //window_draw.c
 void	img_pix_put(t_mlx_img *img, int x, int y, int color);
 void	ft_rect(t_data *data, t_rect rect);
-void	draw_walls(t_data *data, double distance);
+void	draw_walls(t_data *data, double distance, int ray_x);
 void	draw_texture(t_data *data);
 void 	draw_minimap(t_data *data);
 

@@ -84,7 +84,6 @@ int	x_close(t_data *data)
 
 int renderCub(t_data *data)
 {
-	printf("+\n");
 	if(!data->mlx_ptr || !data->win_ptr /* || render_cub == STOP_RENDER */ )
 		return (0);
 	ft_rect(data, (t_rect){0, 0, WINDOW_HEIGT, WINDOW_WITH, 0x89CFF0});
@@ -173,6 +172,7 @@ int	window_loop(t_data *data)
 	if (make_window(data, WINDOW_HEIGT, WINDOW_WITH))
 		return (1);
 	create_img_addr(data);
+	draw_texture(data);
 	/* ft_rect(data, (t_rect){200, 200, 50, 50, 0xFF0000}); */
 	/* prepare_player(data); */
 	/* print_2d(data); */

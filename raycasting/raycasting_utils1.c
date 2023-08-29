@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:15:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/28 17:08:52 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/08/29 19:14:16 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	render(t_data *data)
 		data->vertrical_hit = 1;
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->rays->space,
 			data->rays->h_x, data->rays->h_y); */
-		draw_walls(data, hl);
+		
+		draw_walls(data, hl, data->rays->h_x);
 	}
 	else
 	{
@@ -35,7 +36,7 @@ void	render(t_data *data)
 		data->vertrical_hit = 0;
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 			data->rays->spacev, data->rays->v_x, data->rays->v_y); */
-		draw_walls(data, vl);
+		draw_walls(data, vl, data->rays->v_y);
 	}
 }
 
