@@ -42,7 +42,7 @@ int	is_possible_direction(t_data *data, t_map *file, short first_line)
 			first_line = 1;
 			free(direction);
 		}
-		direction = ft_getline(file->fd, &file->buffer, ' ');
+		direction = ft_getline(data, file->fd, &file->buffer, ' ');
 		if (first_line == 0 && !direction)
 			free_map_exit(data, file, "Error\nempty map\n");
 		if (!direction)
@@ -50,7 +50,7 @@ int	is_possible_direction(t_data *data, t_map *file, short first_line)
 		if (direction[0] != 0)
 			is_new_line = 0;
 	}
-	texture_path = ft_getline(file->fd, &file->buffer, '\n');
+	texture_path = ft_getline(data, file->fd, &file->buffer, '\n');
 	if (save_textures_path(data, texture_path, direction))
 		return (free_texture_lines(&texture_path, &direction));
 	free_texture_lines(&texture_path, &direction);

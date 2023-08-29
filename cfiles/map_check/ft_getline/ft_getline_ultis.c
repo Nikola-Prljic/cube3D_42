@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:53:33 by nprljic           #+#    #+#             */
-/*   Updated: 2023/08/13 16:48:41 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/08/28 21:29:41 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	*ft_cpynonull_s2(char *dest, char const *s2, size_t s2_len,
 	return (dest);
 }
 
-char	*ft_linejoin(char *s1, char *s2)
+char	*ft_linejoin(t_data *data, char *s1, char *s2)
 {
 	size_t	i;
 	char	*dest;
@@ -58,6 +58,11 @@ char	*ft_linejoin(char *s1, char *s2)
 	if (!s1)
 	{
 		s1 = (char *)malloc(1 * sizeof(char));
+		if(!s1)
+		{
+			free_set_null(&s2);
+			free_data_exit(data, "Error\nMalloc faild ft_linejoin");
+		}
 		s1[0] = '\0';
 	}
 	if (!s1 || !s2)
@@ -68,7 +73,11 @@ char	*ft_linejoin(char *s1, char *s2)
 	dest_len = s1_len + s2_len;
 	dest = malloc(dest_len * sizeof(char) + 1);
 	if (!dest)
-		return (NULL);
+	{
+		free_set_null(&s1);
+		free_set_null(&s2);
+		free_data_exit(data, "Error\nMalloc faild ft_linejoin");
+	}
 	ft_cpynonull(dest, s1, i);
 	ft_cpynonull_s2(dest, s2, s2_len, s1_len);
 	dest[dest_len] = '\0';

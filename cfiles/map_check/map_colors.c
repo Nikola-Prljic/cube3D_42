@@ -42,7 +42,7 @@ void get_color_code(t_data *data, t_map *file, char **color_rgb, int at_i)
 	c = ',';
 	if(at_i == 2)
 		c = '\n';
-	color_rgb[at_i] = ft_getline(file->fd, &file->buffer, c);
+	color_rgb[at_i] = ft_getline(data, file->fd, &file->buffer, c);
 	if(!color_rgb[at_i])
 	{
 		if(color_rgb[0])
@@ -105,7 +105,7 @@ char *loop_to_not_nl( t_data *data, t_map *file )
 	{
 		if(line)
 			free(line);
-		line = ft_getline(file->fd, &file->buffer, ' ');
+		line = ft_getline(data, file->fd, &file->buffer, ' ');
 		if(!line)
 			free_map_exit(data, file, "Error\nNo color line was found\n");
 		if(line[0] != 0)
