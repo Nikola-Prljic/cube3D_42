@@ -62,6 +62,19 @@ int	x_close(t_data *data)
 	return (0);
 }
 
+int renderCub(t_data *data)
+{
+	printf("+\n");
+	if(!data->mlx_ptr || !data->win_ptr /* || render_cub == STOP_RENDER */ )
+		return (0);
+	ft_rect(data, (t_rect){0, 0, WINDOW_HEIGT, WINDOW_WITH, 0x89CFF0});
+	raylen(data);
+	draw_minimap(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,
+		0);
+	return (1);
+}
+
 int	keypress(int keysum, t_data *data)
 {
 	double	degrees;
@@ -103,6 +116,7 @@ int	keypress(int keysum, t_data *data)
 	else if (keysum == XK_c && data->zoom_faktor > 1)
 		data->zoom_faktor--;
 	degrees = data->rays->player_dir * (180 / PI);
+	renderCub(data);
 	/* print_2d(data); */
 	/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->rays->player,
 			data->rays->px - 21.5, data->rays->py - 21.5); */
@@ -113,6 +127,7 @@ int	keypress(int keysum, t_data *data)
 		0); */
 	/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->north->img, 100,
 		0); */
+	/* data->render_cub == STOP_RENDER; */
 	return (1);
 }
 
@@ -129,16 +144,6 @@ void	create_img_addr(t_data *data)
 	}
 }
 
-int renderCub(t_data *data)
-{
-	if(!data->mlx_ptr || !data->win_ptr)
-		return (0);
-	ft_rect(data, (t_rect){0, 0, WINDOW_HEIGT, WINDOW_WITH, 0x89CFF0});
-	raylen(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,
-		0);
-	return (1);
-}
 
 int	window_loop(t_data *data)
 {
@@ -151,9 +156,10 @@ int	window_loop(t_data *data)
 	/* print_2d(data); */
 	/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->rays->player,
 			data->rays->px - 21.5, data->rays->py - 21.5); */
+	renderCub(data);
 	mlx_hook(data->win_ptr, 17, 0, &x_close, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &keypress, data);
-	mlx_loop_hook(data->mlx_ptr, &renderCub, data);
+	/* mlx_loop_hook(data->mlx_ptr, &renderCub, data); */
 	mlx_loop(data->mlx_ptr);
 	/* mlx_destroy_image(data->mlx_ptr, data->rays->player);
 	mlx_destroy_image(data->mlx_ptr, data->rays->wall);

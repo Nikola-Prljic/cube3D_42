@@ -10,10 +10,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WINDOW_WITH 500
-# define WINDOW_HEIGT 500
+# define WINDOW_WITH 1000
+# define WINDOW_HEIGT 1000
 # define TILE_SIZE 64
 # define PI 3.141593
+# define STOP_RENDER 1
+# define START_RENDER 0
+# define MAP_SIZE 0.2
 
 typedef struct s_ray_cast
 {
@@ -190,5 +193,6 @@ void	img_pix_put(t_mlx_img *img, int x, int y, int color);
 void	ft_rect(t_data *data, t_rect rect);
 void	draw_walls(t_data *data, double distance);
 void	draw_texture(t_data *data);
+void 	draw_minimap(t_data *data);
 
 #endif

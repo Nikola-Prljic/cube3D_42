@@ -44,9 +44,13 @@ void ft_rect(t_data *data, t_rect rect)
 
 void draw_walls(t_data *data, double distance)
 {
-        double correctWallDistance = cos(data->rays->ray_angle - data->rays->player_dir) * distance;
-        double distanceProjPlane = ((double)WINDOW_HEIGT / 2.0) / 0.57735026919;
-        double wallStripHeight = ((double)TILE_SIZE / correctWallDistance) * distanceProjPlane;
+        double correctWallDistance;
+        double distanceProjPlane;
+        double wallStripHeight;
+    
+        correctWallDistance = cos(data->rays->ray_angle - data->rays->player_dir) * distance;
+        distanceProjPlane = ((double)WINDOW_HEIGT / 2.0) / 0.57735026919;
+        wallStripHeight = ((double)TILE_SIZE / correctWallDistance) * distanceProjPlane;
         if(wallStripHeight >= WINDOW_HEIGT)
             wallStripHeight = WINDOW_HEIGT;
         ft_rect(data, (t_rect){(double)WINDOW_HEIGT / 2.0 - wallStripHeight / 2.0, data->raycount, wallStripHeight, 1, 0xFFFFFF});
@@ -96,6 +100,56 @@ void draw_texture(t_data *data)
         /* put_texture_x(data, data->north, y_pos, y, zoom_faktor);
         y_pos++; */
         zoom_faktor = tmp;
+        y++;
+    }
+}
+
+/* void draw_minimap(t_data *data)
+{
+    int y;
+    int x;
+
+    y = 0;
+    int mini_map_tidle = TILE_SIZE * MAP_SIZE;
+    ft_rect(data, (t_rect){data->rays->py * MAP_SIZE - 3, data->rays->px * MAP_SIZE - 3, 6, 6, 0xFF0000});
+    while(data->map[y])
+    {
+        x = 0;
+        while(data->map[x])
+        {
+            if(data->map[y][x] == '1')
+                ft_rect(data, (t_rect){y * mini_map_tidle, x * mini_map_tidle, mini_map_tidle, mini_map_tidle, 0x555555});
+            x++;
+        }
+        y++;
+    }
+} */
+
+/* void minimap(t_data *data)
+{
+    int mini_map_tidle = TILE_SIZE * MAP_SIZE;
+    ft_rect(data, (t_rect){data->rays->py * MAP_SIZE - 3, data->rays->px * MAP_SIZE - 3, 6, 6, 0xFF0000});
+    draw_minimap(data, data->rays->py * MAP_SIZE - 8, data->rays->px * MAP_SIZE - 8);
+} */
+
+void draw_minimap(t_data *data/* , int start_y, int start_x */)
+{
+    int y;
+    int x;
+    int mini_map_tidle; 
+
+    y = 0;
+    mini_map_tidle = TILE_SIZE * MAP_SIZE;
+    ft_rect(data, (t_rect){data->rays->py * MAP_SIZE - 3, data->rays->px * MAP_SIZE - 3, 6, 6, 0xFF0000});
+    while(data->map[y])
+    {
+        x = 0;
+        while(data->map[y][x])
+        {
+            if(data->map[y][x] == '1')
+                ft_rect(data, (t_rect){y * mini_map_tidle, x * mini_map_tidle, mini_map_tidle, mini_map_tidle, 0x555555});
+            x++;
+        }
         y++;
     }
 }

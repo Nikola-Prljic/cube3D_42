@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:24:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/28 18:28:26 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/08/29 15:40:04 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	hit(t_data *data, char **map, int ay, int ax)
 {
 
-	if (ay < 0 || ay > WINDOW_HEIGT || ax < 0 || ax > WINDOW_WITH)
+	if (ay < 0 /* || ay > WINDOW_HEIGT */ || ax < 0 /* || ax > WINDOW_WITH */)
 		return (0);
 	int map_y = ay / TILE_SIZE;
 	int map_x = ax / TILE_SIZE;
