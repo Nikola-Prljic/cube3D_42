@@ -6,21 +6,24 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:00:58 by nprljic           #+#    #+#             */
-/*   Updated: 2023/08/14 13:55:42 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/08/28 21:29:25 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_getline.h"
 
 // #1 creates a new malloc string just for the first time
-char	*ft_new_str(int fd, char *remain, char delimiter)
+char	*ft_new_str(t_data *data, int fd, char *remain, char delimiter)
 {
 	int		ret;
 	char	*buf;
 
 	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buf)
-		return (NULL);
+	{
+		free_set_null(&remain);
+		free_data_exit(data, "Error\nMalloc faild ft_putline");
+	}
 	ret = 1;
 	while (!ft_strchr(remain, delimiter) && !ft_strchr(remain, '\n') && ret != 0)
 	{
@@ -32,14 +35,14 @@ char	*ft_new_str(int fd, char *remain, char delimiter)
 			return (NULL);
 		}
 		buf[ret] = '\0';
-		remain = ft_linejoin(remain, buf);
+		remain = ft_linejoin(data, remain, buf);
 	}
 	free(buf);
 	return (remain);
 }
 
 // #2 prints the line
-char	*ft_putline(char *remain, char delimiter)
+char	*ft_putline(t_data *data, char *remain, char delimiter)
 {
 	char	*line;
 	int		i;
@@ -51,7 +54,10 @@ char	*ft_putline(char *remain, char delimiter)
 		i++;
 	line = (char *)malloc((i + 2) * sizeof(char));
 	if (!line)
-		return (NULL);
+	{
+		free_set_null(&remain);
+		free_data_exit(data, "Error\nMalloc faild ft_putline");
+	}
 	i = 0;
 	while (remain[i] && remain[i] != delimiter && remain[i] != '\n')
 	{
@@ -63,7 +69,7 @@ char	*ft_putline(char *remain, char delimiter)
 }
 
 // #3 malloc a new without the printed string. frees the old one.
-char	*ft_next_str(char *remain, char delimiter)
+char	*ft_next_str(t_data *data, char *remain, char delimiter)
 {
 	int		i;
 	int		x;
@@ -79,7 +85,10 @@ char	*ft_next_str(char *remain, char delimiter)
 	}
 	str = (char *)malloc((int_strlen(remain) - i + 1) * sizeof(char));
 	if (!str)
-		return (NULL);
+	{
+		free_set_null(&remain);
+		free_data_exit(data, "Error\nMalloc faild ft_putline");
+	}
 	i++;
 	x = 0;
 	while (remain[i])
@@ -90,17 +99,17 @@ char	*ft_next_str(char *remain, char delimiter)
 }
 
 //buffer is for freeing if something remains
-char	*ft_getline(int fd, char **remain, char delimiter)
+char	*ft_getline(t_data *data, int fd, char **remain, char delimiter)
 {
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	*remain = ft_new_str(fd, *remain, delimiter);
+	*remain = ft_new_str(data, fd, *remain, delimiter);
 	if (!remain)
 		return (NULL);
-	line = ft_putline(*remain, delimiter);
-	*remain = ft_next_str(*remain, delimiter);
+	line = ft_putline(data, *remain, delimiter);
+	*remain = ft_next_str(data, *remain, delimiter);
 	return (line);
 }
 

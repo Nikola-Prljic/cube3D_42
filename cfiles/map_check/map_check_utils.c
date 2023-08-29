@@ -94,7 +94,7 @@ char	*saveline(t_data *data, t_map *file, int y, short *map_parts_after_nl)
 	char	*line;
 
 	line = NULL;
-	line = ft_getline(file->fd, &file->buffer, '\n');
+	line = ft_getline(data, file->fd, &file->buffer, '\n');
 	if(line && line[0] == 0)
 	{
 		*map_parts_after_nl = 1;

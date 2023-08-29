@@ -15,11 +15,11 @@ char	*save_first_line(t_data *data, t_map *file, int y)
 	char	*line;
 
 	line = NULL;
-	line = ft_getline(file->fd, &file->buffer, '\n');
+	line = ft_getline(data, file->fd, &file->buffer, '\n');
 	while(line && line[0] == 0)
 	{
 		free_set_null(&line);
-		line = ft_getline(file->fd, &file->buffer, '\n');
+		line = ft_getline(data, file->fd, &file->buffer, '\n');
 	}
 	if (isValidchar(data, line, " 01NEWS", y) == 1)
 	{
