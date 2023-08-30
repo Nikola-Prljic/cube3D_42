@@ -5,9 +5,9 @@ void	floodfill(t_data *data, t_path pos, char fill, char fill_with)
 	if(pos.y < 0 || pos.x < 0 )
 		return ;
 	if(!data->map_copy[pos.y] || pos.x > ft_strlen(data->map_copy[pos.y]) || data->map_copy[pos.y][pos.x] == 0)
-		free_data_exit(data, "Error\nmap not sourundet by 1\n");
+		free_data_exit(data, "Error\nMap is not surrounded by 1\n");
 	if(pos.y < 0 || pos.x < 0 || charInStr(data->map_copy[pos.y][pos.x], "01F") )
-		free_data_exit(data, "Error\nmap not sourundet by 1\n");
+		free_data_exit(data, "Error\nMap is not surrounded by 1\n");
 	if (pos.y < 0 || pos.x < 0 || data->map_copy[pos.y][pos.x] != fill)
 		return ;
 	data->map_copy[pos.y][pos.x] = fill_with;
@@ -58,7 +58,7 @@ char **deep_copy_matrix(t_data *data)
 	y = 0;
 	new_matrix = malloc(sizeof(char *) * ( data->map_y + 1));
 	if(!new_matrix)
-		free_data_exit(data, "Error:\nMalloc faild in deep_copy_matrix\n");
+		free_data_exit(data, "Error:\nMalloc failed in deep_copy_matrix\n");
 	while(data->map[y])
 	{
 		new_matrix[y] = ft_strdup(data->map[y]);
@@ -71,7 +71,7 @@ char **deep_copy_matrix(t_data *data)
 				i++;
 			}
 			free(new_matrix);
-			free_data_exit(data, "Error:\nMalloc faild in deep_copy_matrix\n");
+			free_data_exit(data, "Error:\nMalloc failed in deep_copy_matrix\n");
 		}
 		y++;
 	}

@@ -11,11 +11,11 @@ int is_number(char *color_rgb, int *color)
 	}
 	*color = ft_atoi(color_rgb);
 	if(*color == 0)
-		return (puterror("Error\ncolor ist not a number\n"));
+		return (puterror("Error\nColor is not a number\n"));
 	if(*color < 0)
-		return (puterror("Error\ncolor is smaller than 0\n"));
+		return (puterror("Error\nColor is smaller than 0\n"));
 	if(*color > 255)
-		return (puterror("Error\ncolor is bigger than 255\n"));
+		return (puterror("Error\nColor is bigger than 255\n"));
 	return(0);
 }
 
@@ -52,7 +52,7 @@ void get_color_code(t_data *data, t_map *file, char **color_rgb, int at_i)
 		if(color_rgb[2])
 			free(color_rgb[2]);
 		free(color_rgb);
-		free_map_exit(data, file, "Error\ncolor code was not found\n");
+		free_map_exit(data, file, "Error\nColor code was not found\n");
 	}
 }
 
@@ -65,7 +65,7 @@ int save_color(t_data *data, t_map *file, char *line, char color)
 	{
 		if(line)
 			free(line);
-		free_map_exit(data, file, "Error\nMalloc faild at save_color\n");
+		free_map_exit(data, file, "Error\nMalloc failed at save_color\n");
 	}
 	if(line[0] != color || line[1] != 0)
 	{

@@ -62,13 +62,15 @@ void draw_walls(t_data *data, double distance, int ray_x)
         /* ft_rect(data, (t_rect){(double)WINDOW_HEIGT / 2.0 - wallStripHeight / 2.0, data->raycount, wallStripHeight, 1, 0xFFFFFF}); */
         int y = 0;
         int y_texture = 0;
+        int x = (double)WINDOW_HEIGT / 2.0 - tmp / 2.0;
+        double scale = (tmp  / TILE_SIZE);
+        double top = wallStripHeight + (tmp - wallStripHeight) / 2;
+        double bottom = (tmp - wallStripHeight) / 2;
         while(y < tmp)
         {
-            if(y_texture >= TILE_SIZE)
-                y_texture = 0;
-            if(y <= wallStripHeight + (tmp - wallStripHeight) / 2 && y > (tmp - wallStripHeight) / 2)
-                img_pix_put(&data->img, data->raycount, (double)WINDOW_HEIGT / 2.0 - tmp / 2.0 + y, data->north->addr[(y_texture * data->north->line_len) + ray_x] * 11);
-            if (y % (int)((y_texture + 1) * (tmp  / TILE_SIZE)) == 0)
+            if(y <= top && y > bottom)
+                img_pix_put(&data->img, data->raycount, x + y, data->north->addr[(y_texture * data->north->line_len) + ray_x]);
+            if (y % (int)((y_texture + 1) * scale) == 0)
                 y_texture++;
             y++;    
         }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getline.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkurnava <rkurnava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:00:58 by nprljic           #+#    #+#             */
-/*   Updated: 2023/08/28 21:29:25 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/08/30 15:56:41 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_new_str(t_data *data, int fd, char *remain, char delimiter)
 	if (!buf)
 	{
 		free_set_null(&remain);
-		free_data_exit(data, "Error\nMalloc faild ft_putline");
+		free_data_exit(data, "Error\nMalloc failed at ft_putline");
 	}
 	ret = 1;
 	while (!ft_strchr(remain, delimiter) && !ft_strchr(remain, '\n') && ret != 0)
@@ -56,7 +56,7 @@ char	*ft_putline(t_data *data, char *remain, char delimiter)
 	if (!line)
 	{
 		free_set_null(&remain);
-		free_data_exit(data, "Error\nMalloc faild ft_putline");
+		free_data_exit(data, "Error\nMalloc failed at ft_putline");
 	}
 	i = 0;
 	while (remain[i] && remain[i] != delimiter && remain[i] != '\n')
@@ -87,7 +87,7 @@ char	*ft_next_str(t_data *data, char *remain, char delimiter)
 	if (!str)
 	{
 		free_set_null(&remain);
-		free_data_exit(data, "Error\nMalloc faild ft_putline");
+		free_data_exit(data, "Error\nMalloc failed at ft_putline");
 	}
 	i++;
 	x = 0;

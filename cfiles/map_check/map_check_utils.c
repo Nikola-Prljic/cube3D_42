@@ -75,7 +75,7 @@ int	ft_matrix_push_back(t_data *data, t_map *file, char *str)
 	new_matrix = malloc(sizeof(char *) * (i + 2));
 	if (!new_matrix)
 		return (free_map_exit(data, file,
-				"Error\nmalloc faild in ft_matrix_push_back\n"));
+				"Error\nMalloc failed in ft_matrix_push_back\n"));
 	i = 0;
 	while (data->map[i])
 	{
@@ -103,12 +103,12 @@ char	*saveline(t_data *data, t_map *file, int y, short *map_parts_after_nl)
 	if (line && (isValidchar(data, line, " 01NEWS", y) == 1))
 	{
 		free(line);
-		free_map_exit(data, file, "Error\nwrong char in map\n");
+		free_map_exit(data, file, "Error\nWrong char in a map\n");
 	}
 	if (line && *map_parts_after_nl)
 	{
 		free(line);
-		free_map_exit(data, file, "Error\nmap seperated by new line\n");
+		free_map_exit(data, file, "Error\nMap seperated by a new line\n");
 	}
 	ft_matrix_push_back(data, file, line);
 	return (line);

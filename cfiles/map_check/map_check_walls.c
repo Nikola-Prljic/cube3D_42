@@ -67,9 +67,9 @@ void	map_check_walls(t_data *data)
 	fill[0] = '1';
 	fill[1] = 'F';
 	if (find_first_wall_pos(&pos, data->map_copy))
-		free_data_exit(data, "Error\nno wall was found\n");
+		free_data_exit(data, "Error\nNo wall was found\n");
 	floodwalls(data, pos, fill, 'W');
 	if (is_all_w(data))
-		free_data_exit(data, "Error\nmaps not connected\n");
+		free_data_exit(data, "Error\nMaps are not connected\n");
 	return ;
 }
