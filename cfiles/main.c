@@ -1,16 +1,18 @@
 
 #include "../cub3d.h"
 
-void	init_xpm_imgs(t_data *data, t_xpm_img *xpm_imgs)
+void	init_xpm_imgs(t_data *data, t_img *xpm_imgs)
 {
 	data->north = &xpm_imgs[0];
 	data->south = &xpm_imgs[1];
 	data->west = &xpm_imgs[2];
 	data->east = &xpm_imgs[3];
+	data->img = &xpm_imgs[4];
 	data->north->img = NULL;
 	data->south->img = NULL;
 	data->west->img = NULL;
 	data->east->img = NULL;
+	data->img->img = NULL;
 }
 
 void	init_data(t_data *data)
@@ -28,7 +30,6 @@ void	init_data(t_data *data)
 	data->texture->south = NULL;
 	data->texture->west = NULL;
 	data->texture->east = NULL;
-	data->img.mlx_img = NULL;
 
 	data->zoom_faktor = 1;
 }
@@ -66,10 +67,10 @@ int	free_data(t_data *data)
 	if (data->mlx_ptr)
 	{
 		free_imgs(data);
-		if(data->img.mlx_img)
+		if(data->img->img)
 		{
-			mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
-			data->img.mlx_img = NULL;
+			mlx_destroy_image(data->mlx_ptr, data->img->img);
+			data->img->img = NULL;
 		}
 		if(data->win_ptr)
 		{
@@ -88,7 +89,7 @@ int	main(int argc, char **argv)
 	int			fd;
 	t_data		data;
 	t_texture	texture;
-	t_xpm_img	xpm_imgs[4];
+	t_img		xpm_imgs[5];
 
 	fd = -1;
 	data.texture = &texture;

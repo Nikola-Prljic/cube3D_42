@@ -48,7 +48,7 @@ typedef struct s_texture
 	char		*east;
 }				t_texture;
 
-typedef struct s_xpm_img
+typedef struct s_img
 {
 	void		*img;
 	int			width;
@@ -57,25 +57,25 @@ typedef struct s_xpm_img
     int			bpp; /* bits per pixel */
     int			line_len;
     int			endian;
-}				t_xpm_img;
+}				t_img;
 
-typedef struct s_mlx_img
+/* typedef struct s_mlx_img
 {
 	void	*mlx_img;
     char	*addr;
-    int		bpp; /* bits per pixel */
+    int		bpp; bits per pixel
     int		line_len;
     int		endian;
-}				t_mlx_img;
+}				t_mlx_img; */
 
 typedef struct s_data
 {
-	t_mlx_img	img;
 	t_texture	*texture;
-	t_xpm_img	*north;
-	t_xpm_img	*south;
-	t_xpm_img	*west;
-	t_xpm_img	*east;
+	t_img		*img;
+	t_img		*north;
+	t_img		*south;
+	t_img		*west;
+	t_img		*east;
 	int 		distance;
 	int			vertrical_hit;
 	int			floor_rgb;
@@ -189,10 +189,10 @@ void			free2d(char **map);
 int				window_loop(t_data *data);
 
 //window_draw.c
-void	img_pix_put(t_mlx_img *img, int x, int y, int color);
+void	img_pix_put(t_img *img, int x, int y, int color);
 void	ft_rect(t_data *data, t_rect rect);
 void	draw_walls(t_data *data, double distance, int ray_x);
-void	draw_texture(t_data *data);
+void 	create_img_addr(t_data *data, t_img *img);
 void 	draw_minimap(t_data *data);
 
 #endif

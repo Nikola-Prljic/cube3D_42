@@ -1,7 +1,7 @@
 
 #include "../cub3d.h"
 
-int	open_textures(t_data *data, t_xpm_img *xpm_img, char *path)
+int	open_textures(t_data *data, t_img *xpm_img, char *path)
 {
 	xpm_img->img = mlx_xpm_file_to_image(data->mlx_ptr, path, &xpm_img->width,
 		&xpm_img->height);
@@ -10,7 +10,7 @@ int	open_textures(t_data *data, t_xpm_img *xpm_img, char *path)
 	return (0);
 }
 
-void	loadtextures(t_data *data, t_xpm_img *xpm_img, char **path)
+void	loadtextures(t_data *data, t_img *xpm_img, char **path)
 {
 	if (open_textures(data, xpm_img, *path))
 	{

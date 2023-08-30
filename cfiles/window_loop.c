@@ -88,8 +88,8 @@ int renderCub(t_data *data)
 		return (0);
 	ft_rect(data, (t_rect){0, 0, WINDOW_HEIGT, WINDOW_WITH, 0x89CFF0});
 	raylen(data);
-	draw_minimap(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,
+	/* draw_minimap(data); */
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img, 0,
 		0);
 	return (1);
 }
@@ -152,12 +152,12 @@ int	keypress(int keysum, t_data *data)
 	return (1);
 }
 
-void	create_img_addr(t_data *data)
+void	create_img_addr(t_data *data, t_img *img)
 {
-	data->img.mlx_img = mlx_new_image(data->mlx_ptr, WINDOW_WITH, WINDOW_HEIGT);
-	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
-			&data->img.line_len, &data->img.endian);
-	if (!data->img.addr)
+	img->addr = (int *)mlx_get_data_addr(img->img, &img->bpp,
+			&img->line_len, &img->endian);
+	img->line_len /= 4;
+	if (!img->addr)
 	{
 		if (data->rays)
 			free(data->rays);
@@ -171,8 +171,9 @@ int	window_loop(t_data *data)
 	ray_functions(data);
 	if (make_window(data, WINDOW_HEIGT, WINDOW_WITH))
 		return (1);
-	create_img_addr(data);
-	draw_texture(data);
+	data->img->img = mlx_new_image(data->mlx_ptr, WINDOW_WITH, WINDOW_HEIGT);
+	create_img_addr(data, data->img);
+	create_img_addr(data, data->north);
 	/* ft_rect(data, (t_rect){200, 200, 50, 50, 0xFF0000}); */
 	/* prepare_player(data); */
 	/* print_2d(data); */
