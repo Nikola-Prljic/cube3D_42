@@ -173,6 +173,9 @@ int	window_loop(t_data *data)
 	data->img->img = mlx_new_image(data->mlx_ptr, WINDOW_WITH, WINDOW_HEIGT);
 	create_img_addr(data, data->img);
 	create_img_addr(data, data->north);
+	create_img_addr(data, data->east);
+	create_img_addr(data, data->west);
+	create_img_addr(data, data->south);
 	/* ft_rect(data, (t_rect){200, 200, 50, 50, 0xFF0000}); */
 	/* prepare_player(data); */
 	/* print_2d(data); */
