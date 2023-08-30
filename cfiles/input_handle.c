@@ -23,7 +23,7 @@ int	check_input(char *map_path, int *fd)
 		return (1);
 	*fd = open(map_path, O_RDONLY);
 	if (*fd <= 0)
-		return (puterror("Error\ncant find/access map!\n"));
+		return (puterror("Error\nCan't find/access map!\n"));
 	if (map_extension(map_path))
 	{
 		close(*fd);
@@ -37,9 +37,9 @@ int	input_handle(int argc, char **argv, int *fd)
 	char	*map_file;
 
 	if (argc != 2)
-		return (puterror("Error\ninvalid number of parameters\n"));
+		return (puterror("Error\nInvalid number of parameters\n"));
 	if (argv[1][0] == 0 && ft_strlen(argv[1]) == 0)
-		return (puterror("Error\nargv[1] is empty string\n"));
+		return (puterror("Error\nArgv[1] is an empty string\n"));
 	map_file = ft_strj("maps/", argv[1]);
 	if (check_input(map_file, fd))
 	{

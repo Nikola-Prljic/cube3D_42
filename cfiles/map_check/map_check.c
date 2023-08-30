@@ -6,7 +6,7 @@ void	malloc_data_map_first_line(t_data *data, t_map *file)
 {
 	data->map = malloc(sizeof(char *) * 2);
 	if (!data->map)
-		free_map_exit(data, file, "Error\nmalloc faild\n");
+		free_map_exit(data, file, "Error\nMalloc failed\n");
 	data->map[0] = NULL;
 }
 
@@ -24,7 +24,7 @@ char	*save_first_line(t_data *data, t_map *file, int y)
 	if (isValidchar(data, line, " 01NEWS", y) == 1)
 	{
 		free(line);
-		free_map_exit(data, file, "Error\nwrong char in map\n");
+		free_map_exit(data, file, "Error\nWrong char in a map\n");
 	}
 	ft_matrix_push_back(data, file, line);
 	return (line);
@@ -63,7 +63,7 @@ int	map_check(t_data *data, int fd)
 	/* printmap(data->map);  */ ///////delte
 	if (data->px == -1 || data->py == -1)
 		free_map_exit(data, &file,
-			"Error\nstart position was not found on map\n");
+			"Error\nStart position was not found on a map\n");
 	if (file.buffer)
 		free(file.buffer);
 	if (fd != -1)

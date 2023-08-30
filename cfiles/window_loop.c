@@ -34,17 +34,17 @@ int	collision(t_data *data, char c)
 		if (data->rays->left_right == 1)
 			bx = (bx + 10) * -1;
 	}
-	if (data->map[(int)((ay + 10 + by) / TILE_SIZE)][(int)((ax + bx)
+	if (data->map[(int)((ay + 5 + by) / TILE_SIZE)][(int)((ax + bx)
 			/ TILE_SIZE)] == '1')
 		return (1);
-	else if (data->map[(int)((ay - 10 + by) / TILE_SIZE)][(int)((ax + bx)
-			/ TILE_SIZE)] == '1')
+	else if (data->map[(int)((ay - 5 + by) / TILE_SIZE)][(int)((ax + bx)
+				/ TILE_SIZE)] == '1')
 		return (1);
-	else if (data->map[(int)((ay + by) / TILE_SIZE)][(int)((ax + 10 + bx)
-			/ TILE_SIZE)] == '1')
+	else if (data->map[(int)((ay + by) / TILE_SIZE)][(int)((ax + 5 + bx)
+				/ TILE_SIZE)] == '1')
 		return (1);
-	else if (data->map[(int)((ay + by) / TILE_SIZE)][(int)((ax - 10 + bx)
-			/ TILE_SIZE)] == '1')
+	else if (data->map[(int)((ay + by) / TILE_SIZE)][(int)((ax - 5 + bx)
+				/ TILE_SIZE)] == '1')
 		return (1);
 	return (0);
 }
@@ -82,9 +82,9 @@ int	x_close(t_data *data)
 	return (0);
 }
 
-int renderCub(t_data *data)
+int	renderCub(t_data *data)
 {
-	if(!data->mlx_ptr || !data->win_ptr /* || render_cub == STOP_RENDER */ )
+	if (!data->mlx_ptr || !data->win_ptr /* || render_cub == STOP_RENDER */)
 		return (0);
 	ft_rect(data, (t_rect){0, 0, WINDOW_HEIGT, WINDOW_WITH, 0x89CFF0});
 	raylen(data);
@@ -102,7 +102,7 @@ int	keypress(int keysum, t_data *data)
 		return (x_close(data));
 	else if (keysum == XK_a || keysum == XK_Left)
 	{
-		data->rays->player_dir -= deg2rad(3.0);
+		data->rays->player_dir -= 0.0523599;
 		if (data->rays->player_dir < 0)
 			data->rays->player_dir += 2 * PI;
 		data->rays->player_dir_x = cos(data->rays->player_dir) * 5;
@@ -110,7 +110,7 @@ int	keypress(int keysum, t_data *data)
 	}
 	else if (keysum == XK_d || keysum == XK_Right)
 	{
-		data->rays->player_dir += deg2rad(3.0);
+		data->rays->player_dir += 0.0523599;
 		if (data->rays->player_dir > 2 * PI)
 			data->rays->player_dir -= 2 * PI;
 		data->rays->player_dir_x = cos(data->rays->player_dir) * 5;
@@ -161,10 +161,9 @@ void	create_img_addr(t_data *data, t_img *img)
 	{
 		if (data->rays)
 			free(data->rays);
-		free_data_exit(data, "Error\nmlx_get_data_addr faild\n");
+		free_data_exit(data, "Error\nMlx_get_data_addr failed\n");
 	}
 }
-
 
 int	window_loop(t_data *data)
 {

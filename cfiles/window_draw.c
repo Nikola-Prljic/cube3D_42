@@ -79,14 +79,36 @@ void draw_texure_on_walls(t_data *data, double wallStripHeight, int ray_x)
 
 void draw_walls(t_data *data, double distance, int ray_x)
 {
-    double correctWallDistance;
-    double distanceProjPlane;
-    double wallStripHeight;
+        double correctWallDistance;
+        double distanceProjPlane;
+        double wallStripHeight;
+        /* ray_y--; */
+    
+        correctWallDistance = cos(data->rays->ray_angle - data->rays->player_dir) * distance;
+        distanceProjPlane = ((double)WINDOW_HEIGT / 2.0) / 0.57735026919;
+        wallStripHeight = ((double)TILE_SIZE / correctWallDistance) * distanceProjPlane;
+        
+        double tmp = wallStripHeight;
 
-    correctWallDistance = cos(data->rays->ray_angle - data->rays->player_dir) * distance;
-    distanceProjPlane = ((double)WINDOW_HEIGT / 2.0) / 0.57735026919;
-    wallStripHeight = ((double)TILE_SIZE / correctWallDistance) * distanceProjPlane;
-    draw_texure_on_walls(data, wallStripHeight, ray_x);
+        if(wallStripHeight >= WINDOW_HEIGT)
+            wallStripHeight = WINDOW_HEIGT;
+
+        ray_x = ray_x - ray_x / 64 * 64;
+        /* ft_rect(data, (t_rect){(double)WINDOW_HEIGT / 2.0 - wallStripHeight / 2.0, data->raycount, wallStripHeight, 1, 0xFFFFFF}); */
+        int y = 0;
+        int y_texture = 0;
+        int x = (double)WINDOW_HEIGT / 2.0 - tmp / 2.0;
+        double scale = (tmp  / TILE_SIZE);
+        double top = wallStripHeight + (tmp - wallStripHeight) / 2;
+        double bottom = (tmp - wallStripHeight) / 2;
+        while(y < tmp)
+        {
+            if(y <= top && y > bottom)
+                img_pix_put(data->img, data->raycount, x + y, data->north->addr[(y_texture * data->north->line_len) + ray_x]);
+            if (y % (int)((y_texture + 1) * scale) == 0)
+                y_texture++;
+            y++;    
+        }
 }
 
 /* void create_img_addr(t_data *data)

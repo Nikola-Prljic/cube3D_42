@@ -17,7 +17,7 @@ void	loadtextures(t_data *data, t_img *xpm_img, char **path)
 		if (data->rays)
 			free(data->rays);
 		free_set_null(path);
-		free_data_exit(data, "Error\nload texture faild\n");
+		free_data_exit(data, "Error\nLoad texture failed\n");
 	}
 	free_set_null(path);
 	return ;

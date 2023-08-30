@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getline_ultis.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkurnava <rkurnava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:53:33 by nprljic           #+#    #+#             */
-/*   Updated: 2023/08/28 21:29:41 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/08/30 15:56:16 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*ft_linejoin(t_data *data, char *s1, char *s2)
 		if(!s1)
 		{
 			free_set_null(&s2);
-			free_data_exit(data, "Error\nMalloc faild ft_linejoin");
+			free_data_exit(data, "Error\nMalloc failed at ft_linejoin");
 		}
 		s1[0] = '\0';
 	}
@@ -76,7 +76,7 @@ char	*ft_linejoin(t_data *data, char *s1, char *s2)
 	{
 		free_set_null(&s1);
 		free_set_null(&s2);
-		free_data_exit(data, "Error\nMalloc faild ft_linejoin");
+		free_data_exit(data, "Error\nMalloc failed at ft_linejoin");
 	}
 	ft_cpynonull(dest, s1, i);
 	ft_cpynonull_s2(dest, s2, s2_len, s1_len);

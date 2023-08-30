@@ -44,9 +44,9 @@ int	is_possible_direction(t_data *data, t_map *file, short first_line)
 		}
 		direction = ft_getline(data, file->fd, &file->buffer, ' ');
 		if (first_line == 0 && !direction)
-			free_map_exit(data, file, "Error\nempty map\n");
+			free_map_exit(data, file, "Error\nEmpty map\n");
 		if (!direction)
-			free_map_exit(data, file, "Error\ntexture faild\n");
+			free_map_exit(data, file, "Error\nTexture failed\n");
 		if (direction[0] != 0)
 			is_new_line = 0;
 	}
@@ -61,12 +61,12 @@ void	handel_textures(t_data *data, t_map *file)
 {
 	if (is_possible_direction(data, file, 0) || is_possible_direction(data,
 			file, 1))
-		free_map_exit(data, file, "Error\nfaild to read textures\n");
+		free_map_exit(data, file, "Error\nfailed to read textures\n");
 	if (is_possible_direction(data, file, 1) || is_possible_direction(data,
 			file, 1))
-		free_map_exit(data, file, "Error\nfaild to read textures\n");
+		free_map_exit(data, file, "Error\nfailed to read textures\n");
 	if (!data->texture->north || !data->texture->south)
-		free_map_exit(data, file, "Error\nfaild to save north texture\n");
+		free_map_exit(data, file, "Error\nfailed to save north/south texture\n");
 	if (!data->texture->east || !data->texture->west)
-		free_map_exit(data, file, "Error\nfaild to save east texture\n");
+		free_map_exit(data, file, "Error\nfailed to save east/west texture\n");
 }
