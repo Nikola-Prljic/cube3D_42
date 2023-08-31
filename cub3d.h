@@ -12,7 +12,7 @@
 
 # define WINDOW_WITH 1900
 # define WINDOW_HEIGT 1000
-# define TILE_SIZE 64
+# define TILE_SIZE 2024
 # define TEXTURE_SIZE 2024
 # define PI 3.141593
 # define STOP_RENDER 1

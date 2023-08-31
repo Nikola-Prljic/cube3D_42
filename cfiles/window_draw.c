@@ -76,4 +76,3 @@ void	draw_walls(t_data *data, double distance, int ray_x, t_img *texture)
 		* distanceProjPlane;
 	draw_texure_on_walls(data, wallStripHeight, ray_x, texture);
 }
-
