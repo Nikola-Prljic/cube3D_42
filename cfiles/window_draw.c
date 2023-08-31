@@ -41,33 +41,29 @@ void	draw_texure_on_walls(t_data *data, double wallStripHeight, int ray_x,
 	double	tmp;
 	double	top;
 	double	bottom;
-	int		y_texture;
+	double		y_texture;
 	int		y_ray_total;
-	int		iterations;
 
 	tmp = wallStripHeight;
 	if (wallStripHeight > WINDOW_HEIGT)
 		wallStripHeight = WINDOW_HEIGT;
 	y_texture = 0;
 	y_ray_total = 0;
-	iterations = 0;
 	top = wallStripHeight + (tmp - wallStripHeight) / 2;
 	bottom = (tmp - wallStripHeight) / 2;
-	ray_x = ray_x - ray_x / 64 * 64;
-	y_ray_total = bottom;
+	ray_x = ray_x - ray_x / TILE_SIZE * TILE_SIZE;
+	y_ray_total = (int)bottom;
 	y_texture = bottom / (tmp / TILE_SIZE);
 	while (y_ray_total <= top)
 	{
 		if (y_ray_total < top && y_ray_total > bottom)
 			img_pix_put(data->img, data->raycount, (double)WINDOW_HEIGT / 2.0
-					- tmp / 2.0 + (double)y_ray_total, texture->addr[(y_texture
+					- tmp / 2.0 + (double)y_ray_total, texture->addr[((int)y_texture
 						* texture->line_len) + ray_x]);
-		if (y_ray_total % (int)((y_texture + 1) * (tmp / TILE_SIZE)) == 0)
-			y_texture++;
+		//printf("tmp %f\n", tmp);
+		y_texture += 1.0 * TILE_SIZE / tmp;
 		y_ray_total++;
-		iterations ++;
 	}
-	printf("%i\n", iterations);
 }
 
 void	draw_walls(t_data *data, double distance, int ray_x, t_img *texture)
@@ -93,7 +89,7 @@ void	draw_minimap(t_data *data)
 	y = 0;
 	mini_map_tidle = TILE_SIZE * MAP_SIZE;
 	ft_rect(data, (t_rect){(data->rays->py - 3) * MAP_SIZE, (data->rays->px - 3)
-		* MAP_SIZE, 15 * MAP_SIZE, 15 * MAP_SIZE, 0xFF0000});
+			* MAP_SIZE, 15 * MAP_SIZE, 15 * MAP_SIZE, 0xFF0000});
 	while (data->map[y])
 	{
 		x = 0;
@@ -101,7 +97,7 @@ void	draw_minimap(t_data *data)
 		{
 			if (data->map[y][x] == '1')
 				ft_rect(data, (t_rect){y * mini_map_tidle, x * mini_map_tidle,
-					mini_map_tidle, mini_map_tidle, 0x555555});
+						mini_map_tidle, mini_map_tidle, 0x555555});
 			x++;
 		}
 		y++;

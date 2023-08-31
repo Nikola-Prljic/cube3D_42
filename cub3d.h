@@ -11,7 +11,7 @@
 # include <unistd.h>
 
 # define WINDOW_WITH 1000
-# define WINDOW_HEIGT 1000
+# define WINDOW_HEIGT 400
 # define TILE_SIZE 64
 # define PI 3.141593
 # define STOP_RENDER 1
