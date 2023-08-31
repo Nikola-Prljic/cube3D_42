@@ -66,7 +66,7 @@ int	renderCub(t_data *data)
 {
 	if (!data->mlx_ptr || !data->win_ptr)
 		return (0);
-	ft_rect(data, (t_rect){0, 0, WINDOW_HEIGT, WINDOW_WITH, 0x89CFF0});
+	draw_floor_sky(data, data->sky_rgb, data->floor_rgb);
 	raylen(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img, 0, 0);
 	return (1);
@@ -74,6 +74,10 @@ int	renderCub(t_data *data)
 
 int	keypress(int keysum, t_data *data)
 {
+	double	degrees;
+	float	move;
+
+	move = TILE_SIZE / 15;
 	if (keysum == XK_Escape)
 		return (x_close(data));
 	else if (keysum == XK_a || keysum == XK_Left)
@@ -81,16 +85,16 @@ int	keypress(int keysum, t_data *data)
 		data->rays->player_dir -= 0.0523599;
 		if (data->rays->player_dir < 0)
 			data->rays->player_dir += 6.283186;
-		data->rays->player_dir_x = cos(data->rays->player_dir) * 5;
-		data->rays->player_dir_y = sin(data->rays->player_dir) * 5;
+		data->rays->player_dir_x = cos(data->rays->player_dir) * move;
+		data->rays->player_dir_y = sin(data->rays->player_dir) * move;
 	}
 	else if (keysum == XK_d || keysum == XK_Right)
 	{
 		data->rays->player_dir += 0.0523599;
 		if (data->rays->player_dir > 6.283186)
 			data->rays->player_dir -= 6.283186;
-		data->rays->player_dir_x = cos(data->rays->player_dir) * 5;
-		data->rays->player_dir_y = sin(data->rays->player_dir) * 5;
+		data->rays->player_dir_x = cos(data->rays->player_dir) * move;
+		data->rays->player_dir_y = sin(data->rays->player_dir) * move;
 	}
 	else if (keysum == XK_w || keysum == XK_Up)
 	{
@@ -138,23 +142,12 @@ int	window_loop(t_data *data)
 	create_img_addr(data, data->east);
 	create_img_addr(data, data->west);
 	create_img_addr(data, data->south);
-	/* ft_rect(data, (t_rect){200, 200, 50, 50, 0xFF0000}); */
-	/* prepare_player(data); */
-	/* print_2d(data); */
-	/* mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->rays->player,
-			data->rays->px - 21.5, data->rays->py - 21.5); */
 	renderCub(data);
 	mlx_hook(data->win_ptr, 17, 0, &x_close, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &keypress, data);
-	/* mlx_loop_hook(data->mlx_ptr, &renderCub, data); */
 	mlx_loop(data->mlx_ptr);
-	/* mlx_destroy_image(data->mlx_ptr, data->rays->player);
-	mlx_destroy_image(data->mlx_ptr, data->rays->wall);
-	mlx_destroy_image(data->mlx_ptr, data->rays->space);
-	mlx_destroy_image(data->mlx_ptr, data->rays->spacev); */
 	if (data->rays)
 		free(data->rays);
-	// mlx_destroy_display(data->mlx_ptr);
 	free_data(data);
 	return (0);
 }

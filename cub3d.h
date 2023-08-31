@@ -10,9 +10,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WINDOW_WITH 1000
-# define WINDOW_HEIGT 1000
+# define WINDOW_WITH 800
+# define WINDOW_HEIGT 800
 # define TILE_SIZE 64
+# define TEXTURE_SIZE 512
 # define PI 3.141593
 # define STOP_RENDER 1
 # define START_RENDER 0
@@ -190,7 +191,7 @@ int				window_loop(t_data *data);
 
 //window_draw.c
 void	img_pix_put(t_img *img, int x, int y, int color);
-void	ft_rect(t_data *data, t_rect rect);
+void	draw_floor_sky(t_data *data, int sky_color, int ground_color);
 void	draw_walls(t_data *data, double distance, int ray_x, t_img *texture);
 void 	create_img_addr(t_data *data, t_img *img);
 

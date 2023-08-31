@@ -5,30 +5,31 @@ void	img_pix_put(t_img *img, int put_x, int put_y, int color)
 	img->addr[(put_y * img->line_len) + put_x] = color;
 }
 
-void	ft_rect(t_data *data, t_rect rect)
+void	draw_floor_sky(t_data *data, int sky_color, int ground_color)
 {
-	int	x;
-	int	end_y;
-	int	end_x;
+	int y;
+	int x;
 
-	if (rect.start_x < 0 || rect.start_x > WINDOW_WITH || rect.start_y < 0
-		|| rect.size_y > WINDOW_HEIGT)
-		return ;
-	if (rect.size_x < 0 || rect.start_x + rect.size_x > WINDOW_WITH
-		|| rect.size_y < 0 || rect.start_y + rect.size_y > WINDOW_HEIGT)
-		return ;
-	x = rect.start_x;
-	end_y = rect.start_y + rect.size_y;
-	end_x = rect.start_x + rect.size_x;
-	while (rect.start_y < end_y)
+	y = 0;
+	while (y < WINDOW_HEIGT >> 1)
 	{
-		x = rect.start_x;
-		while (x < end_x)
+		x = 0;
+		while (x < WINDOW_WITH)
 		{
-			img_pix_put(data->img, x, rect.start_y, rect.color);
+			img_pix_put(data->img, x, y, sky_color);
 			x++;
 		}
-		rect.start_y++;
+		y++;
+	}
+	while (y < WINDOW_HEIGT)
+	{
+		x = 0;
+		while (x < WINDOW_WITH)
+		{
+			img_pix_put(data->img, x, y, ground_color);
+			x++;
+		}
+		y++;
 	}
 }
 
@@ -42,24 +43,22 @@ void	draw_texure_on_walls(t_data *data, double wallStripHeight, int ray_x,
 	double	top;
 	double	bottom;
 	double	y_texture;
-	int		y_ray_total;
+	double	y_ray_total;
 
 	tmp = wallStripHeight;
 	if (wallStripHeight > WINDOW_HEIGT)
 		wallStripHeight = WINDOW_HEIGT;
-	y_texture = 0;
-	y_ray_total = 0;
-	top = wallStripHeight + (tmp - wallStripHeight) / 2;
-	bottom = (tmp - wallStripHeight) / 2;
-	ray_x = ray_x - ray_x / TILE_SIZE * TILE_SIZE;
+	top = wallStripHeight + (tmp - wallStripHeight) / 2.0;
+	bottom = (tmp - wallStripHeight) / 2.0;
+	ray_x = ((double)TEXTURE_SIZE / (double)TILE_SIZE) * (ray_x % TILE_SIZE );
 	y_ray_total = (int)bottom;
-	y_texture = bottom / (tmp / TILE_SIZE);
+	y_texture = bottom / tmp * (double)TEXTURE_SIZE;
 	while (y_ray_total <= top)
 	{
 		img_pix_put(data->img, data->raycount, (double)WINDOW_HEIGT / 2.0 - tmp
 			/ 2.0 + (double)y_ray_total, texture->addr[((int)y_texture
 				* texture->line_len) + ray_x]);
-		y_texture += 1.0 * TILE_SIZE / tmp;
+		y_texture += 1.0 * TEXTURE_SIZE / tmp;
 		y_ray_total++;
 	}
 }

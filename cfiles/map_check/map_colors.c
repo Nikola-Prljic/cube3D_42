@@ -19,7 +19,7 @@ int is_number(char *color_rgb, int *color)
 	return(0);
 }
 
-int string_rgb_to_int(t_data *data, char **color_rgb)
+int string_rgb_to_int(char **color_rgb, int *color)
 {
 	int r;
 	int g;
@@ -31,7 +31,7 @@ int string_rgb_to_int(t_data *data, char **color_rgb)
 		return (1);
 	if(is_number(color_rgb[2], &b))
 		return (1);
-	data->floor_rgb = (r << 16) + (g << 8) + b;
+	*color = (r << 16) + (g << 8) + b;
 	return(0);
 }
 
@@ -58,6 +58,7 @@ void get_color_code(t_data *data, t_map *file, char **color_rgb, int at_i)
 
 int save_color(t_data *data, t_map *file, char *line, char color)
 {
+	int color_hex;
 	char **color_rgb;
 
 	color_rgb = malloc(sizeof(char *) * 4);
@@ -84,14 +85,13 @@ int save_color(t_data *data, t_map *file, char *line, char color)
 	get_color_code(data, file, color_rgb, 1);
 	get_color_code(data, file, color_rgb, 2);
 
-	if(string_rgb_to_int(data, color_rgb))
+	if(string_rgb_to_int(color_rgb, &color_hex))
 	{
 		free2d(color_rgb);
 		return free_map_exit(data, file, NULL);
 	}
-
 	free2d(color_rgb);
-	return(0);
+	return(color_hex);
 }
 
 char *loop_to_not_nl( t_data *data, t_map *file )
