@@ -74,7 +74,6 @@ int	renderCub(t_data *data)
 
 int	keypress(int keysum, t_data *data)
 {
-	double	degrees;
 	float	move;
 
 	move = TILE_SIZE / 15;
