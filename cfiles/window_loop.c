@@ -10,40 +10,20 @@ int	collision(t_data *data, char c)
 
 	ay = data->rays->py;
 	ax = data->rays->px;
-	bx = data->rays->player_dir_x;
-	by = data->rays->player_dir_y;
-	if (c == '+')
-	{
-		if (data->rays->up_down == -1)
-			by = (by + 10) * -1;
-		if (data->rays->up_down == 1)
-			by += 10;
-		if (data->rays->left_right == -1)
-			bx = (bx + 10) * -1;
-		if (data->rays->left_right == 1)
-			bx += 10;
-	}
-	if (c == '-')
-	{
-		if (data->rays->up_down == -1)
-			by += 10;
-		if (data->rays->up_down == 1)
-			by = (by + 10) * -1;
-		if (data->rays->left_right == -1)
-			bx += 10;
-		if (data->rays->left_right == 1)
-			bx = (bx + 10) * -1;
-	}
-	if (data->map[(int)((ay + 5 + by) / TILE_SIZE)][(int)((ax + bx)
+	bx = data->rays->player_dir_x + 10.0;
+	by = data->rays->player_dir_y + 10.0;
+	if (data->rays->up_down == -1 && c == '+')
+		by *= -1;
+	if (data->rays->left_right == -1 && c == '+')
+		bx *= -1;
+	if (data->rays->up_down == 1 && c == '-')
+		by *= -1;
+	if (data->rays->left_right == 1 && c == '-')
+		bx *= -1;
+	if (data->map[(int)((ay + by) / TILE_SIZE)][(int)((ax + bx - 5)
 			/ TILE_SIZE)] == '1')
 		return (1);
-	else if (data->map[(int)((ay - 5 + by) / TILE_SIZE)][(int)((ax + bx)
-				/ TILE_SIZE)] == '1')
-		return (1);
-	else if (data->map[(int)((ay + by) / TILE_SIZE)][(int)((ax + 5 + bx)
-				/ TILE_SIZE)] == '1')
-		return (1);
-	else if (data->map[(int)((ay + by) / TILE_SIZE)][(int)((ax - 5 + bx)
+	else if (data->map[(int)((ay + by) / TILE_SIZE)][(int)((ax + bx + 5)
 				/ TILE_SIZE)] == '1')
 		return (1);
 	return (0);
@@ -84,18 +64,16 @@ int	x_close(t_data *data)
 
 int	renderCub(t_data *data)
 {
-	if (!data->mlx_ptr || !data->win_ptr /* || render_cub == STOP_RENDER */)
+	if (!data->mlx_ptr || !data->win_ptr)
 		return (0);
 	draw_floor_sky(data, data->sky_rgb, data->floor_rgb);
 	raylen(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img, 0,
-		0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img, 0, 0);
 	return (1);
 }
 
 int	keypress(int keysum, t_data *data)
 {
-	double	degrees;
 	float	move;
 
 	move = TILE_SIZE / 15;
@@ -105,15 +83,15 @@ int	keypress(int keysum, t_data *data)
 	{
 		data->rays->player_dir -= 0.0523599;
 		if (data->rays->player_dir < 0)
-			data->rays->player_dir += 2 * PI;
+			data->rays->player_dir += 6.283186;
 		data->rays->player_dir_x = cos(data->rays->player_dir) * move;
 		data->rays->player_dir_y = sin(data->rays->player_dir) * move;
 	}
 	else if (keysum == XK_d || keysum == XK_Right)
 	{
 		data->rays->player_dir += 0.0523599;
-		if (data->rays->player_dir > 2 * PI)
-			data->rays->player_dir -= 2 * PI;
+		if (data->rays->player_dir > 6.283186)
+			data->rays->player_dir -= 6.283186;
 		data->rays->player_dir_x = cos(data->rays->player_dir) * move;
 		data->rays->player_dir_y = sin(data->rays->player_dir) * move;
 	}
@@ -135,15 +113,14 @@ int	keypress(int keysum, t_data *data)
 		data->zoom_faktor++;
 	else if (keysum == XK_c && data->zoom_faktor > 1)
 		data->zoom_faktor--;
-	degrees = data->rays->player_dir * (180 / PI);
 	renderCub(data);
 	return (1);
 }
 
 void	create_img_addr(t_data *data, t_img *img)
 {
-	img->addr = (int *)mlx_get_data_addr(img->img, &img->bpp,
-			&img->line_len, &img->endian);
+	img->addr = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->line_len,
+			&img->endian);
 	img->line_len /= 4;
 	if (!img->addr)
 	{

@@ -194,6 +194,5 @@ void	img_pix_put(t_img *img, int x, int y, int color);
 void	draw_floor_sky(t_data *data, int sky_color, int ground_color);
 void	draw_walls(t_data *data, double distance, int ray_x, t_img *texture);
 void 	create_img_addr(t_data *data, t_img *img);
-void 	draw_minimap(t_data *data);
 
 #endif

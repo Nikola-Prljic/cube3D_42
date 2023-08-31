@@ -6,7 +6,7 @@
 /*   By: rkurnava <rkurnava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:24:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/30 19:00:25 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/08/31 15:38:01 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 int	hit(t_data *data, char **map, int ay, int ax)
 {
+	int	map_y;
+	int	map_x;
 
-	if (ay < 0 /* || ay > WINDOW_HEIGT */ || ax < 0 /* || ax > WINDOW_WITH */)
+	map_y = ay / TILE_SIZE;
+	map_x = ax / TILE_SIZE;
+	if (map_y < 0 || map_x < 0)
 		return (0);
-	int map_y = ay / TILE_SIZE;
-	int map_x = ax / TILE_SIZE;
-	if(map_y >= data->map_y || map_x >= data->map_x)
+	if (map_y >= data->map_y || map_x >= data->map_x)
 		return (0);
 	if (ay > 0 && ax > 0 && map[map_y][map_x] != '1')
 		return (1);
@@ -105,7 +107,11 @@ void	raylen_h(t_data *data, float angle, char **map)
 void	raylen(t_data *data)
 {
 	data->raycount = 0;
-	data->rays->ray_angle = data->rays->player_dir - (PI / 6);
+	data->rays->ray_angle = data->rays->player_dir - 0.5235988333333333;
+	if (data->rays->px < 0)
+		data->rays->px = 1;
+	if (data->rays->py < 0)
+		data->rays->py = 1;
 	while (data->raycount < WINDOW_WITH)
 	{
 		if (data->rays->ray_angle > 2 * PI)
