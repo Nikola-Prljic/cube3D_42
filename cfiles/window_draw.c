@@ -5,30 +5,31 @@ void	img_pix_put(t_img *img, int put_x, int put_y, int color)
 	img->addr[(put_y * img->line_len) + put_x] = color;
 }
 
-void	ft_rect(t_data *data, t_rect rect)
+void	draw_floor_sky(t_data *data, int sky_color, int ground_color)
 {
-	int	x;
-	int	end_y;
-	int	end_x;
+	int y;
+	int x;
 
-	if (rect.start_x < 0 || rect.start_x > WINDOW_WITH || rect.start_y < 0
-		|| rect.size_y > WINDOW_HEIGT)
-		return ;
-	if (rect.size_x < 0 || rect.start_x + rect.size_x > WINDOW_WITH
-		|| rect.size_y < 0 || rect.start_y + rect.size_y > WINDOW_HEIGT)
-		return ;
-	x = rect.start_x;
-	end_y = rect.start_y + rect.size_y;
-	end_x = rect.start_x + rect.size_x;
-	while (rect.start_y < end_y)
+	y = 0;
+	while (y < WINDOW_HEIGT >> 1)
 	{
-		x = rect.start_x;
-		while (x < end_x)
+		x = 0;
+		while (x < WINDOW_WITH)
 		{
-			img_pix_put(data->img, x, rect.start_y, rect.color);
+			img_pix_put(data->img, x, y, sky_color);
 			x++;
 		}
-		rect.start_y++;
+		y++;
+	}
+	while (y < WINDOW_HEIGT)
+	{
+		x = 0;
+		while (x < WINDOW_WITH)
+		{
+			img_pix_put(data->img, x, y, ground_color);
+			x++;
+		}
+		y++;
 	}
 }
 
@@ -78,7 +79,7 @@ void	draw_walls(t_data *data, double distance, int ray_x, t_img *texture)
 	draw_texure_on_walls(data, wallStripHeight, ray_x, texture);
 }
 
-void	draw_minimap(t_data *data)
+/* void	draw_minimap(t_data *data)
 {
 	int	y;
 	int	x;
@@ -86,7 +87,7 @@ void	draw_minimap(t_data *data)
 
 	y = 0;
 	mini_map_tidle = TILE_SIZE * MAP_SIZE;
-	ft_rect(data, (t_rect){(data->rays->py - 3) * MAP_SIZE, (data->rays->px - 3)
+	draw_floor_sky(data, (t_rect){(data->rays->py - 3) * MAP_SIZE, (data->rays->px - 3)
 			* MAP_SIZE, 15 * MAP_SIZE, 15 * MAP_SIZE, 0xFF0000});
 	while (data->map[y])
 	{
@@ -100,4 +101,4 @@ void	draw_minimap(t_data *data)
 		}
 		y++;
 	}
-}
+} */

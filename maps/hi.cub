@@ -3,8 +3,9 @@ SO ./2d_imgs/south_wall.xpm
 EA ./2d_imgs/east_wall.xpm
 WE ./2d_imgs/west_wall.xpm
 
-F 50,168,82
-C 44,22,111
+F 255,1,1
+C 255,1,1
+
 1111111111111111
 1N00100001111111
 1011100001111011

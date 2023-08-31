@@ -86,7 +86,9 @@ int	renderCub(t_data *data)
 {
 	if (!data->mlx_ptr || !data->win_ptr /* || render_cub == STOP_RENDER */)
 		return (0);
-	ft_rect(data, (t_rect){0, 0, WINDOW_HEIGT, WINDOW_WITH, 0x89CFF0});
+	printf("floor = %i\n", data->floor_rgb);
+	printf("sky = %i\n", data->sky_rgb);
+	draw_floor_sky(data, data->sky_rgb, data->floor_rgb);
 	raylen(data);
 	/* draw_minimap(data); */
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img, 0,
