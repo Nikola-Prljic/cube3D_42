@@ -96,7 +96,9 @@ int	renderCub(t_data *data)
 int	keypress(int keysum, t_data *data)
 {
 	double	degrees;
+	float	move;
 
+	move = TILE_SIZE / 15;
 	if (keysum == XK_Escape)
 		return (x_close(data));
 	else if (keysum == XK_a || keysum == XK_Left)
@@ -104,16 +106,16 @@ int	keypress(int keysum, t_data *data)
 		data->rays->player_dir -= 0.0523599;
 		if (data->rays->player_dir < 0)
 			data->rays->player_dir += 2 * PI;
-		data->rays->player_dir_x = cos(data->rays->player_dir) * 5;
-		data->rays->player_dir_y = sin(data->rays->player_dir) * 5;
+		data->rays->player_dir_x = cos(data->rays->player_dir) * move;
+		data->rays->player_dir_y = sin(data->rays->player_dir) * move;
 	}
 	else if (keysum == XK_d || keysum == XK_Right)
 	{
 		data->rays->player_dir += 0.0523599;
 		if (data->rays->player_dir > 2 * PI)
 			data->rays->player_dir -= 2 * PI;
-		data->rays->player_dir_x = cos(data->rays->player_dir) * 5;
-		data->rays->player_dir_y = sin(data->rays->player_dir) * 5;
+		data->rays->player_dir_x = cos(data->rays->player_dir) * move;
+		data->rays->player_dir_y = sin(data->rays->player_dir) * move;
 	}
 	else if (keysum == XK_w || keysum == XK_Up)
 	{

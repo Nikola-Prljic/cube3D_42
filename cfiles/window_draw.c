@@ -43,24 +43,22 @@ void	draw_texure_on_walls(t_data *data, double wallStripHeight, int ray_x,
 	double	top;
 	double	bottom;
 	double	y_texture;
-	int		y_ray_total;
+	double	y_ray_total;
 
 	tmp = wallStripHeight;
 	if (wallStripHeight > WINDOW_HEIGT)
 		wallStripHeight = WINDOW_HEIGT;
-	y_texture = 0;
-	y_ray_total = 0;
-	top = wallStripHeight + (tmp - wallStripHeight) / 2;
-	bottom = (tmp - wallStripHeight) / 2;
-	ray_x = ray_x - ray_x / TILE_SIZE * TILE_SIZE;
+	top = wallStripHeight + (tmp - wallStripHeight) / 2.0;
+	bottom = (tmp - wallStripHeight) / 2.0;
+	ray_x = ((double)TEXTURE_SIZE / (double)TILE_SIZE) * (ray_x % TILE_SIZE );
 	y_ray_total = (int)bottom;
-	y_texture = bottom / (tmp / TILE_SIZE);
+	y_texture = bottom / tmp * (double)TEXTURE_SIZE;
 	while (y_ray_total <= top)
 	{
 		img_pix_put(data->img, data->raycount, (double)WINDOW_HEIGT / 2.0 - tmp
 			/ 2.0 + (double)y_ray_total, texture->addr[((int)y_texture
 				* texture->line_len) + ray_x]);
-		y_texture += 1.0 * TILE_SIZE / tmp;
+		y_texture += 1.0 * TEXTURE_SIZE / tmp;
 		y_ray_total++;
 	}
 }

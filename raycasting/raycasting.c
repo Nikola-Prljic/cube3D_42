@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:56:00 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/28 18:47:09 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/08/31 18:50:28 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,14 @@ void	rays_init(t_data *data)
 
 int	raycasting(char **map, t_data * data)
 {
+	float	move;
+
+	move = TILE_SIZE / 15;
 	rays_init(data);
 	get_position(map, data->rays);
 	angle_view_start(data->rays);
-	data->rays->player_dir_x = cos(data->rays->player_dir) * 5;
-	data->rays->player_dir_y = sin(data->rays->player_dir) * 5;
+	data->rays->player_dir_x = cos(data->rays->player_dir) * move;
+	data->rays->player_dir_y = sin(data->rays->player_dir) * move;
 	return (0);
 }
 

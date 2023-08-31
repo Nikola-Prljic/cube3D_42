@@ -1,7 +1,7 @@
-NO ./2d_imgs/north_wall.xpm
-SO ./2d_imgs/north_wall.xpm
-EA ./2d_imgs/north_wall.xpm
-WE ./2d_imgs/north_wall.xpm
+NO ./2d_imgs/highRes.xpm
+SO ./2d_imgs/highRes.xpm
+EA ./2d_imgs/highRes.xpm
+WE ./2d_imgs/highRes.xpm
 
 
 F 220,100,0
