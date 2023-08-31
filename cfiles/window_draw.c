@@ -78,26 +78,3 @@ void	draw_walls(t_data *data, double distance, int ray_x, t_img *texture)
 	draw_texure_on_walls(data, wallStripHeight, ray_x, texture);
 }
 
-void	draw_minimap(t_data *data)
-{
-	int	y;
-	int	x;
-	int	mini_map_tidle;
-
-	y = 0;
-	mini_map_tidle = TILE_SIZE * MAP_SIZE;
-	ft_rect(data, (t_rect){(data->rays->py - 3) * MAP_SIZE, (data->rays->px - 3)
-			* MAP_SIZE, 15 * MAP_SIZE, 15 * MAP_SIZE, 0xFF0000});
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (data->map[y][x] == '1')
-				ft_rect(data, (t_rect){y * mini_map_tidle, x * mini_map_tidle,
-						mini_map_tidle, mini_map_tidle, 0x555555});
-			x++;
-		}
-		y++;
-	}
-}
