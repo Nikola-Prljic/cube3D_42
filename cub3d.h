@@ -10,13 +10,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WINDOW_WITH 1900
-# define WINDOW_HEIGT 1000
-# define TILE_SIZE 128
+# define WINDOW_WITH 1000
+# define WINDOW_HEIGT 800
+# define TILE_SIZE 512
 //# define TEXTURE_SIZE 64
-# define PI 3.141593
-# define STOP_RENDER 1
-# define START_RENDER 0
+# define PI 3.14159265359
 # define MAP_SIZE 0.2
 
 typedef struct s_ray_cast
@@ -66,18 +64,8 @@ typedef struct s_texture_draw
 	double top_offset;
 	double total_wall;
 	double y_texture;
-	double y_step;
-	double ray_x;
+	int ray_x;
 }				t_texture_draw;
-
-/* typedef struct s_mlx_img
-{
-	void	*mlx_img;
-    char	*addr;
-    int		bpp; bits per pixel
-    int		line_len;
-    int		endian;
-}				t_mlx_img; */
 
 typedef struct s_data
 {

@@ -76,7 +76,7 @@ int	keypress(int keysum, t_data *data)
 {
 	float	move;
 
-	move = TILE_SIZE / 15;
+	move = TILE_SIZE / 5;
 	if (keysum == XK_Escape)
 		return (x_close(data));
 	else if (keysum == XK_a || keysum == XK_Left)
