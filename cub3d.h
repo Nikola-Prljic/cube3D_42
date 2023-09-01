@@ -60,7 +60,7 @@ typedef struct s_img
 
 typedef struct s_texture_draw
 {
-	double y_ray_total;
+	int y_ray_total;
 	double top_offset;
 	double total_wall;
 	double y_texture;
@@ -89,10 +89,6 @@ typedef struct s_data
 	int			map_x;
 	t_ray_cast	*rays;
 	int 		raycount;
-
-	//////
-	int 		zoom_faktor;
-	////////
 }				t_data;
 
 typedef struct s_map

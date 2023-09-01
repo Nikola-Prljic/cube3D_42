@@ -30,8 +30,6 @@ void	init_data(t_data *data)
 	data->texture->south = NULL;
 	data->texture->west = NULL;
 	data->texture->east = NULL;
-
-	data->zoom_faktor = 1;
 }
 
 void	free_imgs(t_data *data)
