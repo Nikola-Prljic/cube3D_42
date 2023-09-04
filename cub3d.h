@@ -33,7 +33,6 @@ typedef struct s_ray_cast
 	float		player_dir;
 	float		player_dir_x;
 	float		player_dir_y;
-	int			plane;
 	float		px;
 	float		py;
 	double		ray_angle;
@@ -60,11 +59,11 @@ typedef struct s_img
 
 typedef struct s_texture_draw
 {
-	int			y_ray_total;
+	double		y_ray_total;
 	double		top_offset;
 	double		total_wall;
 	double		y_texture;
-	int			ray_x;
+	double		ray_x;
 }				t_texture_draw;
 
 typedef struct s_data
@@ -194,7 +193,7 @@ int				rendercub(t_data *data);
 //window_draw.c
 void			img_pix_put(t_img *img, int x, int y, int color);
 void			draw_floor_sky(t_data *data, int sky_color, int ground_color);
-void			draw_walls(t_data *data, double distance, int ray_x,
+void			draw_walls(t_data *data, double distance, double ray_x,
 					t_img *texture);
 void			create_img_addr(t_data *data, t_img *img);
 

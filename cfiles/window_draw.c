@@ -36,8 +36,8 @@ void	draw_texture_y_lopp(t_data *data, t_texture_draw draw, t_img *texture)
 	{
 		img_pix_put(data->img, data->raycount, (double)WINDOW_HEIGT / 2.0
 			- draw.total_wall / 2.0 + (double)draw.y_ray_total,
-			texture->addr[((int)draw.y_texture * texture->line_len)
-			+ draw.ray_x]);
+			texture->addr[(((int)draw.y_texture * texture->line_len)
+				+ (int)draw.ray_x)]);
 		draw.y_texture += y_step;
 		draw.y_ray_total++;
 	}
@@ -46,29 +46,29 @@ void	draw_texture_y_lopp(t_data *data, t_texture_draw draw, t_img *texture)
 // need to calculate the texture in total,
 // but draw just the what you see with img_pix_put
 // calculate the size of one pixel with line 94. For resizing the texture
-void	draw_texure_on_walls(t_data *data, double wall_strip_height, int ray_x,
-		t_img *texture)
+void	draw_texure_on_walls(t_data *data, double wall_strip_height,
+		double ray_x, t_img *texture)
 {
 	double	total_wall;
 	double	y_texture;
 	double	top_offset;
 	double	bottom_offset;
-	int		y_ray_total;
+	double	y_ray_total;
 
 	total_wall = wall_strip_height;
 	if (wall_strip_height > WINDOW_HEIGT)
-		wall_strip_height = WINDOW_HEIGT;
+		wall_strip_height = (double)WINDOW_HEIGT;
 	top_offset = wall_strip_height + (total_wall - wall_strip_height) / 2.0;
 	bottom_offset = (total_wall - wall_strip_height) / 2.0;
 	y_ray_total = bottom_offset;
 	y_texture = bottom_offset / total_wall * (double)texture->height;
-	ray_x = ((double)texture->height / (double)TILE_SIZE) * ((int)ray_x
+	ray_x = ((double)texture->height / (double)TILE_SIZE) * (double)((int)ray_x
 			% TILE_SIZE);
 	draw_texture_y_lopp(data, (t_texture_draw){y_ray_total, top_offset,
 		total_wall, y_texture, ray_x}, texture);
 }
 
-void	draw_walls(t_data *data, double distance, int ray_x, t_img *texture)
+void	draw_walls(t_data *data, double distance, double ray_x, t_img *texture)
 {
 	double	fixed_distance;
 	double	proj_plane;

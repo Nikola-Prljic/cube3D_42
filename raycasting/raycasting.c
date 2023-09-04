@@ -6,7 +6,7 @@
 /*   By: rkurnava <rkurnava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:56:00 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/04 17:13:48 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:45:08 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	angle_view_start(t_ray_cast *rays)
 		rays->player_dir = deg2rad(180.0);
 	if (rays->view_point == 'E')
 		rays->player_dir = deg2rad(0.0);
-	rays->plane = WINDOW_WITH;
 }
 
 void	rays_init(t_data *data)
@@ -58,7 +57,6 @@ void	rays_init(t_data *data)
 	data->rays->left_right = 0;
 	data->rays->px = (data->px + 1) * TILE_SIZE - (TILE_SIZE / 2);
 	data->rays->py = (data->py + 1) * TILE_SIZE - (TILE_SIZE / 2);
-	data->rays->plane = WINDOW_WITH;
 	data->rays->view_point = 'N';
 	data->rays->player_dir_x = 0;
 	data->rays->player_dir_y = 0;
