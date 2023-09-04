@@ -1,3 +1,4 @@
+
 #include "../cub3d.h"
 
 double	deg2rad(double degrees)

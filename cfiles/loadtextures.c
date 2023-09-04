@@ -4,7 +4,7 @@
 int	open_textures(t_data *data, t_img *xpm_img, char *path)
 {
 	xpm_img->img = mlx_xpm_file_to_image(data->mlx_ptr, path, &xpm_img->width,
-		&xpm_img->height);
+			&xpm_img->height);
 	if (!xpm_img->img)
 		return (1);
 	return (0);

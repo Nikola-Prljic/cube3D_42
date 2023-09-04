@@ -1,20 +1,20 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <math.h>
+# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WINDOW_WITH 1900
-# define WINDOW_HEIGT 1000
+# define WINDOW_WITH 800
+# define WINDOW_HEIGT 800
 # define TILE_SIZE 64
 # define TEXTURE_SIZE 64
-# define PI 3.141593
+# define PI 3.14159
 # define STOP_RENDER 1
 # define START_RENDER 0
 # define MAP_SIZE 0.2
@@ -23,12 +23,12 @@ typedef struct s_ray_cast
 {
 	int			up_down;
 	int			left_right;
-	float			vl;
-	float			hl;
-	float			v_x;
-	float			v_y;
-	float			h_x;
-	float			h_y;
+	float		vl;
+	float		hl;
+	float		v_x;
+	float		v_y;
+	float		h_x;
+	float		h_y;
 	char		view_point;
 	float		player_dir;
 	float		player_dir_x;
@@ -57,18 +57,18 @@ typedef struct s_img
 	int			width;
 	int			height;
 	int			*addr;
-    int			bpp; /* bits per pixel */
-    int			line_len;
-    int			endian;
+	int bpp; /* bits per pixel */
+	int			line_len;
+	int			endian;
 }				t_img;
 
 typedef struct s_texture_draw
 {
-	int y_ray_total;
-	double top_offset;
-	double total_wall;
-	double y_texture;
-	int ray_x;
+	int			y_ray_total;
+	double		top_offset;
+	double		total_wall;
+	double		y_texture;
+	int			ray_x;
 }				t_texture_draw;
 
 typedef struct s_data
@@ -79,7 +79,7 @@ typedef struct s_data
 	t_img		*south;
 	t_img		*west;
 	t_img		*east;
-	int 		distance;
+	int			distance;
 	int			vertrical_hit;
 	int			floor_rgb;
 	int			sky_rgb;
@@ -92,7 +92,7 @@ typedef struct s_data
 	int			map_y;
 	int			map_x;
 	t_ray_cast	*rays;
-	int 		raycount;
+	int			raycount;
 }				t_data;
 
 typedef struct s_map
@@ -109,11 +109,11 @@ typedef struct s_path
 
 typedef struct s_rect
 {
-	int start_y;
-	int start_x;
-	int size_y; 
-	int size_x;
-	int color;
+	int			start_y;
+	int			start_x;
+	int			size_y;
+	int			size_x;
+	int			color;
 }				t_rect;
 
 //input_handle.c
@@ -121,6 +121,10 @@ int				input_handle(int argc, char **argv, int *fd);
 
 //main.c
 int				free_data(t_data *data);
+
+//player_action.c
+int				keypress(int keysum, t_data *data);
+int				x_close(t_data *data);
 
 //ft_atoi
 int				ft_atoi(const char *nptr);
@@ -173,6 +177,10 @@ int				ray_functions(t_data *data);
 
 //raylen.c
 void			raylen(t_data *data);
+void			where_we_look(t_data *data, int reseting, float angle);
+int				hit(t_data *data, char **map, int ay, int ax);
+void			raylen_v(t_data *data, float angle, char **map);
+void			raylen_h(t_data *data, float angle, char **map);
 
 //opentextures.c
 void			load_all_textures(t_data *data);
@@ -184,13 +192,18 @@ int				puterror(char *str);
 void			printmap(char **map);
 void			free2d(char **map);
 
+//wall_collision.c
+int				collision(t_data *data, char c);
+
 //window_loop.c
 int				window_loop(t_data *data);
+int				renderCub(t_data *data);
 
 //window_draw.c
-void	img_pix_put(t_img *img, int x, int y, int color);
-void	draw_floor_sky(t_data *data, int sky_color, int ground_color);
-void	draw_walls(t_data *data, double distance, int ray_x, t_img *texture);
-void 	create_img_addr(t_data *data, t_img *img);
+void			img_pix_put(t_img *img, int x, int y, int color);
+void			draw_floor_sky(t_data *data, int sky_color, int ground_color);
+void			draw_walls(t_data *data, double distance, int ray_x,
+					t_img *texture);
+void			create_img_addr(t_data *data, t_img *img);
 
 #endif

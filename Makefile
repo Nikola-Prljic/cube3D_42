@@ -23,6 +23,8 @@ SRC =	./cfiles/map_check/ft_getline/ft_getline_ultis.c \
 		./cfiles/utils.c \
 		./cfiles/window_draw.c \
 		./cfiles/window_loop.c \
+		./cfiles/player_action.c \
+		./cfiles/wall_collision.c \
 		./raycasting/raycasting.c \
 		./raycasting/raylen.c \
 		./raycasting/raycasting_utils1.c\
