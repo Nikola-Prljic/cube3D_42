@@ -6,7 +6,7 @@
 /*   By: rkurnava <rkurnava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:56:00 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/31 19:56:10 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:13:48 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	angle_view_start(t_ray_cast *rays)
 
 void	rays_init(t_data *data)
 {
-	data->rays->hl = 1000;
-	data->rays->vl = 1000;
+	data->rays->hl = 10000;
+	data->rays->vl = 10000;
 	data->rays->h_x = 0;
 	data->rays->h_y = 0;
 	data->rays->v_x = 0;

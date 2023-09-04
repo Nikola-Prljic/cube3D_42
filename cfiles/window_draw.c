@@ -27,16 +27,17 @@ void	draw_floor_sky(t_data *data, int sky_color, int ground_color)
 	}
 }
 
-void draw_texture_y_lopp(t_data *data, t_texture_draw draw, t_img *texture)
+void	draw_texture_y_lopp(t_data *data, t_texture_draw draw, t_img *texture)
 {
-	double  y_step;
+	double	y_step;
 
 	y_step = 1.0 * texture->height / draw.total_wall;
 	while (draw.y_ray_total <= draw.top_offset)
 	{
 		img_pix_put(data->img, data->raycount, (double)WINDOW_HEIGT / 2.0
 			- draw.total_wall / 2.0 + (double)draw.y_ray_total,
-			texture->addr[((int)draw.y_texture * texture->line_len) + draw.ray_x]);
+			texture->addr[((int)draw.y_texture * texture->line_len)
+			+ draw.ray_x]);
 		draw.y_texture += y_step;
 		draw.y_ray_total++;
 	}
@@ -61,8 +62,10 @@ void	draw_texure_on_walls(t_data *data, double wall_strip_height, int ray_x,
 	bottom_offset = (total_wall - wall_strip_height) / 2.0;
 	y_ray_total = bottom_offset;
 	y_texture = bottom_offset / total_wall * (double)texture->height;
-	ray_x = ((double)texture->height / (double)TILE_SIZE) * ((int)ray_x % TILE_SIZE);
-	draw_texture_y_lopp(data, (t_texture_draw){y_ray_total, top_offset, total_wall, y_texture, ray_x}, texture);
+	ray_x = ((double)texture->height / (double)TILE_SIZE) * ((int)ray_x
+			% TILE_SIZE);
+	draw_texture_y_lopp(data, (t_texture_draw){y_ray_total, top_offset,
+		total_wall, y_texture, ray_x}, texture);
 }
 
 void	draw_walls(t_data *data, double distance, int ray_x, t_img *texture)
@@ -74,7 +77,6 @@ void	draw_walls(t_data *data, double distance, int ray_x, t_img *texture)
 	fixed_distance = cos(data->rays->ray_angle - data->rays->player_dir)
 		* distance;
 	proj_plane = ((double)WINDOW_HEIGT / 2.0) / 0.57735026919;
-	wall_strip_height = ((double)TILE_SIZE / fixed_distance)
-		* proj_plane;
+	wall_strip_height = ((double)TILE_SIZE / fixed_distance) * proj_plane;
 	draw_texure_on_walls(data, wall_strip_height, ray_x, texture);
 }

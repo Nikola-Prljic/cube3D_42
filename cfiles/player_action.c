@@ -72,6 +72,6 @@ int	keypress(int keysum, t_data *data)
 		if (up_down(data, keysum) == 1)
 			return (1);
 	}
-	renderCub(data);
+	rendercub(data);
 	return (1);
 }

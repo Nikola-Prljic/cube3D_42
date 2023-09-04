@@ -23,7 +23,7 @@ int	make_window(t_data *data, int heigt, int with)
 	return (0);
 }
 
-int	renderCub(t_data *data)
+int	rendercub(t_data *data)
 {
 	if (!data->mlx_ptr || !data->win_ptr)
 		return (0);
@@ -57,7 +57,7 @@ int	window_loop(t_data *data)
 	create_img_addr(data, data->east);
 	create_img_addr(data, data->west);
 	create_img_addr(data, data->south);
-	renderCub(data);
+	rendercub(data);
 	mlx_hook(data->win_ptr, 17, 0, &x_close, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &keypress, data);
 	mlx_loop(data->mlx_ptr);

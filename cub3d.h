@@ -36,10 +36,6 @@ typedef struct s_ray_cast
 	int			plane;
 	float		px;
 	float		py;
-	void		*player;
-	void		*space;
-	void		*spacev;
-	void		*wall;
 	double		ray_angle;
 }				t_ray_cast;
 
@@ -163,10 +159,6 @@ void			free_set_null(char **ptr);
 double			deg2rad(double degrees);
 double			rad2deg(double radians);
 
-//2d_map.c
-void			prepare_player(t_data *data);
-void			print_2d(t_data *data);
-
 //raycasting_utils.c
 void			save_cor_ver(float *ay, float *ax, t_data *data);
 void			save_cor_hor(float *ay, float *ax, t_data *data);
@@ -197,7 +189,7 @@ int				collision(t_data *data, char c);
 
 //window_loop.c
 int				window_loop(t_data *data);
-int				renderCub(t_data *data);
+int				rendercub(t_data *data);
 
 //window_draw.c
 void			img_pix_put(t_img *img, int x, int y, int color);
