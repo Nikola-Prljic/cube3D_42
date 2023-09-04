@@ -32,22 +32,23 @@ void	left_right(t_data *data, float move, int keysum)
 	}
 }
 
-void	up_down(t_data *data, int keysum)
+int	up_down(t_data *data, int keysum)
 {
 	if (keysum == XK_w || keysum == XK_Up)
 	{
 		if (collision(data, '+') == 1)
-			return ;
+			return (1);
 		data->rays->px += data->rays->player_dir_x;
 		data->rays->py += data->rays->player_dir_y;
 	}
 	else if (keysum == XK_s || keysum == XK_Down)
 	{
 		if (collision(data, '-') == 1)
-			return ;
+			return (1);
 		data->rays->px -= data->rays->player_dir_x;
 		data->rays->py -= data->rays->player_dir_y;
 	}
+	return (0);
 }
 
 int	keypress(int keysum, t_data *data)
@@ -62,9 +63,15 @@ int	keypress(int keysum, t_data *data)
 	else if (keysum == XK_d || keysum == XK_Right)
 		left_right(data, move, keysum);
 	else if (keysum == XK_w || keysum == XK_Up)
-		up_down(data, keysum);
+	{
+		if (up_down(data, keysum) == 1)
+			return (1);
+	}
 	else if (keysum == XK_s || keysum == XK_Down)
-		up_down(data, keysum);
+	{
+		if (up_down(data, keysum) == 1)
+			return (1);
+	}
 	renderCub(data);
 	return (1);
 }
