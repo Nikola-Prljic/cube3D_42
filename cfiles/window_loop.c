@@ -55,7 +55,7 @@ int	keypress(int keysum, t_data *data)
 {
 	float	move;
 
-	move = TILE_SIZE / 15;
+	move = TILE_SIZE / 5;
 	if (keysum == XK_Escape)
 		return (x_close(data));
 	else if (keysum == XK_a || keysum == XK_Left)
@@ -88,10 +88,6 @@ int	keypress(int keysum, t_data *data)
 		data->rays->px -= data->rays->player_dir_x;
 		data->rays->py -= data->rays->player_dir_y;
 	}
-	else if (keysum == XK_x && data->zoom_faktor < 5)
-		data->zoom_faktor++;
-	else if (keysum == XK_c && data->zoom_faktor > 1)
-		data->zoom_faktor--;
 	renderCub(data);
 	return (1);
 }

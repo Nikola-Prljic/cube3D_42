@@ -62,14 +62,14 @@ typedef struct s_img
     int			endian;
 }				t_img;
 
-/* typedef struct s_mlx_img
+typedef struct s_texture_draw
 {
-	void	*mlx_img;
-    char	*addr;
-    int		bpp; bits per pixel
-    int		line_len;
-    int		endian;
-}				t_mlx_img; */
+	int y_ray_total;
+	double top_offset;
+	double total_wall;
+	double y_texture;
+	int ray_x;
+}				t_texture_draw;
 
 typedef struct s_data
 {
@@ -93,10 +93,6 @@ typedef struct s_data
 	int			map_x;
 	t_ray_cast	*rays;
 	int 		raycount;
-
-	//////
-	int 		zoom_faktor;
-	////////
 }				t_data;
 
 typedef struct s_map
