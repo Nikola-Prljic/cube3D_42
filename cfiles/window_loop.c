@@ -1,30 +1,9 @@
 
 #include "../cub3d.h"
 
-int	collision(t_data *data, char c)
+int	collision(t_data *data)
 {
-	float	ax;
-	float	ay;
-	float	bx;
-	float	by;
-
-	ay = data->rays->py;
-	ax = data->rays->px;
-	bx = data->rays->player_dir_x + 10.0;
-	by = data->rays->player_dir_y + 10.0;
-	if (data->rays->up_down == -1 && c == '+')
-		by *= -1;
-	if (data->rays->left_right == -1 && c == '+')
-		bx *= -1;
-	if (data->rays->up_down == 1 && c == '-')
-		by *= -1;
-	if (data->rays->left_right == 1 && c == '-')
-		bx *= -1;
-	if (data->map[(int)((ay + by) / TILE_SIZE)][(int)((ax + bx - 5)
-			/ TILE_SIZE)] == '1')
-		return (1);
-	else if (data->map[(int)((ay + by) / TILE_SIZE)][(int)((ax + bx + 5)
-				/ TILE_SIZE)] == '1')
+	if ((data->rays->hl <= 20 || data->rays->vl <= 20))
 		return (1);
 	return (0);
 }
@@ -97,14 +76,14 @@ int	keypress(int keysum, t_data *data)
 	}
 	else if (keysum == XK_w || keysum == XK_Up)
 	{
-		if (collision(data, '+') == 1)
+		if (collision(data) == 1)
 			return (1);
 		data->rays->px += data->rays->player_dir_x;
 		data->rays->py += data->rays->player_dir_y;
 	}
 	else if (keysum == XK_s || keysum == XK_Down)
 	{
-		if (collision(data, '-') == 1)
+		if (collision(data) == 1)
 			return (1);
 		data->rays->px -= data->rays->player_dir_x;
 		data->rays->py -= data->rays->player_dir_y;

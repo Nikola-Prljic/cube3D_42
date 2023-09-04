@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkurnava <rkurnava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:56:00 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/08/31 18:50:28 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/08/31 19:56:10 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	angle_view_start(t_ray_cast *rays)
 
 void	rays_init(t_data *data)
 {
+	data->rays->hl = 1000;
+	data->rays->vl = 1000;
 	data->rays->h_x = 0;
 	data->rays->h_y = 0;
 	data->rays->v_x = 0;

@@ -13,7 +13,7 @@
 # define WINDOW_WITH 1900
 # define WINDOW_HEIGT 1000
 # define TILE_SIZE 64
-# define TEXTURE_SIZE 2024
+# define TEXTURE_SIZE 64
 # define PI 3.141593
 # define STOP_RENDER 1
 # define START_RENDER 0
@@ -23,6 +23,8 @@ typedef struct s_ray_cast
 {
 	int			up_down;
 	int			left_right;
+	float			vl;
+	float			hl;
 	float			v_x;
 	float			v_y;
 	float			h_x;
