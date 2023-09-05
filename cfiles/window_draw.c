@@ -53,7 +53,7 @@ void	draw_texure_on_walls(t_data *data, double wall_strip_height,
 	double	y_texture;
 	double	top_offset;
 	double	bottom_offset;
-	double	y_ray_total;
+	int		y_ray_total;
 
 	total_wall = wall_strip_height;
 	if (wall_strip_height > WINDOW_HEIGT)
