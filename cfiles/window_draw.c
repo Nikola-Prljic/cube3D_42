@@ -29,54 +29,56 @@ void	draw_floor_sky(t_data *data, int sky_color, int ground_color)
 
 void	draw_texture_y_lopp(t_data *data, t_texture_draw draw, t_img *texture)
 {
-	double	y_step;
+	float	y_step;
+	float	y_top;
+	int		color;
+	float	color_y;
+	float	color_plus;
 
-	y_step = 1.0 * texture->height / draw.total_wall;
-	while (draw.y_ray_total <= draw.top_offset)
+	y_top = ((float)WINDOW_HEIGT / 2.0) - (draw.total_wall / 2.0);
+	y_step = (float)texture->height / draw.total_wall;
+	color_plus = draw.top / draw.total_wall * texture->height;
+	while (draw.top <= draw.bottom)
 	{
-		img_pix_put(data->img, data->raycount, (double)WINDOW_HEIGT / 2.0
-			- draw.total_wall / 2.0 + (double)draw.y_ray_total,
-			texture->addr[(((int)draw.y_texture * texture->line_len)
-				+ (int)draw.ray_x)]);
-		draw.y_texture += y_step;
-		draw.y_ray_total++;
+		color_y = ((int)color_plus * texture->line_len) + (int)draw.ray_x;
+		color = color_y;
+		img_pix_put(data->img, data->raycount, y_top + draw.top,
+			texture->addr[color]);
+		color_plus += y_step;
+		draw.top += 1.0;
 	}
 }
 
 // need to calculate the texture in total,
 // but draw just the what you see with img_pix_put
 // calculate the size of one pixel with line 94. For resizing the texture
-void	draw_texure_on_walls(t_data *data, double wall_strip_height,
-		double ray_x, t_img *texture)
+void	draw_texure_on_walls(t_data *data, float wall_strip_height, float ray_x,
+		t_img *texture)
 {
-	double	total_wall;
-	double	y_texture;
-	double	top_offset;
-	double	bottom_offset;
-	double	y_ray_total;
+	float	total_wall;
+	int		top;
+	int		bottom;
 
 	total_wall = wall_strip_height;
 	if (wall_strip_height > WINDOW_HEIGT)
-		wall_strip_height = (double)WINDOW_HEIGT;
-	top_offset = wall_strip_height + (total_wall - wall_strip_height) / 2.0;
-	bottom_offset = (total_wall - wall_strip_height) / 2.0;
-	y_ray_total = bottom_offset;
-	y_texture = bottom_offset / total_wall * (double)texture->height;
-	ray_x = ((double)texture->height / (double)TILE_SIZE) * (double)((int)ray_x
+		wall_strip_height = (float)WINDOW_HEIGT;
+	top = (total_wall - wall_strip_height) / 2.0;
+	bottom = wall_strip_height + top;
+	ray_x = ((float)TILE_SIZE / (float)texture->height) * ((int)ray_x
 			% TILE_SIZE);
-	draw_texture_y_lopp(data, (t_texture_draw){y_ray_total, top_offset,
-		total_wall, y_texture, ray_x}, texture);
+	draw_texture_y_lopp(data, (t_texture_draw){top, total_wall, ray_x,
+		wall_strip_height, bottom}, texture);
 }
 
-void	draw_walls(t_data *data, double distance, double ray_x, t_img *texture)
+void	draw_walls(t_data *data, float distance, float ray_x, t_img *texture)
 {
-	double	fixed_distance;
-	double	proj_plane;
-	double	wall_strip_height;
+	float	fixed_distance;
+	float	proj_plane;
+	float	wall_strip_height;
 
-	fixed_distance = cos(data->rays->ray_angle - data->rays->player_dir)
+	fixed_distance = cosf(data->rays->ray_angle - data->rays->player_dir)
 		* distance;
-	proj_plane = ((double)WINDOW_HEIGT / 2.0) / 0.57735026919;
-	wall_strip_height = ((double)TILE_SIZE / fixed_distance) * proj_plane;
+	proj_plane = ((float)WINDOW_WITH / 2.0) / 0.523599;
+	wall_strip_height = ((float)TILE_SIZE / fixed_distance) * proj_plane;
 	draw_texure_on_walls(data, wall_strip_height, ray_x, texture);
 }

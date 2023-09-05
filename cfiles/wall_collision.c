@@ -3,8 +3,8 @@
 
 void	help_collision(t_data *data)
 {
-	double	vl;
-	double	hl;
+	float	vl;
+	float	hl;
 
 	vl = sqrt(pow(data->rays->v_x - data->rays->px, 2) + pow(data->rays->v_y
 				- data->rays->py, 2));
@@ -41,7 +41,7 @@ void	wall_collision(t_data *data, double ray_angle)
 
 int	collision(t_data *data, char c)
 {
-	double	ray_angle;
+	float	ray_angle;
 
 	ray_angle = data->rays->player_dir;
 	data->rays->hl = 10000;

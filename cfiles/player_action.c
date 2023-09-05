@@ -19,16 +19,16 @@ void	left_right(t_data *data, float move, int keysum)
 		data->rays->player_dir -= 0.0523599;
 		if (data->rays->player_dir < 0)
 			data->rays->player_dir += 6.283186;
-		data->rays->player_dir_x = cos(data->rays->player_dir) * move;
-		data->rays->player_dir_y = sin(data->rays->player_dir) * move;
+		data->rays->player_dir_x = cosf(data->rays->player_dir) * move;
+		data->rays->player_dir_y = sinf(data->rays->player_dir) * move;
 	}
 	else if (keysum == XK_d || keysum == XK_Right)
 	{
 		data->rays->player_dir += 0.0523599;
 		if (data->rays->player_dir > 6.283186)
 			data->rays->player_dir -= 6.283186;
-		data->rays->player_dir_x = cos(data->rays->player_dir) * move;
-		data->rays->player_dir_y = sin(data->rays->player_dir) * move;
+		data->rays->player_dir_x = cosf(data->rays->player_dir) * move;
+		data->rays->player_dir_y = sinf(data->rays->player_dir) * move;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: rkurnava <rkurnava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:15:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/04 14:38:24 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/05 19:18:21 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	render(t_data *data)
 {
-	double	vl;
-	double	hl;
+	float	vl;
+	float	hl;
 
 	vl = sqrt(pow(data->rays->v_x - data->rays->px, 2) + pow(data->rays->v_y
 				- data->rays->py, 2));

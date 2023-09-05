@@ -6,7 +6,7 @@
 /*   By: rkurnava <rkurnava@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:24:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/04 16:29:58 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:53:11 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	raylen_h(t_data *data, float angle, char **map)
 void	raylen(t_data *data)
 {
 	data->raycount = 0;
-	data->rays->ray_angle = data->rays->player_dir - 0.5235988333333333;
+	data->rays->ray_angle = data->rays->player_dir - 0.523599;
 	if (data->rays->px < 0)
 		data->rays->px = 1;
 	if (data->rays->py < 0)
@@ -115,9 +115,9 @@ void	raylen(t_data *data)
 	while (data->raycount < WINDOW_WITH)
 	{
 		if (data->rays->ray_angle > 2 * PI)
-			data->rays->ray_angle -= deg2rad(360.0);
+			data->rays->ray_angle -= 6.28319;
 		if (data->rays->ray_angle < 0)
-			data->rays->ray_angle += deg2rad(360.0);
+			data->rays->ray_angle += 6.28319;
 		where_we_look(data, 0, data->rays->ray_angle);
 		raylen_h(data, data->rays->ray_angle, data->map);
 		raylen_v(data, data->rays->ray_angle, data->map);
