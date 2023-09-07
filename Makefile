@@ -33,7 +33,7 @@ all : $(NAME)
 OBJ  =	$(SRC:.c=.o)
 
 $(NAME) : $(OBJ)
-	@$(CC) $(OBJ) $(CFLAGS) -lmlx -lXext -lX11 -lm -o $(NAME)
+	@$(CC) $(OBJ) $(CFLAGS) -lmlx -lXext -lX11 -lm -o $(NAME)	
 	@echo "$(NAME) created"
 
 clean :

@@ -39,29 +39,15 @@ void	wall_collision(t_data *data, double ray_angle)
 	}
 }
 
-int	collision(t_data *data, char c)
+int	collision(t_data *data)
 {
 	float	ray_angle;
 
 	ray_angle = data->rays->player_dir;
 	data->rays->hl = 10000;
 	data->rays->vl = 10000;
-	if (c == '+')
-	{
-		wall_collision(data, ray_angle);
-		if (data->rays->hl < 20 || data->rays->vl < 20)
-			return (1);
-	}
-	where_we_look(data, 0, ray_angle);
-	if (data->rays->up_down == -1)
-		ray_angle += 3.14159;
-	else
-		ray_angle -= 3.14159;
-	if (c == '-')
-	{
-		wall_collision(data, ray_angle);
-		if (data->rays->hl < 20 || data->rays->vl < 20)
-			return (1);
-	}
+	wall_collision(data, ray_angle);
+	if (data->rays->hl < 20 || data->rays->vl < 20)
+		return (1);
 	return (0);
 }

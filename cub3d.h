@@ -119,7 +119,6 @@ int				free_data(t_data *data);
 
 //player_action.c
 int				keypress(int keysum, t_data *data);
-int				x_close(t_data *data);
 
 //ft_atoi
 int				ft_atoi(const char *nptr);
@@ -157,6 +156,7 @@ void			free_set_null(char **ptr);
 //convertions.c
 float			deg2rad(double degrees);
 float			rad2deg(double radians);
+int				x_close(t_data *data);
 
 //raycasting_utils.c
 void			save_cor_ver(float *ay, float *ax, t_data *data);
@@ -184,7 +184,7 @@ void			printmap(char **map);
 void			free2d(char **map);
 
 //wall_collision.c
-int				collision(t_data *data, char c);
+int				collision(t_data *data);
 
 //window_loop.c
 int				window_loop(t_data *data);

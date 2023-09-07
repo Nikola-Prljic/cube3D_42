@@ -1,20 +1,10 @@
 
 #include "../cub3d.h"
 
-int	x_close(t_data *data)
+void	angle_left_right(t_data *data, int keysum, float move)
 {
-	mlx_loop_end(data->mlx_ptr);
-	if (data->win_ptr)
-	{
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		data->win_ptr = NULL;
-	}
-	return (0);
-}
 
-void	left_right(t_data *data, float move, int keysum)
-{
-	if (keysum == XK_a || keysum == XK_Left)
+	if (keysum == XK_Left)
 	{
 		data->rays->player_dir -= 0.0523599;
 		if (data->rays->player_dir < 0)
@@ -22,7 +12,7 @@ void	left_right(t_data *data, float move, int keysum)
 		data->rays->player_dir_x = cosf(data->rays->player_dir) * move;
 		data->rays->player_dir_y = sinf(data->rays->player_dir) * move;
 	}
-	else if (keysum == XK_d || keysum == XK_Right)
+	else if (keysum == XK_Right)
 	{
 		data->rays->player_dir += 0.0523599;
 		if (data->rays->player_dir > 6.283186)
@@ -32,46 +22,86 @@ void	left_right(t_data *data, float move, int keysum)
 	}
 }
 
-int	up_down(t_data *data, int keysum)
+int	left_right(t_data *data, float change, float move)
 {
-	if (keysum == XK_w || keysum == XK_Up)
+	float	x;
+	float	y;
+
+	data->rays->player_dir += change;
+	x = cosf(data->rays->player_dir) * move;
+	y = sinf(data->rays->player_dir) * move;
+	if (collision(data) == 1)
 	{
-		if (collision(data, '+') == 1)
-			return (1);
-		data->rays->px += data->rays->player_dir_x;
-		data->rays->py += data->rays->player_dir_y;
+		data->rays->player_dir += -change;
+		return (1);
 	}
-	else if (keysum == XK_s || keysum == XK_Down)
+	data->rays->player_dir += -change;
+	data->rays->px += x;
+	data->rays->py += y;
+	return (0);
+}
+
+int	up(t_data *data, float move)
+{
+	float	x;
+	float	y;
+
+	x = cosf(data->rays->player_dir) * move;
+	y = sinf(data->rays->player_dir) * move;
+	if (collision(data) == 1)
+		return (1);
+	data->rays->px += x;
+	data->rays->py += y;
+	return (0);
+}
+
+int	down(t_data *data, float move)
+{
+	float	x;
+	float	y;
+	float	dir;
+
+	if (data->rays->up_down == -1)
+		dir = 3.14159;
+	else
+		dir = -3.14159;
+	data->rays->player_dir += dir;
+	x = cosf(data->rays->player_dir) * move;
+	y = sinf(data->rays->player_dir) * move;
+	if (collision(data) == 1)
 	{
-		if (collision(data, '-') == 1)
-			return (1);
-		data->rays->px -= data->rays->player_dir_x;
-		data->rays->py -= data->rays->player_dir_y;
+		data->rays->player_dir += -dir;
+		return (1);
 	}
+	data->rays->player_dir += -dir;
+	data->rays->px += x;
+	data->rays->py += y;
 	return (0);
 }
 
 int	keypress(int keysum, t_data *data)
 {
+	int		res;
 	float	move;
 
+	res = 0;
 	move = TILE_SIZE / 5;
 	if (keysum == XK_Escape)
 		return (x_close(data));
-	else if (keysum == XK_a || keysum == XK_Left)
-		left_right(data, move, keysum);
-	else if (keysum == XK_d || keysum == XK_Right)
-		left_right(data, move, keysum);
-	else if (keysum == XK_w || keysum == XK_Up)
-	{
-		if (up_down(data, keysum) == 1)
-			return (1);
-	}
-	else if (keysum == XK_s || keysum == XK_Down)
-	{
-		if (up_down(data, keysum) == 1)
-			return (1);
-	}
+	else if (keysum == XK_Left)
+		angle_left_right(data, keysum, move);
+	else if (keysum == XK_Right)
+		angle_left_right(data, keysum, move);
+	else if (keysum == XK_w || keysum == XK_W)
+		res = up(data, move);
+	else if (keysum == XK_s || keysum == XK_S)
+		res = down(data, move);
+	else if (keysum == XK_d || keysum == XK_D)
+		res = left_right(data, 1.57079, move);
+	else if (keysum == XK_a || keysum == XK_A)
+		res = left_right(data, -1.57079, move);
+	if (res == 1)
+		return (1);
 	rendercub(data);
 	return (1);
 }
