@@ -2,7 +2,7 @@
 #include "../../cub3d.h"
 #include "ft_getline/ft_getline.h"
 
-int	charInStr(char c, char *valid_chars)
+int	charinstr(char c, char *valid_chars)
 {
 	int	i;
 
@@ -18,7 +18,7 @@ int	charInStr(char c, char *valid_chars)
 	return (1);
 }
 
-int	isValidchar(t_data *data, char *mapstr, char *valid_chars, int y)
+int	isvalidchar(t_data *data, char *mapstr, char *valid_chars, int y)
 {
 	int	x;
 
@@ -35,7 +35,7 @@ int	isValidchar(t_data *data, char *mapstr, char *valid_chars, int y)
 			data->px = x;
 			data->py = y;
 		}
-		if (charInStr(mapstr[x], valid_chars))
+		if (charinstr(mapstr[x], valid_chars))
 			return (1);
 		x++;
 	}
@@ -74,14 +74,14 @@ int	ft_matrix_push_back(t_data *data, t_map *file, char *str)
 		i++;
 	new_matrix = malloc(sizeof(char *) * (i + 2));
 	if (!new_matrix)
+	{
+		free_set_null(&str);
 		return (free_map_exit(data, file,
 				"Error\nMalloc failed in ft_matrix_push_back\n"));
-	i = 0;
-	while (data->map[i])
-	{
-		new_matrix[i] = ft_strdup(data->map[i]);
-		i++;
 	}
+	i = -1;
+	while (data->map[++i])
+		new_matrix[i] = ft_strdup(data->map[i]);
 	new_matrix[i] = ft_strdup(str);
 	new_matrix[i + 1] = NULL;
 	free2d(data->map);
@@ -95,12 +95,12 @@ char	*saveline(t_data *data, t_map *file, int y, short *map_parts_after_nl)
 
 	line = NULL;
 	line = ft_getline(data, file->fd, &file->buffer, '\n');
-	if(line && line[0] == 0)
+	if (line && line[0] == 0)
 	{
 		*map_parts_after_nl = 1;
 		return (line);
 	}
-	if (line && (isValidchar(data, line, " 01NEWS", y) == 1))
+	if (line && (isvalidchar(data, line, " 01NEWS", y) == 1))
 	{
 		free(line);
 		free_map_exit(data, file, "Error\nWrong char in a map\n");

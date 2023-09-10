@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <rkurnava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:15:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/05 19:53:15 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/10 17:53:37 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 void	render(t_data *data)
 {
@@ -23,18 +23,18 @@ void	render(t_data *data)
 				- data->rays->py, 2));
 	if (hl < vl)
 	{
+		data->rays->off = data->rays->h_x;
 		if (data->rays->up_down == -1)
-			draw_walls(data, hl, data->rays->h_x, data->north);
+			draw_walls(data, hl, data->north);
 		else
-			draw_walls(data, hl, data->rays->h_x, data->south);
+			draw_walls(data, hl, data->south);
+		return ;
 	}
+	data->rays->off = data->rays->v_y;
+	if (data->rays->left_right == -1)
+		draw_walls(data, vl, data->east);
 	else
-	{
-		if (data->rays->left_right == -1)
-			draw_walls(data, vl, data->rays->v_y, data->east);
-		else
-			draw_walls(data, vl, data->rays->v_y, data->west);
-	}
+		draw_walls(data, vl, data->west);
 }
 
 void	save_cor_ver(float *ay, float *ax, t_data *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getline.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <rkurnava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:00:58 by nprljic           #+#    #+#             */
-/*   Updated: 2023/08/30 15:56:41 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/10 16:21:39 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ char	*ft_new_str(t_data *data, int fd, char *remain, char delimiter)
 		free_data_exit(data, "Error\nMalloc failed at ft_putline");
 	}
 	ret = 1;
-	while (!ft_strchr(remain, delimiter) && !ft_strchr(remain, '\n') && ret != 0)
+	while (!ft_strchr(remain, delimiter) && !ft_strchr(remain, '\n')
+		&& ret != 0)
 	{
 		ret = read(fd, buf, BUFFER_SIZE);
 		if (ret == -1)
@@ -69,7 +70,7 @@ char	*ft_putline(t_data *data, char *remain, char delimiter)
 }
 
 // #3 malloc a new without the printed string. frees the old one.
-char	*ft_next_str(t_data *data, char *remain, char delimiter)
+char	*ft_next_str(t_data *data, char *remain, char delimiter, char *line)
 {
 	int		i;
 	int		x;
@@ -86,13 +87,13 @@ char	*ft_next_str(t_data *data, char *remain, char delimiter)
 	str = (char *)malloc((int_strlen(remain) - i + 1) * sizeof(char));
 	if (!str)
 	{
+		free_set_null(&line);
 		free_set_null(&remain);
 		free_data_exit(data, "Error\nMalloc failed at ft_putline");
 	}
-	i++;
 	x = 0;
-	while (remain[i])
-		str[x++] = remain[i++];
+	while (remain[++i])
+		str[x++] = remain[i];
 	str[x] = '\0';
 	free(remain);
 	return (str);
@@ -101,7 +102,7 @@ char	*ft_next_str(t_data *data, char *remain, char delimiter)
 //buffer is for freeing if something remains
 char	*ft_getline(t_data *data, int fd, char **remain, char delimiter)
 {
-	char		*line;
+	char	*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -109,7 +110,7 @@ char	*ft_getline(t_data *data, int fd, char **remain, char delimiter)
 	if (!remain)
 		return (NULL);
 	line = ft_putline(data, *remain, delimiter);
-	*remain = ft_next_str(data, *remain, delimiter);
+	*remain = ft_next_str(data, *remain, delimiter, line);
 	return (line);
 }
 

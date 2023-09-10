@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raylen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <rkurnava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:24:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/05 17:53:11 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/10 20:32:18 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 int	hit(t_data *data, char **map, int ay, int ax)
 {
@@ -107,22 +107,22 @@ void	raylen_h(t_data *data, float angle, char **map)
 void	raylen(t_data *data)
 {
 	data->raycount = 0;
-	data->rays->ray_angle = data->rays->player_dir - 0.523599;
 	if (data->rays->px < 0)
 		data->rays->px = 1;
 	if (data->rays->py < 0)
 		data->rays->py = 1;
 	while (data->raycount < WINDOW_WITH)
 	{
-		if (data->rays->ray_angle > 2 * PI)
-			data->rays->ray_angle -= 6.28319;
+		data->rays->ray_angle = data->rays->player_dir + atan((data->raycount
+					- WINDOW_WITH / 2) / data->rays->plane);
+		if (data->rays->ray_angle > 6.28318)
+			data->rays->ray_angle -= 6.28318;
 		if (data->rays->ray_angle < 0)
-			data->rays->ray_angle += 6.28319;
+			data->rays->ray_angle += 6.28318;
 		where_we_look(data, 0, data->rays->ray_angle);
 		raylen_h(data, data->rays->ray_angle, data->map);
 		raylen_v(data, data->rays->ray_angle, data->map);
 		render(data);
 		data->raycount++;
-		data->rays->ray_angle += (float)deg2rad(60.0 / (float)WINDOW_WITH);
 	}
 }

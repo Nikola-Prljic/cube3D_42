@@ -24,9 +24,9 @@ SRC =	./cfiles/map_check/ft_getline/ft_getline_ultis.c \
 		./cfiles/window_loop.c \
 		./cfiles/player_action.c \
 		./cfiles/wall_collision.c \
-		./raycasting/raycasting.c \
-		./raycasting/raylen.c \
-		./raycasting/raycasting_utils1.c\
+		./cfiles/raycasting/raycasting.c \
+		./cfiles/raycasting/raylen.c \
+		./cfiles/raycasting/raycasting_utils1.c\
 
 all : $(NAME)
 

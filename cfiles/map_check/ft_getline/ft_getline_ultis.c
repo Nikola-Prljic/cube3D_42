@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getline_ultis.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <rkurnava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:53:33 by nprljic           #+#    #+#             */
-/*   Updated: 2023/08/30 15:56:16 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/10 16:27:59 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_linejoin(t_data *data, char *s1, char *s2)
 	if (!s1)
 	{
 		s1 = (char *)malloc(1 * sizeof(char));
-		if(!s1)
+		if (!s1)
 		{
 			free_set_null(&s2);
 			free_data_exit(data, "Error\nMalloc failed at ft_linejoin");

@@ -66,7 +66,8 @@ void	handel_textures(t_data *data, t_map *file)
 			file, 1))
 		free_map_exit(data, file, "Error\nfailed to read textures\n");
 	if (!data->texture->north || !data->texture->south)
-		free_map_exit(data, file, "Error\nfailed to save north/south texture\n");
+		free_map_exit(data, file,
+			"Error\nfailed to save north/south texture\n");
 	if (!data->texture->east || !data->texture->west)
 		free_map_exit(data, file, "Error\nfailed to save east/west texture\n");
 }

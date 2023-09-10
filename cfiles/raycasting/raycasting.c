@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <rkurnava@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:56:00 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/04 18:45:08 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/10 20:33:22 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 void	get_position(char **map, t_ray_cast *rays)
 {
@@ -47,6 +47,9 @@ void	angle_view_start(t_ray_cast *rays)
 
 void	rays_init(t_data *data)
 {
+	data->rays->fov = deg2rad(60);
+	data->rays->plane = ((WINDOW_WITH / 2) / tan(data->rays->fov / 2));
+	data->rays->off = 0;
 	data->rays->hl = 10000;
 	data->rays->vl = 10000;
 	data->rays->h_x = 0;
@@ -63,7 +66,7 @@ void	rays_init(t_data *data)
 	data->rays->player_dir = 0;
 }
 
-int	raycasting(char **map, t_data * data)
+int	raycasting(char **map, t_data *data)
 {
 	float	move;
 

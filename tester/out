@@ -1,0 +1,112 @@
+
+-> Test 1:
+Error
+Invalid number of parameters
+
+-> Test 2:
+Error
+Empty map
+
+-> Test 3:
+Error
+Map is not surrounded by 1
+
+-> Test 4:
+Error
+Map is not surrounded by 1
+
+-> Test 5:
+Error
+Map is not surrounded by 1
+
+-> Test 6:
+Error
+Map is not surrounded by 1
+
+-> Test 7:
+Error
+Map is not surrounded by 1
+
+-> Test 8:
+Error
+failed to read textures
+
+-> Test 9:
+Error
+Map seperated by a new line
+
+-> Test 10:
+Error
+failed to read textures
+
+-> Test 11:
+Error
+Map seperated by a new line
+
+-> Test 12:
+Error
+Load texture failed
+
+-> Test 13:
+Error
+Load texture failed
+
+-> Test 14:
+Error
+Start position was not found on a map
+
+-> Test 15:
+Error
+Load texture failed
+
+-> Test 16:
+Error
+Color is smaller than 0
+
+-> Test 17:
+Error
+No color found
+
+-> Test 18:
+Error
+Map is not surrounded by 1
+
+-> Test 19:
+Error
+Map is not surrounded by 1
+
+-> Test 20:
+Error
+Load texture failed
+
+-> Test 21:
+Error
+Map is not surrounded by 1
+
+-> Test 22:
+Error
+Load texture failed
+
+-> Test 23:
+Error
+Map is not surrounded by 1
+
+-> Test 24:
+Error
+Map seperated by a new line
+
+-> Test 25:
+Error
+Load texture failed
+
+-> Test 26:
+Error
+Maps are not connected
+
+-> Test 27:
+Error
+Load texture failed
+
+-> Test 28:
+Error
+Map is not surrounded by 1

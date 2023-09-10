@@ -67,8 +67,8 @@ fi
 diff out in
 
 if [ $? -eq 0 ]
-    then echo -n "tests:    ok 😽\n"
+    then echo "tests:    ok 😽\n"
     rm out valgrind_test.txt
 else
-    echo -n tests: ko 🙀
+    echo  tests: ko 🙀
 fi

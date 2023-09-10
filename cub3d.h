@@ -12,17 +12,16 @@
 
 # define WINDOW_WITH 800
 # define WINDOW_HEIGT 800
-# define TILE_SIZE 64
-# define TEXTURE_SIZE 64
+# define TILE_SIZE 2048
 # define PI 3.14159
-# define STOP_RENDER 1
-# define START_RENDER 0
-# define MAP_SIZE 0.2
 
 typedef struct s_ray_cast
 {
 	int			up_down;
 	int			left_right;
+	float		off;
+	float		fov;
+	float		plane;
 	float		vl;
 	float		hl;
 	float		v_x;
@@ -52,7 +51,7 @@ typedef struct s_img
 	int			width;
 	int			height;
 	int			*addr;
-	int bpp; /* bits per pixel */
+	int			bpp;
 	int			line_len;
 	int			endian;
 }				t_img;
@@ -61,7 +60,7 @@ typedef struct s_texture_draw
 {
 	float		top;
 	float		total_wall;
-	float		ray_x;
+	int			ray_x;
 	float		wall_strip;
 	float		bottom;
 }				t_texture_draw;
@@ -124,8 +123,8 @@ int				keypress(int keysum, t_data *data);
 int				ft_atoi(const char *nptr);
 
 //map_check_utils.c
-int				charInStr(char c, char *valid_chars);
-int				isValidchar(t_data *data, char *mapstr, char *valid_chars,
+int				charinstr(char c, char *valid_chars);
+int				isvalidchar(t_data *data, char *mapstr, char *valid_chars,
 					int y);
 int				free_map_exit(t_data *data, t_map *file, char *msg);
 int				ft_matrix_push_back(t_data *data, t_map *file, char *str);
@@ -152,6 +151,7 @@ char			*ft_strdup(const char *s);
 int				ft_strcmp(const char *s1, const char *s2);
 void			free_data_exit(t_data *data, char *msg);
 void			free_set_null(char **ptr);
+int				is_number(char *color_rgb, int *color);
 
 //convertions.c
 float			deg2rad(double degrees);
@@ -193,8 +193,7 @@ int				rendercub(t_data *data);
 //window_draw.c
 void			img_pix_put(t_img *img, int x, int y, int color);
 void			draw_floor_sky(t_data *data, int sky_color, int ground_color);
-void			draw_walls(t_data *data, float distance, float ray_x,
-					t_img *texture);
+void			draw_walls(t_data *data, float distance, t_img *texture);
 void			create_img_addr(t_data *data, t_img *img);
 
 #endif

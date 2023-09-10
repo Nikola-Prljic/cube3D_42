@@ -41,13 +41,15 @@ void	wall_collision(t_data *data, double ray_angle)
 
 int	collision(t_data *data)
 {
+	float	distance;
 	float	ray_angle;
 
+	distance = TILE_SIZE * 0.32;
 	ray_angle = data->rays->player_dir;
 	data->rays->hl = 10000;
 	data->rays->vl = 10000;
 	wall_collision(data, ray_angle);
-	if (data->rays->hl < 20 || data->rays->vl < 20)
+	if (data->rays->hl < distance || data->rays->vl < distance)
 		return (1);
 	return (0);
 }

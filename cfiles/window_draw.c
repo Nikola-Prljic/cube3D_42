@@ -1,8 +1,9 @@
+
 #include "../cub3d.h"
 
 void	img_pix_put(t_img *img, int put_x, int put_y, int color)
 {
-	img->addr[(put_y * img->line_len) + put_x] = color;
+	img->addr[(img->line_len * put_y) + put_x] = color;
 }
 
 void	draw_floor_sky(t_data *data, int sky_color, int ground_color)
@@ -29,56 +30,51 @@ void	draw_floor_sky(t_data *data, int sky_color, int ground_color)
 
 void	draw_texture_y_lopp(t_data *data, t_texture_draw draw, t_img *texture)
 {
-	float	y_step;
-	float	y_top;
-	int		color;
-	float	color_y;
-	float	color_plus;
+	int	y_off;
+	int	y_top;
+	int	color;
 
-	y_top = ((float)WINDOW_HEIGT / 2.0) - (draw.total_wall / 2.0);
-	y_step = (float)texture->height / draw.total_wall;
-	color_plus = draw.top / draw.total_wall * texture->height;
-	while (draw.top <= draw.bottom)
+	while (draw.top < draw.bottom)
 	{
-		color_y = ((int)color_plus * texture->line_len) + (int)draw.ray_x;
-		color = color_y;
-		img_pix_put(data->img, data->raycount, y_top + draw.top,
-			texture->addr[color]);
-		color_plus += y_step;
-		draw.top += 1.0;
+		y_top = draw.top + (draw.total_wall / 2.0) - (WINDOW_HEIGT / 2);
+		y_off = y_top * ((float)texture->height / draw.total_wall);
+		color = ((texture->height * y_off) + draw.ray_x);
+		img_pix_put(data->img, data->raycount, draw.top, texture->addr[color]);
+		draw.top++;
 	}
 }
 
 // need to calculate the texture in total,
 // but draw just the what you see with img_pix_put
 // calculate the size of one pixel with line 94. For resizing the texture
-void	draw_texure_on_walls(t_data *data, float wall_strip_height, float ray_x,
+void	draw_texure_on_walls(t_data *data, float wall_strip_height,
 		t_img *texture)
 {
 	float	total_wall;
 	int		top;
 	int		bottom;
+	int		ray_x;
 
 	total_wall = wall_strip_height;
-	if (wall_strip_height > WINDOW_HEIGT)
-		wall_strip_height = (float)WINDOW_HEIGT;
-	top = (total_wall - wall_strip_height) / 2.0;
-	bottom = wall_strip_height + top;
-	ray_x = ((float)TILE_SIZE / (float)texture->height) * ((int)ray_x
-			% TILE_SIZE);
+	top = (WINDOW_HEIGT / 2) - (wall_strip_height / 2);
+	if (top < 0)
+		top = 0;
+	bottom = (WINDOW_HEIGT / 2) + (wall_strip_height / 2);
+	if (bottom > WINDOW_HEIGT)
+		bottom = WINDOW_HEIGT;
+	ray_x = ((double)texture->width / (double)TILE_SIZE)
+		* ((int)data->rays->off % TILE_SIZE);
 	draw_texture_y_lopp(data, (t_texture_draw){top, total_wall, ray_x,
-		wall_strip_height, bottom}, texture);
+			wall_strip_height, bottom}, texture);
 }
 
-void	draw_walls(t_data *data, float distance, float ray_x, t_img *texture)
+void	draw_walls(t_data *data, float distance, t_img *texture)
 {
 	float	fixed_distance;
-	float	proj_plane;
 	float	wall_strip_height;
 
-	fixed_distance = cosf(data->rays->ray_angle - data->rays->player_dir)
+	fixed_distance = cos(data->rays->ray_angle - data->rays->player_dir)
 		* distance;
-	proj_plane = ((float)WINDOW_WITH / 2.0) / 0.523599;
-	wall_strip_height = ((float)TILE_SIZE / fixed_distance) * proj_plane;
-	draw_texure_on_walls(data, wall_strip_height, ray_x, texture);
+	wall_strip_height = (TILE_SIZE / fixed_distance) * data->rays->plane;
+	draw_texure_on_walls(data, wall_strip_height, texture);
 }

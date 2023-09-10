@@ -48,7 +48,8 @@ void	create_img_addr(t_data *data, t_img *img)
 
 int	window_loop(t_data *data)
 {
-	ray_functions(data);
+	if (ray_functions(data))
+		return (1);
 	if (make_window(data, WINDOW_HEIGT, WINDOW_WITH))
 		return (1);
 	data->img->img = mlx_new_image(data->mlx_ptr, WINDOW_WITH, WINDOW_HEIGT);

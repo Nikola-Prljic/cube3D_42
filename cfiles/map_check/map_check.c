@@ -16,12 +16,12 @@ char	*save_first_line(t_data *data, t_map *file, int y)
 
 	line = NULL;
 	line = ft_getline(data, file->fd, &file->buffer, '\n');
-	while(line && line[0] == 0)
+	while (line && line[0] == 0)
 	{
 		free_set_null(&line);
 		line = ft_getline(data, file->fd, &file->buffer, '\n');
 	}
-	if (isValidchar(data, line, " 01NEWS", y) == 1)
+	if (isvalidchar(data, line, " 01NEWS", y) == 1)
 	{
 		free(line);
 		free_map_exit(data, file, "Error\nWrong char in a map\n");
@@ -60,7 +60,6 @@ int	map_check(t_data *data, int fd)
 	handel_textures(data, &file);
 	handel_color_codes(data, &file);
 	save_lines_loop(data, &file);
-	/* printmap(data->map);  */ ///////delte
 	if (data->px == -1 || data->py == -1)
 		free_map_exit(data, &file,
 			"Error\nStart position was not found on a map\n");
@@ -69,10 +68,5 @@ int	map_check(t_data *data, int fd)
 	if (fd != -1)
 		close(file.fd);
 	surrounded_by_walls(data, data->px, data->py);
-
-
-	/* printmap(data->map); */ ///////delte
-	/* printf("ok in mapcheck.c\n");
-	free_map_exit(data, &file, NULL); */
 	return (0);
 }

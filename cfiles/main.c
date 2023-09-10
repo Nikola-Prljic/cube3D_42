@@ -65,12 +65,12 @@ int	free_data(t_data *data)
 	if (data->mlx_ptr)
 	{
 		free_imgs(data);
-		if(data->img->img)
+		if (data->img->img)
 		{
 			mlx_destroy_image(data->mlx_ptr, data->img->img);
 			data->img->img = NULL;
 		}
-		if(data->win_ptr)
+		if (data->win_ptr)
 		{
 			mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 			data->win_ptr = NULL;

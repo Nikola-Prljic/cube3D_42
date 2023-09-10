@@ -1,4 +1,22 @@
+
 #include "../../cub3d.h"
+
+int	is_number(char *color_rgb, int *color)
+{
+	if (!ft_strcmp(color_rgb, "0"))
+	{
+		*color = 0;
+		return (0);
+	}
+	*color = ft_atoi(color_rgb);
+	if (*color == 0)
+		return (puterror("Error\nColor is not a number\n"));
+	if (*color < 0)
+		return (puterror("Error\nColor is smaller than 0\n"));
+	if (*color > 255)
+		return (puterror("Error\nColor is bigger than 255\n"));
+	return (0);
+}
 
 char	*ft_strdup(const char *s)
 {

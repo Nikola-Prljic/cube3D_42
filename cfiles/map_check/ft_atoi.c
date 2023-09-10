@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:11:53 by nprljic           #+#    #+#             */
-/*   Updated: 2023/08/20 17:53:34 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/10 15:28:02 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_atoi(const char *nptr)
 		num = num * 10 + (nptr[i] - 48);
 		i++;
 	}
-	if(nptr[i] && (nptr[i] < '0' || nptr[i] > '9'))
+	if (nptr[i] && (nptr[i] < '0' || nptr[i] > '9'))
 		return (0);
 	return (ft_overlong(num_size, min, num));
 }

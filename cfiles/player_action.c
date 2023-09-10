@@ -3,7 +3,6 @@
 
 void	angle_left_right(t_data *data, int keysum, float move)
 {
-
 	if (keysum == XK_Left)
 	{
 		data->rays->player_dir -= 0.0523599;
