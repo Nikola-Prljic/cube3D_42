@@ -10,9 +10,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WINDOW_WITH 800
-# define WINDOW_HEIGT 800
-# define TILE_SIZE 2048
+# define WINDOW_WITH 300
+# define WINDOW_HEIGT 300
+# define TILE_SIZE 64
 # define PI 3.14159
 
 typedef struct s_ray_cast

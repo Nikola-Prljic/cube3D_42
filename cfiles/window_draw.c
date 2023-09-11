@@ -65,7 +65,7 @@ void	draw_texure_on_walls(t_data *data, float wall_strip_height,
 	ray_x = ((double)texture->width / (double)TILE_SIZE)
 		* ((int)data->rays->off % TILE_SIZE);
 	draw_texture_y_lopp(data, (t_texture_draw){top, total_wall, ray_x,
-			wall_strip_height, bottom}, texture);
+		wall_strip_height, bottom}, texture);
 }
 
 void	draw_walls(t_data *data, float distance, t_img *texture)

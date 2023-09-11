@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getline.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:00:58 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/10 16:21:39 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:29:52 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ char	*ft_putline(t_data *data, char *remain, char delimiter)
 	return (line);
 }
 
+void	free_remain_data_exit(t_data *data, char **remain, char **line)
+{
+	free_set_null(line);
+	free_set_null(remain);
+	free_data_exit(data, "Error\nMalloc failed at ft_putline");
+}
+
 // #3 malloc a new without the printed string. frees the old one.
 char	*ft_next_str(t_data *data, char *remain, char delimiter, char *line)
 {
@@ -86,11 +93,7 @@ char	*ft_next_str(t_data *data, char *remain, char delimiter, char *line)
 	}
 	str = (char *)malloc((int_strlen(remain) - i + 1) * sizeof(char));
 	if (!str)
-	{
-		free_set_null(&line);
-		free_set_null(&remain);
-		free_data_exit(data, "Error\nMalloc failed at ft_putline");
-	}
+		free_remain_data_exit(data, &remain, &line);
 	x = 0;
 	while (remain[++i])
 		str[x++] = remain[i];

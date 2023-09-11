@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getline.h                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 14:52:09 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/11 16:17:58 by nprljic          ###   ########.fr       */
+/*   Created: 2023/09/11 16:17:14 by nprljic           #+#    #+#             */
+/*   Updated: 2023/09/11 16:30:16 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_GETLINE_H
-# define FT_GETLINE_H
+#include "ft_getline.h"
 
-# include <fcntl.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include "../../../cub3d.h"
+char	*ft_strchr(char *s, int c)
+{
+	if (!s)
+		return (NULL);
+	if (c == '\0')
+		return ((char *)(&s[int_strlen(s)]));
+	while (*s)
+	{
+		if (*s == (char)(c))
+			return ((char *)(s));
+		s++;
+	}
+	return (NULL);
+}
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 50
-# endif
+size_t	int_strlen(char *s)
+{
+	int	i;
 
-size_t	int_strlen(char *s);
-char	*ft_getline(t_data *data, int fd, char **remain, char delimiter);
-char	*ft_linejoin(t_data *data, char *s1, char *s2);
-char	*ft_strchr(char *s, int c);
-
-#endif
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}

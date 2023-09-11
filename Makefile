@@ -7,6 +7,7 @@ CFLAGS = -Wall -Werror -Wextra -g
 
 SRC =	./cfiles/map_check/ft_getline/ft_getline_ultis.c \
 		./cfiles/map_check/ft_getline/ft_getline.c \
+		./cfiles/map_check/ft_getline/ft_strchr.c \
 		./cfiles/map_check/ft_atoi.c \
 		./cfiles/map_check/map_check_utils.c \
 		./cfiles/map_check/map_check_walls.c \
