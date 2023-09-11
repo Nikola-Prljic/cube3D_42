@@ -46,9 +46,10 @@ void	save_lines_loop(t_data *data, t_map *file)
 	{
 		free_set_null(&line);
 		line = saveline(data, file, y, &map_parts_after_nl);
-		y++;
+		if(line && line[0] != 0)
+			y++;
 	}
-	data->map_y = y - 1;
+	data->map_y = y;
 }
 
 int	map_check(t_data *data, int fd)
