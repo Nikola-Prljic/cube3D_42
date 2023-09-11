@@ -110,6 +110,13 @@ typedef struct s_rect
 	int			color;
 }				t_rect;
 
+typedef struct s_handle_textures
+{
+	short	is_new_line;
+	char	*direction;
+	char	*texture_path;
+} 				t_handle_textures;
+
 //input_handle.c
 int				input_handle(int argc, char **argv, int *fd);
 

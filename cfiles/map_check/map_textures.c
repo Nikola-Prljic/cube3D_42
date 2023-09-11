@@ -2,12 +2,12 @@
 #include "../../cub3d.h"
 #include "ft_getline/ft_getline.h"
 
-int	free_texture_lines(char **texture_path, char **direction)
+int	free_texture_lines(t_handle_textures *data_line)
 {
-	if (*texture_path)
-		free(*texture_path);
-	if (*direction)
-		free(*direction);
+	if (data_line->texture_path)
+		free(data_line->texture_path);
+	if (data_line->direction)
+		free(data_line->direction);
 	return (1);
 }
 
@@ -26,34 +26,38 @@ int	save_textures_path(t_data *data, char *texture_path, char *direction)
 	return (0);
 }
 
+void	getline_test_it(t_data *data, t_map *file, t_handle_textures *data_line,
+		int first_line)
+{
+	data_line->direction = ft_getline(data, file->fd, &file->buffer, ' ');
+	if (first_line == 0 && !data_line->direction)
+		free_map_exit(data, file, "Error\nEmpty map\n");
+	if (!data_line->direction)
+		free_map_exit(data, file, "Error\nTexture failed\n");
+	if (data_line->direction[0] != 0)
+		data_line->is_new_line = 0;
+}
+
 int	is_possible_direction(t_data *data, t_map *file, short first_line)
 {
-	short	is_new_line;
-	char	*direction;
-	char	*texture_path;
+	t_handle_textures	data_line;
 
-	direction = NULL;
-	texture_path = NULL;
-	is_new_line = 1;
-	while (is_new_line)
+	data_line.direction = NULL;
+	data_line.texture_path = NULL;
+	data_line.is_new_line = 1;
+	while (data_line.is_new_line)
 	{
-		if (direction)
+		if (data_line.direction)
 		{
 			first_line = 1;
-			free(direction);
+			free(data_line.direction);
 		}
-		direction = ft_getline(data, file->fd, &file->buffer, ' ');
-		if (first_line == 0 && !direction)
-			free_map_exit(data, file, "Error\nEmpty map\n");
-		if (!direction)
-			free_map_exit(data, file, "Error\nTexture failed\n");
-		if (direction[0] != 0)
-			is_new_line = 0;
+		getline_test_it(data, file, &data_line, first_line);
 	}
-	texture_path = ft_getline(data, file->fd, &file->buffer, '\n');
-	if (save_textures_path(data, texture_path, direction))
-		return (free_texture_lines(&texture_path, &direction));
-	free_texture_lines(&texture_path, &direction);
+	data_line.texture_path = ft_getline(data, file->fd, &file->buffer, '\n');
+	if (save_textures_path(data, data_line.texture_path, data_line.direction))
+		return (free_texture_lines(&data_line));
+	free_texture_lines(&data_line);
 	return (0);
 }
 
