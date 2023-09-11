@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:00:58 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/11 16:29:52 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/11 19:34:02 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ char	*ft_new_str(t_data *data, int fd, char *remain, char delimiter)
 		ret = read(fd, buf, BUFFER_SIZE);
 		if (ret == -1)
 		{
-			free(remain);
-			free(buf);
-			return (NULL);
+			free_set_null(&buf);
+			free_set_null(&remain);
+			free_data_exit(data, "Error\nRead failed at ft_putline");
 		}
 		buf[ret] = '\0';
 		remain = ft_linejoin(data, remain, buf);
