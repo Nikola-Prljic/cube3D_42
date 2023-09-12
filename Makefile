@@ -5,7 +5,9 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRC =	./cfiles/map_check/ft_getline/ft_getline_ultis.c \
+INLCUDES = ./includes/cub3d.h
+
+SRC =	./cfiles/map_check/ft_getline/ft_getline_ultis.c\
 		./cfiles/map_check/ft_getline/ft_getline.c \
 		./cfiles/map_check/ft_getline/ft_strchr.c \
 		./cfiles/map_check/ft_atoi.c \
@@ -13,6 +15,7 @@ SRC =	./cfiles/map_check/ft_getline/ft_getline_ultis.c \
 		./cfiles/map_check/map_check_walls.c \
 		./cfiles/map_check/map_check.c \
 		./cfiles/map_check/map_colors.c \
+		./cfiles/map_check/map_colors_utils.c \
 		./cfiles/map_check/map_surrounded_by_walls.c \
 		./cfiles/map_check/map_textures.c \
 		./cfiles/map_check/map_utils.c \
@@ -28,10 +31,17 @@ SRC =	./cfiles/map_check/ft_getline/ft_getline_ultis.c \
 		./cfiles/raycasting/raycasting.c \
 		./cfiles/raycasting/raylen.c \
 		./cfiles/raycasting/raycasting_utils1.c\
+		./cfiles/free_stuff.c \
 
 all : $(NAME)
 
 OBJ  =	$(SRC:.c=.o)
+
+$(OBJ) : $(INLCUDES)
+
+./cfiles/map_check/ft_getline/ft_getline_ultis.o : ./cfiles/map_check/ft_getline/ft_getline.h
+./cfiles/map_check/ft_getline/ft_getline.o : ./cfiles/map_check/ft_getline/ft_getline.h
+./cfiles/map_check/ft_getline/ft_strchr.o  : ./cfiles/map_check/ft_getline/ft_getline.h
 
 $(NAME) : $(OBJ)
 	@$(CC) $(OBJ) $(CFLAGS) -lmlx -lXext -lX11 -lm -o $(NAME)	

@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convertions.c                                      :+:      :+:    :+:   */
+/*   map_colors_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/12 19:03:18 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/12 19:06:28 by rkurnava         ###   ########.fr       */
+/*   Created: 2023/09/12 19:08:11 by rkurnava          #+#    #+#             */
+/*   Updated: 2023/09/12 19:08:38 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-float	deg2rad(double degrees)
+int	string_rgb_to_int(char **color_rgb, int *color)
 {
-	return (degrees * (PI / 180.0));
-}
+	int	r;
+	int	g;
+	int	b;
 
-float	rad2deg(double radians)
-{
-	return (radians * (180.0 / PI));
-}
-
-int	x_close(t_data *data)
-{
-	mlx_loop_end(data->mlx_ptr);
-	if (data->win_ptr)
-	{
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		data->win_ptr = NULL;
-	}
+	if (is_number(color_rgb[0], &r))
+		return (1);
+	if (is_number(color_rgb[1], &g))
+		return (1);
+	if (is_number(color_rgb[2], &b))
+		return (1);
+	*color = (r << 16) + (g << 8) + b;
 	return (0);
 }

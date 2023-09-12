@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   map_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:02:12 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/11 17:02:52 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/12 19:03:58 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
 #include "ft_getline/ft_getline.h"
+#include "../../includes/cub3d.h"
 
 int	free_texture_lines(t_handle_textures *data_line)
 {

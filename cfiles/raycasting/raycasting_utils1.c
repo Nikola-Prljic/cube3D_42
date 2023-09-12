@@ -6,11 +6,11 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:15:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/10 17:53:37 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/12 18:45:29 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	render(t_data *data)
 {

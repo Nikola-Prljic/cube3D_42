@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:01:54 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/12 14:20:09 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/12 18:46:51 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 #include "ft_getline/ft_getline.h"
 
 int	charinstr(char c, char *valid_chars)

@@ -1,40 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   window_draw.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 19:03:36 by rkurnava          #+#    #+#             */
+/*   Updated: 2023/09/12 19:06:08 by rkurnava         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../includes/cub3d.h"
 
 void	img_pix_put(t_img *img, int put_x, int put_y, int color)
 {
 	img->addr[(img->line_len * put_y) + put_x] = color;
 }
 
-void	draw_floor_sky(t_data *data, int sky_color, int ground_color)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < WINDOW_HEIGT >> 1)
-	{
-		x = -1;
-		while (++x < WINDOW_WITH)
-			img_pix_put(data->img, x, y, sky_color);
-		y++;
-	}
-	while (y < WINDOW_HEIGT)
-	{
-		x = -1;
-		while (++x < WINDOW_WITH)
-			img_pix_put(data->img, x, y, ground_color);
-		y++;
-	}
-}
-
 void	draw_texture_y_lopp(t_data *data, t_texture_draw draw, t_img *texture)
 {
-	int i = 0;
+	int	i;
 	int	y_off;
 	int	y_top;
 	int	color;
 
+	i = 0;
 	while (i < draw.top)
 	{
 		img_pix_put(data->img, data->raycount, i, data->sky_rgb);
@@ -58,9 +48,9 @@ void	draw_texture_y_lopp(t_data *data, t_texture_draw draw, t_img *texture)
 void	draw_texure_on_walls(t_data *data, float wall_strip_height,
 		t_img *texture)
 {
-	int		top;
-	int		bottom;
-	int		ray_x;
+	int	top;
+	int	bottom;
+	int	ray_x;
 
 	top = (WINDOW_HEIGT / 2) - (wall_strip_height / 2);
 	if (top < 0)
@@ -68,10 +58,10 @@ void	draw_texure_on_walls(t_data *data, float wall_strip_height,
 	bottom = (WINDOW_HEIGT / 2) + (wall_strip_height / 2);
 	if (bottom > WINDOW_HEIGT)
 		bottom = WINDOW_HEIGT;
-	ray_x = ((double)texture->width / (double)TILE_SIZE)
-		* ((int)data->rays->off % TILE_SIZE);
-	draw_texture_y_lopp(data, (t_texture_draw){top, ray_x,
-		wall_strip_height, bottom}, texture);
+	ray_x = ((double)texture->width / (double)TILE_SIZE) * ((int)data->rays->off
+			% TILE_SIZE);
+	draw_texture_y_lopp(data, (t_texture_draw){top, ray_x, wall_strip_height,
+		bottom}, texture);
 }
 
 void	draw_walls(t_data *data, float distance, t_img *texture)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getline.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 14:52:09 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/11 16:17:58 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/12 18:50:53 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "../../../cub3d.h"
+# include "../../../includes/cub3d.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 50

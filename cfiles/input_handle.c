@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input_handle.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 19:02:49 by rkurnava          #+#    #+#             */
+/*   Updated: 2023/09/12 19:06:23 by rkurnava         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../includes/cub3d.h"
 
 int	map_extension(char *map_path)
 {
@@ -8,7 +19,7 @@ int	map_extension(char *map_path)
 	i = 0;
 	while (map_path[i])
 		i++;
-	if (i < 5)
+	if (i < 4)
 		return (1);
 	i--;
 	if (map_path[i] == 'b' && map_path[i - 1] == 'u' && map_path[i - 2] == 'c'
@@ -23,7 +34,12 @@ int	check_input(char *map_path, int *fd)
 		return (1);
 	*fd = open(map_path, O_RDONLY);
 	if (*fd <= 0)
-		return (puterror("Error\nCan't find/access map!\n"));
+	{
+		puterror("Error\n\tCan't find/access map!\n");
+		puterror("Make sure you have correct rights / name of the map!\n");
+		puterror("Map file has to be placed in maps folder\n");
+		return (1);
+	}
 	if (map_extension(map_path))
 	{
 		close(*fd);

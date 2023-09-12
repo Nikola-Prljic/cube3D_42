@@ -3,31 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   map_colors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:03:04 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/12 14:21:12 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/12 19:08:48 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 #include "ft_getline/ft_getline.h"
-
-int	string_rgb_to_int(char **color_rgb, int *color)
-{
-	int	r;
-	int	g;
-	int	b;
-
-	if (is_number(color_rgb[0], &r))
-		return (1);
-	if (is_number(color_rgb[1], &g))
-		return (1);
-	if (is_number(color_rgb[2], &b))
-		return (1);
-	*color = (r << 16) + (g << 8) + b;
-	return (0);
-}
 
 void	get_color_code(t_data *data, t_map *file, char **color_rgb, int at_i)
 {
@@ -52,7 +36,7 @@ void	get_color_code(t_data *data, t_map *file, char **color_rgb, int at_i)
 
 char	**test_color_rgb(t_data *data, t_map *file, char *line, char color)
 {
-	char **color_rgb;
+	char	**color_rgb;
 
 	color_rgb = malloc(sizeof(char *) * 4);
 	if (!color_rgb)

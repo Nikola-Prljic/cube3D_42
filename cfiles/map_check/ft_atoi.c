@@ -6,11 +6,11 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:11:53 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/10 15:28:02 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/12 18:46:40 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 
 static int	ft_overlong(long long int num_size, long long int min,
 		long long int num)

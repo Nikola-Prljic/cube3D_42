@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wall_collision.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 19:03:33 by rkurnava          #+#    #+#             */
+/*   Updated: 2023/09/12 19:29:00 by rkurnava         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../includes/cub3d.h"
 
 void	help_collision(t_data *data)
 {
@@ -46,8 +57,8 @@ int	collision(t_data *data)
 
 	distance = TILE_SIZE * 0.32;
 	ray_angle = data->rays->player_dir;
-	data->rays->hl = 10000;
-	data->rays->vl = 10000;
+	data->rays->hl = TILE_SIZE;
+	data->rays->vl = TILE_SIZE;
 	wall_collision(data, ray_angle);
 	if (data->rays->hl < distance || data->rays->vl < distance)
 		return (1);

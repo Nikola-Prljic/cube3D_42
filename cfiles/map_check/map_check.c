@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 13:55:57 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/12 14:20:35 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/12 18:46:50 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 #include "ft_getline/ft_getline.h"
 
 void	malloc_data_map_first_line(t_data *data, t_map *file)

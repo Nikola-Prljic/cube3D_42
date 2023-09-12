@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 19:10:20 by rkurnava          #+#    #+#             */
+/*   Updated: 2023/09/12 19:10:54 by rkurnava         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -10,9 +22,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WINDOW_WITH 240
-# define WINDOW_HEIGT 160
-# define TILE_SIZE 16
+# define WINDOW_WITH 300
+# define WINDOW_HEIGT 300
+# define TILE_SIZE 45445
 # define PI 3.14159
 
 typedef struct s_ray_cast
@@ -111,10 +123,10 @@ typedef struct s_rect
 
 typedef struct s_handle_textures
 {
-	short	is_new_line;
-	char	*direction;
-	char	*texture_path;
-} 				t_handle_textures;
+	short		is_new_line;
+	char		*direction;
+	char		*texture_path;
+}				t_handle_textures;
 
 //input_handle.c
 int				input_handle(int argc, char **argv, int *fd);
@@ -143,6 +155,9 @@ void			map_check_walls(t_data *data);
 //map_check.c
 int				map_check(t_data *data, int fd);
 
+//map_colors_utils.c
+int				string_rgb_to_int(char **color_rgb, int *color);
+
 //map_colors.c
 void			handel_color_codes(t_data *data, t_map *file);
 
@@ -163,6 +178,9 @@ int				is_number(char *color_rgb, int *color);
 float			deg2rad(double degrees);
 float			rad2deg(double radians);
 int				x_close(t_data *data);
+
+//free_stuff.c
+int				free_data(t_data *data);
 
 //raycasting_utils.c
 void			save_cor_ver(float *ay, float *ax, t_data *data);

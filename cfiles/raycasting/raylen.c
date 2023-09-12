@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   raylen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:24:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/12 14:44:11 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/12 19:10:02 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	hit(t_data *data, char **map, int ay, int ax)
 {
-	int x_len;
+	int	x_len;
 	int	map_y;
 	int	map_x;
 
@@ -111,10 +111,6 @@ void	raylen_h(t_data *data, float angle, char **map)
 void	raylen(t_data *data)
 {
 	data->raycount = 0;
-	if (data->rays->px < 0)
-		data->rays->px = 1;
-	if (data->rays->py < 0)
-		data->rays->py = 1;
 	while (data->raycount < WINDOW_WITH)
 	{
 		data->rays->ray_angle = data->rays->player_dir + atan((data->raycount
