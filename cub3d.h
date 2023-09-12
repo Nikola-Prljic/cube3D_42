@@ -59,7 +59,6 @@ typedef struct s_img
 typedef struct s_texture_draw
 {
 	float		top;
-	float		total_wall;
 	int			ray_x;
 	float		wall_strip;
 	float		bottom;

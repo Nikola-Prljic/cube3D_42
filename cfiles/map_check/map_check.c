@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_check.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 13:55:57 by nprljic           #+#    #+#             */
+/*   Updated: 2023/09/12 14:20:35 by nprljic          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../cub3d.h"
 #include "ft_getline/ft_getline.h"
@@ -46,7 +57,7 @@ void	save_lines_loop(t_data *data, t_map *file)
 	{
 		free_set_null(&line);
 		line = saveline(data, file, y, &map_parts_after_nl);
-		if(line && line[0] != 0)
+		if (line && line[0] != 0)
 			y++;
 	}
 	data->map_y = y;

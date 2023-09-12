@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:03:04 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/11 17:03:21 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/12 14:21:12 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,9 @@ void	get_color_code(t_data *data, t_map *file, char **color_rgb, int at_i)
 	}
 }
 
-int	save_color(t_data *data, t_map *file, char *line, char color)
+char	**test_color_rgb(t_data *data, t_map *file, char *line, char color)
 {
-	int		color_hex;
-	char	**color_rgb;
+	char **color_rgb;
 
 	color_rgb = malloc(sizeof(char *) * 4);
 	if (!color_rgb)
@@ -69,6 +68,15 @@ int	save_color(t_data *data, t_map *file, char *line, char color)
 			free(color_rgb);
 		free_map_exit(data, file, "Error\nNo color found\n");
 	}
+	return (color_rgb);
+}
+
+int	save_color(t_data *data, t_map *file, char *line, char color)
+{
+	int		color_hex;
+	char	**color_rgb;
+
+	color_rgb = test_color_rgb(data, file, line, color);
 	if (line)
 		free(line);
 	color_rgb[0] = NULL;

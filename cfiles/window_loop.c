@@ -6,6 +6,7 @@ int	make_window(t_data *data, int heigt, int with)
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 	{
+		puterror("Error\nWindow creation failed!\n");
 		if (data->rays)
 			free(data->rays);
 		data->rays = NULL;
@@ -15,6 +16,7 @@ int	make_window(t_data *data, int heigt, int with)
 	data->win_ptr = mlx_new_window(data->mlx_ptr, with, heigt, "cub3D");
 	if (data->win_ptr == NULL)
 	{
+		puterror("Error\nWindow pointer failed!\n");
 		if (data->rays)
 			free(data->rays);
 		data->rays = NULL;

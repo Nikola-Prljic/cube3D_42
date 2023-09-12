@@ -3,7 +3,7 @@ NAME = cub3D
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra
 
 SRC =	./cfiles/map_check/ft_getline/ft_getline_ultis.c \
 		./cfiles/map_check/ft_getline/ft_getline.c \

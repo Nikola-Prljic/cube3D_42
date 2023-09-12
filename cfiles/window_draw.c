@@ -36,26 +36,21 @@ void	draw_texture_y_lopp(t_data *data, t_texture_draw draw, t_img *texture)
 
 	while (draw.top < draw.bottom)
 	{
-		y_top = draw.top + (draw.total_wall / 2.0) - (WINDOW_HEIGT / 2);
-		y_off = y_top * ((float)texture->height / draw.total_wall);
+		y_top = draw.top + (draw.wall_strip / 2.0) - (WINDOW_HEIGT / 2);
+		y_off = y_top * ((float)texture->height / draw.wall_strip);
 		color = ((texture->height * y_off) + draw.ray_x);
 		img_pix_put(data->img, data->raycount, draw.top, texture->addr[color]);
 		draw.top++;
 	}
 }
 
-// need to calculate the texture in total,
-// but draw just the what you see with img_pix_put
-// calculate the size of one pixel with line 94. For resizing the texture
 void	draw_texure_on_walls(t_data *data, float wall_strip_height,
 		t_img *texture)
 {
-	float	total_wall;
 	int		top;
 	int		bottom;
 	int		ray_x;
 
-	total_wall = wall_strip_height;
 	top = (WINDOW_HEIGT / 2) - (wall_strip_height / 2);
 	if (top < 0)
 		top = 0;
@@ -64,7 +59,7 @@ void	draw_texure_on_walls(t_data *data, float wall_strip_height,
 		bottom = WINDOW_HEIGT;
 	ray_x = ((double)texture->width / (double)TILE_SIZE)
 		* ((int)data->rays->off % TILE_SIZE);
-	draw_texture_y_lopp(data, (t_texture_draw){top, total_wall, ray_x,
+	draw_texture_y_lopp(data, (t_texture_draw){top, ray_x,
 		wall_strip_height, bottom}, texture);
 }
 
