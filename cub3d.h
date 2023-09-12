@@ -164,6 +164,10 @@ float			deg2rad(double degrees);
 float			rad2deg(double radians);
 int				x_close(t_data *data);
 
+//free_data.c
+void			free_mlx_data(t_data *data);
+int				free_data(t_data *data);
+
 //raycasting_utils.c
 void			save_cor_ver(float *ay, float *ax, t_data *data);
 void			save_cor_hor(float *ay, float *ax, t_data *data);
