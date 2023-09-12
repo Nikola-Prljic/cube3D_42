@@ -20,6 +20,7 @@ SRC =	./cfiles/map_check/ft_getline/ft_getline_ultis.c\
 		./cfiles/map_check/map_textures.c \
 		./cfiles/map_check/map_utils.c \
 		./cfiles/convertions.c \
+		./cfiles/free_data.c \
 		./cfiles/input_handle.c \
 		./cfiles/loadtextures.c \
 		./cfiles/main.c \
