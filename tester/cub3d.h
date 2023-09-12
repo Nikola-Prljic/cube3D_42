@@ -24,7 +24,7 @@
 
 # define WINDOW_WITH 300
 # define WINDOW_HEIGT 300
-# define TILE_SIZE 45445
+# define TILE_SIZE 32
 # define PI 3.14159
 
 typedef struct s_ray_cast
