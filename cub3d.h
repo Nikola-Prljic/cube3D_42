@@ -10,8 +10,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WINDOW_WITH 1200
-# define WINDOW_HEIGT 800
+# define WINDOW_WITH 400
+# define WINDOW_HEIGT 400
 # define TILE_SIZE 64
 # define PI 3.14159
 

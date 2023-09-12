@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raylen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 19:24:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/10 20:32:18 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/12 14:44:11 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	hit(t_data *data, char **map, int ay, int ax)
 {
+	int x_len;
 	int	map_y;
 	int	map_x;
 
@@ -21,7 +22,10 @@ int	hit(t_data *data, char **map, int ay, int ax)
 	map_x = ax / TILE_SIZE;
 	if (map_y < 0 || map_x < 0)
 		return (0);
-	if (map_y >= data->map_y || map_x >= data->map_x)
+	if (map_y >= data->map_y)
+		return (0);
+	x_len = ft_strlen(data->map[map_y]);
+	if (map_x >= x_len)
 		return (0);
 	if (ay > 0 && ax > 0 && map[map_y][map_x] != '1')
 		return (1);
