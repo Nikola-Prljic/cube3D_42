@@ -30,16 +30,27 @@ void	draw_floor_sky(t_data *data, int sky_color, int ground_color)
 
 void	draw_texture_y_lopp(t_data *data, t_texture_draw draw, t_img *texture)
 {
+	int i = 0;
 	int	y_off;
 	int	y_top;
 	int	color;
 
+	while (i < draw.top)
+	{
+		img_pix_put(data->img, data->raycount, i, data->sky_rgb);
+		i++;
+	}
 	while (draw.top < draw.bottom)
 	{
 		y_top = draw.top + (draw.wall_strip / 2.0) - (WINDOW_HEIGT / 2);
 		y_off = y_top * ((float)texture->height / draw.wall_strip);
 		color = ((texture->height * y_off) + draw.ray_x);
 		img_pix_put(data->img, data->raycount, draw.top, texture->addr[color]);
+		draw.top++;
+	}
+	while (draw.top < WINDOW_HEIGT)
+	{
+		img_pix_put(data->img, data->raycount, draw.top, data->floor_rgb);
 		draw.top++;
 	}
 }

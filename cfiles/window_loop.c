@@ -29,7 +29,6 @@ int	rendercub(t_data *data)
 {
 	if (!data->mlx_ptr || !data->win_ptr)
 		return (0);
-	draw_floor_sky(data, data->sky_rgb, data->floor_rgb);
 	raylen(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img, 0, 0);
 	return (1);
