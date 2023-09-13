@@ -28,11 +28,11 @@ void	floodfill(t_data *data, t_path pos, char fill, char fill_with)
 	floodfill(data, (t_path){pos.x + 1, pos.y}, fill, fill_with);
 	floodfill(data, (t_path){pos.x + 1, pos.y + 1}, fill, fill_with);
 	floodfill(data, (t_path){pos.x - 1, pos.y}, fill, fill_with);
-	floodfill(data, (t_path){pos.x - 1, pos.y + 1}, fill, fill_with);
+	floodfill(data, (t_path){pos.x - 1, pos.y - 1}, fill, fill_with);
 	floodfill(data, (t_path){pos.x, pos.y + 1}, fill, fill_with);
-	floodfill(data, (t_path){pos.x + 1, pos.y + 1}, fill, fill_with);
 	floodfill(data, (t_path){pos.x - 1, pos.y + 1}, fill, fill_with);
 	floodfill(data, (t_path){pos.x, pos.y - 1}, fill, fill_with);
+	floodfill(data, (t_path){pos.x + 1, pos.y - 1}, fill, fill_with);
 }
 
 int	look_for_zero_save_pos(t_data *data, t_path *pos)
