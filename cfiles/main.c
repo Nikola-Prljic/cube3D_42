@@ -41,6 +41,8 @@ void	init_data(t_data *data)
 	data->texture->south = NULL;
 	data->texture->west = NULL;
 	data->texture->east = NULL;
+	data->floor_rgb = -1;
+	data->sky_rgb = -1;
 }
 
 int	main(int argc, char **argv)

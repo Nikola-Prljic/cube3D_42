@@ -76,29 +76,6 @@ typedef struct s_texture_draw
 	float		bottom;
 }				t_texture_draw;
 
-typedef struct s_data
-{
-	t_texture	*texture;
-	t_img		*img;
-	t_img		*north;
-	t_img		*south;
-	t_img		*west;
-	t_img		*east;
-	int			distance;
-	int			vertrical_hit;
-	int			floor_rgb;
-	int			sky_rgb;
-	char		**map;
-	char		**map_copy;
-	void		*mlx_ptr;
-	void		*win_ptr;
-	int			py;
-	int			px;
-	int			map_y;
-	int			map_x;
-	t_ray_cast	*rays;
-	int			raycount;
-}				t_data;
 
 typedef struct s_map
 {
@@ -128,6 +105,31 @@ typedef struct s_handle_textures
 	char		*texture_path;
 }				t_handle_textures;
 
+typedef struct s_data
+{
+	t_handle_textures	*data_line;
+	t_texture	*texture;
+	t_img		*img;
+	t_img		*north;
+	t_img		*south;
+	t_img		*west;
+	t_img		*east;
+	int			distance;
+	int			vertrical_hit;
+	int			floor_rgb;
+	int			sky_rgb;
+	char		**map;
+	char		**map_copy;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	int			py;
+	int			px;
+	int			map_y;
+	int			map_x;
+	t_ray_cast	*rays;
+	int			raycount;
+}				t_data;
+
 //input_handle.c
 int				input_handle(int argc, char **argv, int *fd);
 
@@ -137,8 +139,11 @@ int				free_data(t_data *data);
 //player_action.c
 int				keypress(int keysum, t_data *data);
 
-//ft_atoi
+//ft_atoi.c
 int				ft_atoi(const char *nptr);
+
+//ft_split.c
+char	**ft_split(char const *s, char c);
 
 //map_check_utils.c
 int				charinstr(char c, char *valid_chars);
@@ -160,12 +165,14 @@ int				string_rgb_to_int(char **color_rgb, int *color);
 
 //map_colors.c
 void			handel_color_codes(t_data *data, t_map *file);
+int				save_color(t_data *data, t_map *file, char *line);
 
 //map_surrounded_by_walls.c
 int				surrounded_by_walls(t_data *data, int x, int y);
 
 //map_textures
 void			handel_textures(t_data *data, t_map *file);
+int				free_texture_lines(t_handle_textures *data_line);
 
 //map_utils.c
 char			*ft_strdup(const char *s);

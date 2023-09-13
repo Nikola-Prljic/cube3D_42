@@ -70,7 +70,6 @@ int	map_check(t_data *data, int fd)
 	file.fd = fd;
 	file.buffer = NULL;
 	handel_textures(data, &file);
-	handel_color_codes(data, &file);
 	save_lines_loop(data, &file);
 	if (data->px == -1 || data->py == -1)
 		free_map_exit(data, &file,
