@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:05:12 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/13 16:15:08 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:46:49 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@
 
 typedef struct s_ray_cast
 {
-	int			up_down;
-	int			left_right;
-	double		off;
-	double		fov;
-	double		plane;
-	double		vl;
-	double		hl;
-	double		v_x;
-	double		v_y;
-	double		h_x;
-	double		h_y;
-	char		view_point;
-	double		player_dir;
-	double		player_dir_x;
-	double		player_dir_y;
-	double		px;
-	double		py;
-	double		ray_angle;
-}				t_ray_cast;
+	int					up_down;
+	int					left_right;
+	double				off;
+	double				fov;
+	double				plane;
+	double				vl;
+	double				hl;
+	double				v_x;
+	double				v_y;
+	double				h_x;
+	double				h_y;
+	char				view_point;
+	double				player_dir;
+	double				player_dir_x;
+	double				player_dir_y;
+	double				px;
+	double				py;
+	double				ray_angle;
+}						t_ray_cast;
 
 typedef struct s_texture
 {
@@ -169,25 +169,25 @@ void					free_data_exit(t_data *data, char *msg);
 void					free_set_null(char **ptr);
 int						is_number(char *color_rgb, int *color);
 
-//convertions.c
-double			deg2rad(double degrees);
-double			rad2deg(double radians);
-int				x_close(t_data *data);
+// convertions.c
+double					deg2rad(double degrees);
+double					rad2deg(double radians);
+int						x_close(t_data *data);
 
-//raycasting_utils.c
-void			save_cor_ver(double *ay, double *ax, t_data *data);
-void			save_cor_hor(double *ay, double *ax, t_data *data);
-void			render(t_data *data);
+// raycasting_utils.c
+void					save_cor_ver(double *ay, double *ax, t_data *data);
+void					save_cor_hor(double *ay, double *ax, t_data *data);
+void					render(t_data *data);
 
 // raycasting.c
 int						ray_functions(t_data *data);
 
-//raylen.c
-void			raylen(t_data *data);
-void			where_we_look(t_data *data, int reseting, double angle);
-int				hit(t_data *data, char **map, int ay, int ax);
-void			raylen_v(t_data *data, double angle, char **map);
-void			raylen_h(t_data *data, double angle, char **map);
+// raylen.c
+void					raylen(t_data *data);
+void					where_we_look(t_data *data, int reseting, double angle);
+int						hit(t_data *data, char **map, int ay, int ax);
+void					raylen_v(t_data *data, double angle, char **map);
+void					raylen_h(t_data *data, double angle, char **map);
 
 // opentextures.c
 void					load_all_textures(t_data *data);
@@ -199,14 +199,16 @@ int						puterror(char *str);
 void					printmap(char **map);
 void					free2d(char **map);
 
-//window_loop.c
-int				window_loop(t_data *data);
-int				rendercub(t_data *data);
+// window_loop.c
+int						window_loop(t_data *data);
+int						rendercub(t_data *data);
 
-//window_draw.c
-void			img_pix_put(t_img *img, int x, int y, int color);
-void			draw_floor_sky(t_data *data, int sky_color, int ground_color);
-void			draw_walls(t_data *data, double distance, t_img *texture);
-void			create_img_addr(t_data *data, t_img *img);
+// window_draw.c
+void					img_pix_put(t_img *img, int x, int y, int color);
+void					draw_floor_sky(t_data *data, int sky_color,
+							int ground_color);
+void					draw_walls(t_data *data, double distance,
+							t_img *texture);
+void					create_img_addr(t_data *data, t_img *img);
 
 #endif

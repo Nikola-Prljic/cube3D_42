@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_action.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:03:29 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/13 14:15:05 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:57:18 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ static void	angle_left_right(t_data *data, int keysum, double move)
 		data->rays->player_dir -= 0.0523599;
 		if (data->rays->player_dir < 0)
 			data->rays->player_dir += 6.283186;
-		data->rays->player_dir_x = cosf(data->rays->player_dir) * move;
-		data->rays->player_dir_y = sinf(data->rays->player_dir) * move;
+		data->rays->player_dir_x = cos(data->rays->player_dir) * move;
+		data->rays->player_dir_y = sin(data->rays->player_dir) * move;
 	}
 	else if (keysum == XK_Right)
 	{
 		data->rays->player_dir += 0.0523599;
 		if (data->rays->player_dir > 6.283186)
 			data->rays->player_dir -= 6.283186;
-		data->rays->player_dir_x = cosf(data->rays->player_dir) * move;
-		data->rays->player_dir_y = sinf(data->rays->player_dir) * move;
+		data->rays->player_dir_x = cos(data->rays->player_dir) * move;
+		data->rays->player_dir_y = sin(data->rays->player_dir) * move;
 	}
 }
 
@@ -38,8 +38,8 @@ static int	left_right(t_data *data, double change, double move)
 	double	y;
 
 	data->rays->player_dir += change;
-	x = cosf(data->rays->player_dir) * move;
-	y = sinf(data->rays->player_dir) * move;
+	x = cos(data->rays->player_dir) * move;
+	y = sin(data->rays->player_dir) * move;
 	data->rays->player_dir += -change;
 	data->rays->px += x;
 	data->rays->py += y;
@@ -51,8 +51,8 @@ static int	up(t_data *data, double move)
 	double	x;
 	double	y;
 
-	x = cosf(data->rays->player_dir) * move;
-	y = sinf(data->rays->player_dir) * move;
+	x = cos(data->rays->player_dir) * move;
+	y = sin(data->rays->player_dir) * move;
 	data->rays->px += x;
 	data->rays->py += y;
 	return (0);
@@ -69,8 +69,8 @@ static int	down(t_data *data, double move)
 	else
 		dir = -3.14159;
 	data->rays->player_dir += dir;
-	x = cosf(data->rays->player_dir) * move;
-	y = sinf(data->rays->player_dir) * move;
+	x = cos(data->rays->player_dir) * move;
+	y = sin(data->rays->player_dir) * move;
 	data->rays->player_dir += -dir;
 	data->rays->px += x;
 	data->rays->py += y;

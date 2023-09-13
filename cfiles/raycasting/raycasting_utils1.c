@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:15:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/13 14:15:05 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:03:03 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	render(t_data *data)
 	}
 	data->rays->off = data->rays->v_y;
 	if (data->rays->left_right == -1)
-		draw_walls(data, vl, data->east);
-	else
 		draw_walls(data, vl, data->west);
+	else
+		draw_walls(data, vl, data->east);
 }
 
 void	save_cor_ver(double *ay, double *ax, t_data *data)
