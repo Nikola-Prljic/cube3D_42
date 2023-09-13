@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 14:29:43 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/13 16:07:31 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:19:02 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WINDOW_WITH 500
-# define WINDOW_HEIGT 500
-# define TILE_SIZE 64
+# define WINDOW_WITH 1440
+# define WINDOW_HEIGT 700
+# define TILE_SIZE 512
 # define PI 3.14159
 
 #endif

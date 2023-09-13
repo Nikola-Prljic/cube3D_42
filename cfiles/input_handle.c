@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:02:49 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/12 19:06:23 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:08:29 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	check_input(char *map_path, int *fd)
 	*fd = open(map_path, O_RDONLY);
 	if (*fd <= 0)
 	{
-		puterror("Error\n\tCan't find/access map!\n");
+		puterror("Error\nCan't find/access map!\n");
 		puterror("Make sure you have correct rights / name of the map!\n");
 		puterror("Map file has to be placed in maps folder\n");
 		return (1);
