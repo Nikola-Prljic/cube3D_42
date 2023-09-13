@@ -41,6 +41,7 @@ int	rendercub(t_data *data)
 	if (!data->mlx_ptr || !data->win_ptr)
 		return (0);
 	raylen(data);
+	draw_gun(data, WINDOW_HEIGT - data->gun->height, WINDOW_WITH / 2 - data->gun->width / 2);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img, 0, 0);
 	return (1);
 }
@@ -65,6 +66,7 @@ int	window_loop(t_data *data)
 	if (make_window(data, WINDOW_HEIGT, WINDOW_WITH))
 		return (1);
 	data->img->img = mlx_new_image(data->mlx_ptr, WINDOW_WITH, WINDOW_HEIGT);
+	create_img_addr(data, data->gun);
 	create_img_addr(data, data->img);
 	create_img_addr(data, data->north);
 	create_img_addr(data, data->east);

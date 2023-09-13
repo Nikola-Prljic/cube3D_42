@@ -36,9 +36,13 @@ void	loadtextures(t_data *data, t_img *xpm_img, char **path)
 
 void	load_all_textures(t_data *data)
 {
+	char *str;
+
+	str = ft_strdup("2d_imgs/knife.xpm");
 	loadtextures(data, data->north, &data->texture->north);
 	loadtextures(data, data->south, &data->texture->south);
 	loadtextures(data, data->west, &data->texture->west);
 	loadtextures(data, data->east, &data->texture->east);
+	loadtextures(data, data->gun, &str);
 	return ;
 }
