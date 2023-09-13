@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void	angle_left_right(t_data *data, int keysum, double move)
+static void	angle_left_right(t_data *data, int keysum, double move)
 {
 	if (keysum == XK_Left)
 	{
@@ -32,7 +32,7 @@ void	angle_left_right(t_data *data, int keysum, double move)
 	}
 }
 
-int	left_right(t_data *data, double change, double move)
+static int	left_right(t_data *data, double change, double move)
 {
 	double	x;
 	double	y;
@@ -46,7 +46,7 @@ int	left_right(t_data *data, double change, double move)
 	return (0);
 }
 
-int	up(t_data *data, double move)
+static int	up(t_data *data, double move)
 {
 	double	x;
 	double	y;
@@ -58,7 +58,7 @@ int	up(t_data *data, double move)
 	return (0);
 }
 
-int	down(t_data *data, double move)
+static int	down(t_data *data, double move)
 {
 	double	x;
 	double	y;

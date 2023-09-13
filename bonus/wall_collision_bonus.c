@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d_bonus.h"
 
-void	help_collision(t_data *data)
+static void	help_collision(t_data *data)
 {
 	double	vl;
 	double	hl;
@@ -27,7 +27,7 @@ void	help_collision(t_data *data)
 		data->rays->vl = vl;
 }
 
-void	wall_collision(t_data *data, double ray_angle)
+static void	wall_collision(t_data *data, double ray_angle)
 {
 	data->raycount = 0;
 	if (data->rays->px < 0)
