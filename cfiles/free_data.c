@@ -24,6 +24,8 @@ void	free_imgs(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->east->img);
 	if (data->south->img)
 		mlx_destroy_image(data->mlx_ptr, data->south->img);
+	if (data->gun->img)
+		mlx_destroy_image(data->mlx_ptr, data->gun->img);
 }
 
 void	free_mlx_data(t_data *data)
