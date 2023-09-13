@@ -78,7 +78,7 @@ $(NAME) : $(OBJ)
 	@echo "$(NAME) created"
 
 bonus : $(OBJ_BONUS)
-	@$(CC) $(OBJ) $(CFLAGS) -lmlx -lXext -lX11 -lm -o $(NAME)
+	@$(CC) $(OBJ_BONUS) $(CFLAGS) -lmlx -lXext -lX11 -lm -o $(NAME)
 	@echo "$(NAME) with bonus created"
 
 clean :

@@ -6,14 +6,14 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 14:29:43 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/13 14:45:28 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:07:31 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_DEFINES_H
 # define CUB3D_DEFINES_H
 
-# include <mlx.h>
+# include </mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
