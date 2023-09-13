@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   map_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:02:12 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/12 19:03:58 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:09:10 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_getline/ft_getline.h"
 #include "../../includes/cub3d.h"
+#include "ft_getline/ft_getline.h"
 
 int	free_texture_lines(t_handle_textures *data_line)
 {
@@ -22,7 +22,8 @@ int	free_texture_lines(t_handle_textures *data_line)
 	return (1);
 }
 
-int	save_textures_path(t_data *data, t_map *file, char *texture_path, char *direction)
+int	save_textures_path(t_data *data, t_map *file, char *texture_path,
+		char *direction)
 {
 	if (!data->texture->north && !ft_strcmp(direction, "NO"))
 		data->texture->north = ft_strdup(texture_path);
@@ -71,7 +72,8 @@ int	is_possible_direction(t_data *data, t_map *file, short first_line)
 	}
 	data_line.texture_path = ft_getline(data, file->fd, &file->buffer, '\n');
 	data->data_line = &data_line;
-	if (save_textures_path(data, file, data_line.texture_path, data_line.direction))
+	if (save_textures_path(data, file, data_line.texture_path,
+			data_line.direction))
 		return (free_texture_lines(&data_line));
 	free_texture_lines(&data_line);
 	return (0);

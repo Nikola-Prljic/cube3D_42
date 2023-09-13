@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/13 15:07:43 by nprljic           #+#    #+#             */
+/*   Updated: 2023/09/13 15:11:13 by nprljic          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
 char	*ft_substr(char const *s, int start, int len)
 {
 	char	*dest;
-	int 	i;
+	int		i;
 
 	if (!s)
 		return (NULL);
@@ -64,7 +75,7 @@ static char	**head(char **s2d, char const *s, char c)
 {
 	int	i;
 	int	x;
-	int		len;
+	int	len;
 
 	i = 0;
 	x = 0;
@@ -75,7 +86,7 @@ static char	**head(char **s2d, char const *s, char c)
 		{
 			len = len_just_str(s, i, c);
 			s2d[x] = ft_substr(s, i, len);
-			if(!s2d[x])
+			if (!s2d[x])
 			{
 				free2d(s2d);
 				return (NULL);

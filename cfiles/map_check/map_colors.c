@@ -6,20 +6,21 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:03:04 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/13 14:52:12 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/13 15:11:24 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 #include "ft_getline/ft_getline.h"
 
-void have_3_color_values(t_data *data, t_map *file, char **color_rgb)
-{	int i;
+void	have_3_color_values(t_data *data, t_map *file, char **color_rgb)
+{
+	int	i;
 
 	i = 0;
-	while(color_rgb[i])
+	while (color_rgb[i])
 		i++;
-	if(i == 3)
+	if (i == 3)
 		return ;
 	free2d(color_rgb);
 	free_texture_lines(data->data_line);
@@ -32,7 +33,7 @@ int	save_color(t_data *data, t_map *file, char *line)
 	char	**color_rgb;
 
 	color_rgb = ft_split(line, ',');
-	if(!color_rgb)
+	if (!color_rgb)
 	{
 		free_texture_lines(data->data_line);
 		free_map_exit(data, file, "Error\nft_split failed\n");
