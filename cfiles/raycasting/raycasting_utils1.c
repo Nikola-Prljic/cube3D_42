@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:15:19 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/12 18:45:29 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:15:05 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	render(t_data *data)
 {
-	float	vl;
-	float	hl;
+	double	vl;
+	double	hl;
 
 	vl = sqrt(pow(data->rays->v_x - data->rays->px, 2) + pow(data->rays->v_y
 				- data->rays->py, 2));
@@ -37,7 +37,7 @@ void	render(t_data *data)
 		draw_walls(data, vl, data->west);
 }
 
-void	save_cor_ver(float *ay, float *ax, t_data *data)
+void	save_cor_ver(double *ay, double *ax, t_data *data)
 {
 	if (data->rays->left_right == -1)
 		*ax += 1;
@@ -45,7 +45,7 @@ void	save_cor_ver(float *ay, float *ax, t_data *data)
 	data->rays->v_y = *ay;
 }
 
-void	save_cor_hor(float *ay, float *ax, t_data *data)
+void	save_cor_hor(double *ay, double *ax, t_data *data)
 {
 	if (data->rays->up_down == -1)
 		*ay += 1;

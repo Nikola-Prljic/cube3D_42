@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:05:12 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/13 14:33:08 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:33:18 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "cub3d_defines.h"
 
@@ -191,6 +191,9 @@ char			*ft_strj(char const *s1, char const *s2);
 int				puterror(char *str);
 void			printmap(char **map);
 void			free2d(char **map);
+
+//wallcollision.c
+int				collision(t_data *data);
 
 //window_loop.c
 int				window_loop(t_data *data);

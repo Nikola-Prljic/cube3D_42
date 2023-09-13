@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:10:20 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/12 19:51:19 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:15:05 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,22 @@ typedef struct s_ray_cast
 {
 	int			up_down;
 	int			left_right;
-	float		off;
-	float		fov;
-	float		plane;
-	float		vl;
-	float		hl;
-	float		v_x;
-	float		v_y;
-	float		h_x;
-	float		h_y;
+	double		off;
+	double		fov;
+	double		plane;
+	double		vl;
+	double		hl;
+	double		v_x;
+	double		v_y;
+	double		h_x;
+	double		h_y;
 	char		view_point;
-	float		player_dir;
-	float		player_dir_x;
-	float		player_dir_y;
-	float		px;
-	float		py;
-	float		ray_angle;
+	double		player_dir;
+	double		player_dir_x;
+	double		player_dir_y;
+	double		px;
+	double		py;
+	double		ray_angle;
 }				t_ray_cast;
 
 typedef struct s_texture
@@ -70,10 +70,10 @@ typedef struct s_img
 
 typedef struct s_texture_draw
 {
-	float		top;
+	double		top;
 	int			ray_x;
-	float		wall_strip;
-	float		bottom;
+	double		wall_strip;
+	double		bottom;
 }				t_texture_draw;
 
 typedef struct s_data
@@ -175,16 +175,16 @@ void			free_set_null(char **ptr);
 int				is_number(char *color_rgb, int *color);
 
 //convertions.c
-float			deg2rad(double degrees);
-float			rad2deg(double radians);
+double			deg2rad(double degrees);
+double			rad2deg(double radians);
 int				x_close(t_data *data);
 
 //free_stuff.c
 int				free_data(t_data *data);
 
 //raycasting_utils.c
-void			save_cor_ver(float *ay, float *ax, t_data *data);
-void			save_cor_hor(float *ay, float *ax, t_data *data);
+void			save_cor_ver(double *ay, double *ax, t_data *data);
+void			save_cor_hor(double *ay, double *ax, t_data *data);
 void			render(t_data *data);
 
 //raycasting.c
@@ -192,10 +192,10 @@ int				ray_functions(t_data *data);
 
 //raylen.c
 void			raylen(t_data *data);
-void			where_we_look(t_data *data, int reseting, float angle);
+void			where_we_look(t_data *data, int reseting, double angle);
 int				hit(t_data *data, char **map, int ay, int ax);
-void			raylen_v(t_data *data, float angle, char **map);
-void			raylen_h(t_data *data, float angle, char **map);
+void			raylen_v(t_data *data, double angle, char **map);
+void			raylen_h(t_data *data, double angle, char **map);
 
 //opentextures.c
 void			load_all_textures(t_data *data);
@@ -217,7 +217,7 @@ int				rendercub(t_data *data);
 //window_draw.c
 void			img_pix_put(t_img *img, int x, int y, int color);
 void			draw_floor_sky(t_data *data, int sky_color, int ground_color);
-void			draw_walls(t_data *data, float distance, t_img *texture);
+void			draw_walls(t_data *data, double distance, t_img *texture);
 void			create_img_addr(t_data *data, t_img *img);
 
 #endif

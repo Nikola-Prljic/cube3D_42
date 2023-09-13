@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convertions.c                                      :+:      :+:    :+:   */
+/*   cub3d_defines.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/12 19:03:18 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/13 14:14:14 by rkurnava         ###   ########.fr       */
+/*   Created: 2023/09/13 14:29:43 by rkurnava          #+#    #+#             */
+/*   Updated: 2023/09/13 14:45:28 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#ifndef CUB3D_DEFINES_H
+# define CUB3D_DEFINES_H
 
-double	deg2rad(double degrees)
-{
-	return (degrees * (PI / 180.0));
-}
+# include <mlx.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
+# include <fcntl.h>
+# include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-double	rad2deg(double radians)
-{
-	return (radians * (180.0 / PI));
-}
+# define WINDOW_WITH 500
+# define WINDOW_HEIGT 500
+# define TILE_SIZE 64
+# define PI 3.14159
 
-int	x_close(t_data *data)
-{
-	mlx_loop_end(data->mlx_ptr);
-	if (data->win_ptr)
-	{
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		data->win_ptr = NULL;
-	}
-	return (0);
-}
+#endif

@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:56:00 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/12 18:45:29 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:15:05 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	rays_init(t_data *data)
 
 int	raycasting(char **map, t_data *data)
 {
-	float	move;
+	double	move;
 
 	move = TILE_SIZE / 15;
 	rays_init(data);

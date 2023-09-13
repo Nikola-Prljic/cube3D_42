@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:03:36 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/12 19:06:08 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:15:05 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	draw_texture_y_lopp(t_data *data, t_texture_draw draw, t_img *texture)
 	while (draw.top < draw.bottom)
 	{
 		y_top = draw.top + (draw.wall_strip / 2.0) - (WINDOW_HEIGT / 2);
-		y_off = y_top * ((float)texture->height / draw.wall_strip);
+		y_off = y_top * ((double)texture->height / draw.wall_strip);
 		color = ((texture->height * y_off) + draw.ray_x);
 		img_pix_put(data->img, data->raycount, draw.top, texture->addr[color]);
 		draw.top++;
@@ -45,7 +45,7 @@ void	draw_texture_y_lopp(t_data *data, t_texture_draw draw, t_img *texture)
 	}
 }
 
-void	draw_texure_on_walls(t_data *data, float wall_strip_height,
+void	draw_texure_on_walls(t_data *data, double wall_strip_height,
 		t_img *texture)
 {
 	int	top;
@@ -64,10 +64,10 @@ void	draw_texure_on_walls(t_data *data, float wall_strip_height,
 		bottom}, texture);
 }
 
-void	draw_walls(t_data *data, float distance, t_img *texture)
+void	draw_walls(t_data *data, double distance, t_img *texture)
 {
-	float	fixed_distance;
-	float	wall_strip_height;
+	double	fixed_distance;
+	double	wall_strip_height;
 
 	fixed_distance = cos(data->rays->ray_angle - data->rays->player_dir)
 		* distance;

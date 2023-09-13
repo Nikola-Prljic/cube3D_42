@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 17:39:55 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/12 17:52:19 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/12 21:07:47 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../includes/cub3d.h"
 
 void	free_imgs(t_data *data)
 {

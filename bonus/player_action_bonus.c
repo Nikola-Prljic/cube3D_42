@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_action.c                                    :+:      :+:    :+:   */
+/*   player_action_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -40,6 +40,11 @@ int	left_right(t_data *data, double change, double move)
 	data->rays->player_dir += change;
 	x = cosf(data->rays->player_dir) * move;
 	y = sinf(data->rays->player_dir) * move;
+	if (collision(data) == 1)
+	{
+		data->rays->player_dir += -change;
+		return (1);
+	}
 	data->rays->player_dir += -change;
 	data->rays->px += x;
 	data->rays->py += y;
@@ -53,6 +58,8 @@ int	up(t_data *data, double move)
 
 	x = cosf(data->rays->player_dir) * move;
 	y = sinf(data->rays->player_dir) * move;
+	if (collision(data) == 1)
+		return (1);
 	data->rays->px += x;
 	data->rays->py += y;
 	return (0);
@@ -71,6 +78,11 @@ int	down(t_data *data, double move)
 	data->rays->player_dir += dir;
 	x = cosf(data->rays->player_dir) * move;
 	y = sinf(data->rays->player_dir) * move;
+	if (collision(data) == 1)
+	{
+		data->rays->player_dir += -dir;
+		return (1);
+	}
 	data->rays->player_dir += -dir;
 	data->rays->px += x;
 	data->rays->py += y;
