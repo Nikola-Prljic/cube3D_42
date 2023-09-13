@@ -7,7 +7,7 @@ char	*ft_substr(char const *s, int start, int len)
 	int 	i;
 
 	if (!s)
-		return (0);
+		return (NULL);
 	i = 0;
 	if (ft_strlen(s) < start)
 		len = 0;
@@ -15,7 +15,7 @@ char	*ft_substr(char const *s, int start, int len)
 		len = ft_strlen(s + start);
 	dest = malloc(sizeof(char) * (len + 1));
 	if (!dest)
-		return (0);
+		return (NULL);
 	while (i < len && s[i])
 	{
 		dest[i] = s[start];
@@ -75,12 +75,17 @@ static char	**head(char **s2d, char const *s, char c)
 		{
 			len = len_just_str(s, i, c);
 			s2d[x] = ft_substr(s, i, len);
+			if(!s2d[x])
+			{
+				free2d(s2d);
+				return (NULL);
+			}
 			i += len;
 			x++;
+			s2d[x] = NULL;
 		}
 		i++;
 	}
-	s2d[x] = 0;
 	return (s2d);
 }
 

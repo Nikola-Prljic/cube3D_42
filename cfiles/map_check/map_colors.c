@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_colors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:03:04 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/12 19:08:48 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:52:12 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ int	save_color(t_data *data, t_map *file, char *line)
 
 	color_rgb = ft_split(line, ',');
 	if(!color_rgb)
+	{
+		free_texture_lines(data->data_line);
 		free_map_exit(data, file, "Error\nft_split failed\n");
+	}
 	have_3_color_values(data, file, color_rgb);
 	if (string_rgb_to_int(color_rgb, &color_hex))
 	{
