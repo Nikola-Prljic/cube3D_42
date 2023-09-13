@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_draw.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:03:36 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/13 14:15:05 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/13 18:14:01 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,12 @@ void	draw_texture_y_lopp(t_data *data, t_texture_draw draw, t_img *texture)
 }
 
 void	draw_texure_on_walls(t_data *data, double wall_strip_height,
-		t_img *texture)
+		t_img *texture, char dir)
 {
 	int	top;
 	int	bottom;
 	int	ray_x;
+	int	rev_x;
 
 	top = (WINDOW_HEIGT / 2) - (wall_strip_height / 2);
 	if (top < 0)
@@ -60,11 +61,14 @@ void	draw_texure_on_walls(t_data *data, double wall_strip_height,
 		bottom = WINDOW_HEIGT;
 	ray_x = ((double)texture->width / (double)TILE_SIZE) * ((int)data->rays->off
 			% TILE_SIZE);
+	rev_x = ((double)texture->width / (double)TILE_SIZE) * TILE_SIZE - ray_x;
+	if (dir == 'W' || dir == 'S')
+		ray_x = rev_x;
 	draw_texture_y_lopp(data, (t_texture_draw){top, ray_x, wall_strip_height,
 		bottom}, texture);
 }
 
-void	draw_walls(t_data *data, double distance, t_img *texture)
+void	draw_walls(t_data *data, double distance, t_img *texture, char dir)
 {
 	double	fixed_distance;
 	double	wall_strip_height;
@@ -72,5 +76,5 @@ void	draw_walls(t_data *data, double distance, t_img *texture)
 	fixed_distance = cos(data->rays->ray_angle - data->rays->player_dir)
 		* distance;
 	wall_strip_height = (TILE_SIZE / fixed_distance) * data->rays->plane;
-	draw_texure_on_walls(data, wall_strip_height, texture);
+	draw_texure_on_walls(data, wall_strip_height, texture, dir);
 }

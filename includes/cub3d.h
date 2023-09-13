@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:05:12 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/13 16:46:49 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/13 18:11:58 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ void					img_pix_put(t_img *img, int x, int y, int color);
 void					draw_floor_sky(t_data *data, int sky_color,
 							int ground_color);
 void					draw_walls(t_data *data, double distance,
-							t_img *texture);
+							t_img *texture, char dir);
 void					create_img_addr(t_data *data, t_img *img);
 
 #endif
