@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_defines.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 14:29:43 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/14 16:13:52 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/14 16:46:03 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # define WINDOW_WITH 800
 # define WINDOW_HEIGT 800
-# define TILE_SIZE 4000
+# define TILE_SIZE 64
 # define PI 3.14159
 
 #endif

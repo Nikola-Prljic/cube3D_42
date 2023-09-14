@@ -6,7 +6,7 @@
 /*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:03:36 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/13 19:30:24 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:46:26 by rkurnava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	draw_texure_on_walls(t_data *data, double wall_strip_height,
 	ray_x = ((double)texture->width / (double)TILE_SIZE) * ((int)data->rays->off
 			% TILE_SIZE);
 	rev_x = ((double)texture->width / (double)TILE_SIZE) * TILE_SIZE - ray_x - 1;
-	if (rev_x < 0)
-		rev_x = 0;
 	if (dir == 'W' || dir == 'S')
 		ray_x = rev_x;
 	draw_texture_y_lopp(data, (t_texture_draw){top, ray_x, wall_strip_height,
