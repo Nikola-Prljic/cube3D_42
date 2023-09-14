@@ -101,7 +101,6 @@ typedef struct s_data
 	t_img				*south;
 	t_img				*west;
 	t_img				*east;
-	t_img				*gun;
 	int					distance;
 	int					vertrical_hit;
 	int					floor_rgb;
@@ -191,7 +190,6 @@ void					raylen_v(t_data *data, double angle, char **map);
 void					raylen_h(t_data *data, double angle, char **map);
 
 // opentextures.c
-void					loadtextures(t_data *data, t_img *xpm_img, char **path);
 void					load_all_textures(t_data *data);
 
 // utils.c
@@ -212,10 +210,5 @@ void					draw_floor_sky(t_data *data, int sky_color,
 void					draw_walls(t_data *data, double distance,
 							t_img *texture, char dir);
 void					create_img_addr(t_data *data, t_img *img);
-
-
-void					create_gun(t_data *data);
-void					draw_gun(t_data *data, int y, int x);
-int						open_textures(t_data *data, t_img *xpm_img, char *path);
 
 #endif

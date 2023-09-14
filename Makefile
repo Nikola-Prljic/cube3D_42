@@ -34,7 +34,6 @@ SRC =	./cfiles/map_check/ft_getline/ft_getline_ultis.c\
 		./cfiles/raycasting/raycasting.c \
 		./cfiles/raycasting/raylen.c \
 		./cfiles/raycasting/raycasting_utils1.c\
-		./bonus/create_gun_bonus.c
 
 
 SRC_BONUS =	./cfiles/map_check/ft_getline/ft_getline_ultis.c\

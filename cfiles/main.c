@@ -19,12 +19,10 @@ void	init_xpm_imgs(t_data *data, t_img *xpm_imgs)
 	data->west = &xpm_imgs[2];
 	data->east = &xpm_imgs[3];
 	data->img = &xpm_imgs[4];
-	data->gun = &xpm_imgs[5];
 	data->north->img = NULL;
 	data->south->img = NULL;
 	data->west->img = NULL;
 	data->east->img = NULL;
-	data->gun->img = NULL;
 	data->img->img = NULL;
 }
 
@@ -52,7 +50,7 @@ int	main(int argc, char **argv)
 	int			fd;
 	t_data		data;
 	t_texture	texture;
-	t_img		xpm_imgs[6];
+	t_img		xpm_imgs[5];
 
 	fd = -1;
 	data.texture = &texture;
