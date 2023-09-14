@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_action_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:03:29 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/13 19:21:58 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:06:13 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ static void	angle_left_right(t_data *data, int keysum, double move)
 		data->rays->player_dir -= 0.0523599;
 		if (data->rays->player_dir < 0)
 			data->rays->player_dir += 6.283186;
-		data->rays->player_dir_x = cos(data->rays->player_dir) * move + 2;
-		data->rays->player_dir_y = sin(data->rays->player_dir) * move + 2;
+		data->rays->player_dir_x = cos(data->rays->player_dir) * move;
+		data->rays->player_dir_y = sin(data->rays->player_dir) * move;
 	}
 	else if (keysum == XK_Right)
 	{
 		data->rays->player_dir += 0.0523599;
 		if (data->rays->player_dir > 6.283186)
 			data->rays->player_dir -= 6.283186;
-		data->rays->player_dir_x = cos(data->rays->player_dir) * move + 2;
-		data->rays->player_dir_y = sin(data->rays->player_dir) * move + 2;
+		data->rays->player_dir_x = cos(data->rays->player_dir) * move;
+		data->rays->player_dir_y = sin(data->rays->player_dir) * move;
 	}
 }
 
@@ -95,7 +95,7 @@ int	keypress(int keysum, t_data *data)
 	double	move;
 
 	res = 0;
-	move = TILE_SIZE / 5;
+	move = TILE_SIZE / 4;
 	if (keysum == XK_Escape)
 		return (x_close(data));
 	else if (keysum == XK_Left)

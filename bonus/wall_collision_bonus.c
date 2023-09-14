@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_collision_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:03:33 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/13 14:15:05 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:04:25 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	collision(t_data *data)
 	double	distance;
 	double	ray_angle;
 
-	distance = TILE_SIZE * 0.3;
+	distance = TILE_SIZE * 0.40;
 	ray_angle = data->rays->player_dir;
 	data->rays->hl = TILE_SIZE;
 	data->rays->vl = TILE_SIZE;

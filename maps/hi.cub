@@ -1,8 +1,8 @@
-WE ./2d_imgs/f.xpm
+WE ./2d_imgs/ice_cat.xpm
 
-NO ./2d_imgs/f.xpm
+NO ./2d_imgs/cute_cat.xpm
 
-EA ./2d_imgs/f.xpm
+EA ./2d_imgs/pixel_cat.xpm
 F 97,87,90
 C 156,8,47
 SO ./2d_imgs/cat.xpm
