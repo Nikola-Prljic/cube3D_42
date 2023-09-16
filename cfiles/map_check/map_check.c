@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 13:55:57 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/16 17:50:06 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/16 19:25:02 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,7 @@ int	map_check(t_data *data, int fd)
 	if (fd != -1)
 		close(file.fd);
 	surrounded_by_walls(data, data->px, data->py);
+	free_data_exit(data, "ok in mapcheck.c\n", 0);
 	return (0);
 }
+//free_data_exit(data, "ok in mapcheck.c\n", 0);

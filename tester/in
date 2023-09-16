@@ -122,3 +122,7 @@ Map is not surrounded by 1
 
 -> Test 33:
 ok in mapcheck.c
+
+-> Test 34:
+Error
+Map is bigger than 10000 * sizeof(char)
