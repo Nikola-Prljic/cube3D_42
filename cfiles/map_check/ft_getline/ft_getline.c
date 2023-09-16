@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:00:58 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/16 17:33:07 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/16 18:40:53 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,7 @@ char	*ft_new_str(t_data *data, int fd, char *remain, char delimiter)
 		&& ret != 0)
 	{
 		ret = read(fd, buf, BUFFER_SIZE);
-		if (ret == -1)
-		{
-			free_set_null(&buf);
-			free_set_null(&remain);
-			free_data_exit(data, "Error\nRead failed at ft_putline\n", 1);
-		}
-		data->read_size += ret;
-		if(data->read_size > sizeof(char) * 10000)
-		{
-			free_set_null(&buf);
-			free_set_null(&remain);
-			free_data_exit(data, "Error\nMap is bigger than 10000 * sizeof(char)\n", 1);
-		}
+		map_size_check_and_read_protaction(data, buf, remain, ret);
 		buf[ret] = '\0';
 		remain = ft_linejoin(data, remain, buf);
 	}
