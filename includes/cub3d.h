@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:05:12 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/16 13:58:03 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/16 17:09:07 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ typedef struct s_data
 	int					map_x;
 	t_ray_cast			*rays;
 	int					raycount;
+	unsigned long long	read_size;
 }						t_data;
 
 // input_handle.c

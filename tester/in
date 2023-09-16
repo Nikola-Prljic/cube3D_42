@@ -62,7 +62,7 @@ Color is smaller than 0
 
 -> Test 17:
 Error
-No color found
+faild to read colors
 
 -> Test 18:
 Error
@@ -103,3 +103,22 @@ ok in mapcheck.c
 -> Test 28:
 Error
 Map is not surrounded by 1
+
+-> Test 29:
+Error
+Map is not surrounded by 1
+
+-> Test 30:
+Error
+Map is not surrounded by 1
+
+-> Test 31:
+Error
+Map is not surrounded by 1
+
+-> Test 32:
+Error
+Map is not surrounded by 1
+
+-> Test 33:
+ok in mapcheck.c

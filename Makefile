@@ -3,7 +3,7 @@ NAME = cub3D
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 INLCUDES = ./includes/cub3d.h
 INLCUDES_BONUS = ./includes/cub3d_bonus.h

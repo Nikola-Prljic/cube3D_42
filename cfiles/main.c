@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:03:27 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/12 19:06:18 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/16 17:15:35 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	init_data(t_data *data)
 	data->texture->east = NULL;
 	data->floor_rgb = -1;
 	data->sky_rgb = -1;
+	data->read_size = 0;
 }
 
 int	main(int argc, char **argv)

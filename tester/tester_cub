@@ -57,6 +57,11 @@ ft_test t22.cub
 ft_test t23.cub
 ft_test t24.cub
 ft_test t25.cub
+ft_test t26.cub
+ft_test t27.cub
+ft_test t28.cub
+ft_test t29.cub
+ft_test t30.cub
 
 if [ $num -eq 0 ]
     then echo -n "\n\nvalgrind: ok 😻 | "

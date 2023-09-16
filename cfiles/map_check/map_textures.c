@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:02:12 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/13 15:09:10 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/16 14:31:46 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	handel_textures(t_data *data, t_map *file)
 		free_map_exit(data, file, "Error\nfailed to read textures\n");
 	if (is_possible_direction(data, file, 1) || is_possible_direction(data,
 			file, 1))
-		free_map_exit(data, file, "Error\nfailed to read textures\n");
+		free_map_exit(data, file, "Error\nfaild to read colors\n");
 	if (!data->texture->north || !data->texture->south)
 		free_map_exit(data, file,
 			"Error\nfailed to save north/south texture\n");
