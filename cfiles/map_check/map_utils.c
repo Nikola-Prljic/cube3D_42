@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:03:55 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/12 19:09:46 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/16 13:57:29 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-void	free_data_exit(t_data *data, char *msg)
+void	free_data_exit(t_data *data, char *msg, int error_code)
 {
 	free_data(data);
 	if (msg)
 		puterror(msg);
-	exit(1);
+	exit(error_code);
 }
 
 void	free_set_null(char **ptr)

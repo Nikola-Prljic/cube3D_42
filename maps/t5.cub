@@ -1,18 +1,22 @@
 
-NO ./path_to_the_north_texture
+NO ./2d_imgs/f.xpm
 
 
 
-SO ./path_to_the_south_texture
+SO ./2d_imgs/f.xpm
 
 
-WE ./path_to_the_west_texture
+WE ./2d_imgs/f.xpm
 
 
 
 
 
-EA ./path_to_the_east_texture
+EA ./2d_imgs/f.xpm
+
+F 50,50,50
+C 200,200,200
+
 11111111
 10000001   11111
 10000001   10001

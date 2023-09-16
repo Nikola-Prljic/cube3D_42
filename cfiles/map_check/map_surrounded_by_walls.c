@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_surrounded_by_walls.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:04:01 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/12 19:04:04 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/16 14:07:56 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	floodfill(t_data *data, t_path pos, char fill, char fill_with)
 		return ;
 	if (!data->map_copy[pos.y] || pos.x > ft_strlen(data->map_copy[pos.y])
 		|| data->map_copy[pos.y][pos.x] == 0)
-		free_data_exit(data, "Error\nMap is not surrounded by 1\n");
+		free_data_exit(data, "Error\nMap is not surrounded by 1\n", 1);
 	if (pos.y < 0 || pos.x < 0 || charinstr(data->map_copy[pos.y][pos.x],
 		"01F"))
-		free_data_exit(data, "Error\nMap is not surrounded by 1\n");
+		free_data_exit(data, "Error\nMap is not surrounded by 1\n", 1);
 	if (pos.y < 0 || pos.x < 0 || data->map_copy[pos.y][pos.x] != fill)
 		return ;
 	data->map_copy[pos.y][pos.x] = fill_with;
@@ -68,7 +68,7 @@ char	**deep_copy_matrix(t_data *data)
 	y = 0;
 	new_matrix = malloc(sizeof(char *) * (data->map_y + 1));
 	if (!new_matrix)
-		free_data_exit(data, "Error:\nMalloc failed in deep_copy_matrix\n");
+		free_data_exit(data, "Error:\nMalloc failed in deep_copy_matrix\n", 1);
 	while (data->map[y])
 	{
 		new_matrix[y] = ft_strdup(data->map[y]);
@@ -78,7 +78,8 @@ char	**deep_copy_matrix(t_data *data)
 			while (++i < y)
 				free(new_matrix[i]);
 			free(new_matrix);
-			free_data_exit(data, "Error:\nMalloc failed in deep_copy_matrix\n");
+			free_data_exit(data, "Error:\nMalloc failed in deep_copy_matrix\n",
+				1);
 		}
 		y++;
 	}

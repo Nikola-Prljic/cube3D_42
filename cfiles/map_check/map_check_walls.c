@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_walls.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:04:23 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/12 19:04:24 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/16 13:59:11 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void	map_check_walls(t_data *data)
 	fill[0] = '1';
 	fill[1] = 'F';
 	if (find_first_wall_pos(&pos, data->map_copy))
-		free_data_exit(data, "Error\nNo wall was found\n");
+		free_data_exit(data, "Error\nNo wall was found\n", 1);
 	floodwalls(data, pos, fill, 'W');
 	if (is_all_w(data))
-		free_data_exit(data, "Error\nMaps are not connected\n");
+		free_data_exit(data, "Error\nMaps are not connected\n", 1);
 	return ;
 }

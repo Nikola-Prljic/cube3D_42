@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loadtextures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:03:25 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/12 19:06:21 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/16 13:59:43 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	loadtextures(t_data *data, t_img *xpm_img, char **path)
 		if (data->rays)
 			free(data->rays);
 		free_set_null(path);
-		free_data_exit(data, "Error\nLoad texture failed\n");
+		free_data_exit(data, "Error\nLoad texture failed\n", 1);
 	}
 	free_set_null(path);
 	return ;

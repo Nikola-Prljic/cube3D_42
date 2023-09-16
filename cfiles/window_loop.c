@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_loop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:03:39 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/12 19:04:48 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/16 13:59:49 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	create_img_addr(t_data *data, t_img *img)
 	{
 		if (data->rays)
 			free(data->rays);
-		free_data_exit(data, "Error\nMlx_get_data_addr failed\n");
+		free_data_exit(data, "Error\nMlx_get_data_addr failed\n", 1);
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:10:20 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/13 14:15:05 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/16 13:57:52 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,19 +128,19 @@ typedef struct s_handle_textures
 	char		*texture_path;
 }				t_handle_textures;
 
-//input_handle.c
+// input_handle.c
 int				input_handle(int argc, char **argv, int *fd);
 
-//main.c
+// main.c
 int				free_data(t_data *data);
 
-//player_action.c
+// player_action.c
 int				keypress(int keysum, t_data *data);
 
-//ft_atoi
+// ft_atoi
 int				ft_atoi(const char *nptr);
 
-//map_check_utils.c
+// map_check_utils.c
 int				charinstr(char c, char *valid_chars);
 int				isvalidchar(t_data *data, char *mapstr, char *valid_chars,
 					int y);
@@ -149,72 +149,72 @@ int				ft_matrix_push_back(t_data *data, t_map *file, char *str);
 char			*saveline(t_data *data, t_map *file, int y,
 					short *map_parts_after_nl);
 
-//map_check_walls.c
+// map_check_walls.c
 void			map_check_walls(t_data *data);
 
-//map_check.c
+// map_check.c
 int				map_check(t_data *data, int fd);
 
-//map_colors_utils.c
+// map_colors_utils.c
 int				string_rgb_to_int(char **color_rgb, int *color);
 
-//map_colors.c
+// map_colors.c
 void			handel_color_codes(t_data *data, t_map *file);
 
-//map_surrounded_by_walls.c
+// map_surrounded_by_walls.c
 int				surrounded_by_walls(t_data *data, int x, int y);
 
-//map_textures
+// map_textures
 void			handel_textures(t_data *data, t_map *file);
 
-//map_utils.c
+// map_utils.c
 char			*ft_strdup(const char *s);
 int				ft_strcmp(const char *s1, const char *s2);
-void			free_data_exit(t_data *data, char *msg);
+void			free_data_exit(t_data *data, char *msg, int error_code);
 void			free_set_null(char **ptr);
 int				is_number(char *color_rgb, int *color);
 
-//convertions.c
+// convertions.c
 double			deg2rad(double degrees);
 double			rad2deg(double radians);
 int				x_close(t_data *data);
 
-//free_stuff.c
+// free_stuff.c
 int				free_data(t_data *data);
 
-//raycasting_utils.c
+// raycasting_utils.c
 void			save_cor_ver(double *ay, double *ax, t_data *data);
 void			save_cor_hor(double *ay, double *ax, t_data *data);
 void			render(t_data *data);
 
-//raycasting.c
+// raycasting.c
 int				ray_functions(t_data *data);
 
-//raylen.c
+// raylen.c
 void			raylen(t_data *data);
 void			where_we_look(t_data *data, int reseting, double angle);
 int				hit(t_data *data, char **map, int ay, int ax);
 void			raylen_v(t_data *data, double angle, char **map);
 void			raylen_h(t_data *data, double angle, char **map);
 
-//opentextures.c
+// opentextures.c
 void			load_all_textures(t_data *data);
 
-//utils.c
+// utils.c
 int				ft_strlen(const char *str);
 char			*ft_strj(char const *s1, char const *s2);
 int				puterror(char *str);
 void			printmap(char **map);
 void			free2d(char **map);
 
-//wall_collision.c
+// wall_collision.c
 int				collision(t_data *data);
 
-//window_loop.c
+// window_loop.c
 int				window_loop(t_data *data);
 int				rendercub(t_data *data);
 
-//window_draw.c
+// window_draw.c
 void			img_pix_put(t_img *img, int x, int y, int color);
 void			draw_floor_sky(t_data *data, int sky_color, int ground_color);
 void			draw_walls(t_data *data, double distance, t_img *texture);

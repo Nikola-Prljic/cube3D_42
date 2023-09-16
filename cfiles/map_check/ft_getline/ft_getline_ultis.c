@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:53:33 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/12 14:22:59 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/16 13:58:33 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	check_s1(t_data *data, char **s1, char **s2)
 	if (!*s1)
 	{
 		free_set_null(s2);
-		free_data_exit(data, "Error\nMalloc failed at ft_linejoin\n");
+		free_data_exit(data, "Error\nMalloc failed at ft_linejoin\n", 1);
 	}
 	*s1[0] = '\0';
 }
@@ -52,7 +52,7 @@ void	check_dest(t_data *data, char **s1, char **s2)
 {
 	free_set_null(s1);
 	free_set_null(s2);
-	free_data_exit(data, "Error\nMalloc failed at ft_linejoin\n");
+	free_data_exit(data, "Error\nMalloc failed at ft_linejoin\n", 1);
 }
 
 char	*ft_linejoin(t_data *data, char *s1, char *s2)

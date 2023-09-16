@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convertions.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:03:18 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/13 14:14:14 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/16 14:07:34 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ int	x_close(t_data *data)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
 	}
+	if (data->rays)
+		free(data->rays);
+	free_data_exit(data, NULL, 0);
 	return (0);
 }

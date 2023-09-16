@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:05:12 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/13 18:11:58 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/16 13:58:03 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ int						free_texture_lines(t_handle_textures *data_line);
 // map_utils.c
 char					*ft_strdup(const char *s);
 int						ft_strcmp(const char *s1, const char *s2);
-void					free_data_exit(t_data *data, char *msg);
+void					free_data_exit(t_data *data, char *msg, int error_code);
 void					free_set_null(char **ptr);
 int						is_number(char *color_rgb, int *color);
 
