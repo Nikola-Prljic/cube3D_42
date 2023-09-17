@@ -58,7 +58,7 @@ ok in mapcheck.c
 
 -> Test 16:
 Error
-Color is smaller than 0
+Color is not in range of 0 - 255
 
 -> Test 17:
 Error

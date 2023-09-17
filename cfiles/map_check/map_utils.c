@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:03:55 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/16 13:57:29 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/17 13:24:19 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ int	is_number(char *color_rgb, int *color)
 	*color = ft_atoi(color_rgb);
 	if (*color == 0)
 		return (puterror("Error\nColor is not a number\n"));
-	if (*color < 0)
-		return (puterror("Error\nColor is smaller than 0\n"));
-	if (*color > 255)
-		return (puterror("Error\nColor is bigger than 255\n"));
+	if (*color < 0 || *color > 255)
+		return (puterror("Error\nColor is not in range of 0 - 255\n"));
 	return (0);
 }
 
