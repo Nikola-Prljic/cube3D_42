@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:01:54 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/12 18:46:51 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:53:36 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,51 +52,6 @@ int	isvalidchar(t_data *data, char *mapstr, char *valid_chars, int y)
 	}
 	if (data->map_x < x)
 		data->map_x = x;
-	return (0);
-}
-
-int	free_map_exit(t_data *data, t_map *file, char *msg)
-{
-	free_data(data);
-	if (file->buffer)
-	{
-		free(file->buffer);
-		file->buffer = NULL;
-	}
-	if (msg)
-		puterror(msg);
-	if (file->fd != -1)
-	{
-		close(file->fd);
-		file->fd = -1;
-	}
-	exit(1);
-}
-
-int	ft_matrix_push_back(t_data *data, t_map *file, char *str)
-{
-	int		i;
-	char	**new_matrix;
-
-	i = 0;
-	if (!str)
-		return (1);
-	while (data->map[i])
-		i++;
-	new_matrix = malloc(sizeof(char *) * (i + 2));
-	if (!new_matrix)
-	{
-		free_set_null(&str);
-		return (free_map_exit(data, file,
-				"Error\nMalloc failed in ft_matrix_push_back\n"));
-	}
-	i = -1;
-	while (data->map[++i])
-		new_matrix[i] = ft_strdup(data->map[i]);
-	new_matrix[i] = ft_strdup(str);
-	new_matrix[i + 1] = NULL;
-	free2d(data->map);
-	data->map = new_matrix;
 	return (0);
 }
 
