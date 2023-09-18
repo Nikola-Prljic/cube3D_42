@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_matrix_push_back.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/18 16:59:04 by nprljic           #+#    #+#             */
+/*   Updated: 2023/09/18 16:59:26 by nprljic          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 #include "ft_getline/ft_getline.h"
 
@@ -19,21 +31,25 @@ int	free_map_exit(t_data *data, t_map *file, char *msg)
 	exit(1);
 }
 
-void ft_strdup_protaction(t_data *data, t_map *file, char *str, char *new_matrix)
+void	ft_strdup_protaction(t_data *data, t_map *file, char *str,
+		char *new_matrix)
 {
 	if (!new_matrix)
 	{
 		free_set_null(&str);
-		free_map_exit(data, file, "Error\nMalloc failed in ft_matrix_push_back\n");
+		free_map_exit(data, file,
+			"Error\nMalloc failed in ft_matrix_push_back\n");
 	}
 }
 
-void new_matrix_malloc_protaction(t_data *data, t_map *file, char **new_matrix, char *str)
+void	new_matrix_malloc_protaction(t_data *data, t_map *file,
+		char **new_matrix, char *str)
 {
-    if (!new_matrix)
+	if (!new_matrix)
 	{
 		free_set_null(&str);
-		free_map_exit(data, file, "Error\nMalloc failed in ft_matrix_push_back\n");
+		free_map_exit(data, file,
+			"Error\nMalloc failed in ft_matrix_push_back\n");
 	}
 }
 
