@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:02:12 by nprljic           #+#    #+#             */
-/*   Updated: 2023/09/16 14:31:46 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/20 11:18:00 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,34 @@ void	getline_test_it(t_data *data, t_map *file, t_handle_textures *data_line,
 		data_line->is_new_line = 0;
 }
 
+int	rm_space_in_front(t_handle_textures *d)
+{
+	int		i;
+	int		j;
+	char	*new_str;
+
+	i = 0;
+	j = 0;
+	if (!d->texture_path[0] || d->texture_path[0] != ' ')
+		return (0);
+	while (d->texture_path[i] == ' ')
+		i++;
+	new_str = (char *)malloc(sizeof(char) * (ft_strlen(d->texture_path) - i
+			+ 1));
+	if (!new_str)
+		return (1);
+	while (d->texture_path[i])
+	{
+		new_str[j] = d->texture_path[i];
+		i++;
+		j++;
+	}
+	new_str[j] = '\0';
+	free(d->texture_path);
+	d->texture_path = new_str;
+	return (0);
+}
+
 int	is_possible_direction(t_data *data, t_map *file, short first_line)
 {
 	t_handle_textures	data_line;
@@ -71,6 +99,7 @@ int	is_possible_direction(t_data *data, t_map *file, short first_line)
 		getline_test_it(data, file, &data_line, first_line);
 	}
 	data_line.texture_path = ft_getline(data, file->fd, &file->buffer, '\n');
+	rm_space_in_front(&data_line);
 	data->data_line = &data_line;
 	if (save_textures_path(data, file, data_line.texture_path,
 			data_line.direction))

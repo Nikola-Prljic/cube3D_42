@@ -3,8 +3,8 @@ WE ./2d_imgs/ice_cat.xpm
 NO ./2d_imgs/cute_cat.xpm
 
 EA ./2d_imgs/pixel_cat.xpm
-F 51, 164, 166
-C 126, 170, 252
+F   51,   164,   166
+C       126,        170,          252
 SO ./2d_imgs/cat.xpm
 
 1111111111111111
