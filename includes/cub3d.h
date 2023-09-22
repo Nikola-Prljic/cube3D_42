@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:05:12 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/16 17:09:07 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/22 13:45:44 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,7 @@ void					raylen_h(t_data *data, double angle, char **map);
 
 // opentextures.c
 void					load_all_textures(t_data *data);
+int						rm_space_in_front(t_handle_textures *d);
 
 // utils.c
 int						ft_strlen(const char *str);
