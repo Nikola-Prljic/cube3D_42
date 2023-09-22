@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkurnava <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:56:00 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/13 14:15:05 by rkurnava         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:09:24 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ void	rays_init(t_data *data)
 	data->rays->up_down = 0;
 	data->rays->left_right = 0;
 	data->rays->px = (data->px + 1) * TILE_SIZE - (TILE_SIZE / 2);
+	data->rays->px_init = data->rays->px;
 	data->rays->py = (data->py + 1) * TILE_SIZE - (TILE_SIZE / 2);
+	data->rays->py_init = data->rays->py;
 	data->rays->view_point = 'N';
 	data->rays->player_dir_x = 0;
 	data->rays->player_dir_y = 0;

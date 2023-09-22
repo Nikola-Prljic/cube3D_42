@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:05:12 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/22 13:45:44 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/22 17:12:41 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_ray_cast
 	double				player_dir;
 	double				player_dir_x;
 	double				player_dir_y;
+	double				px_init;
+	double				py_init;
 	double				px;
 	double				py;
 	double				ray_angle;
@@ -126,6 +128,9 @@ int						free_data(t_data *data);
 
 // player_action.c
 int						keypress(int keysum, t_data *data);
+
+//player_action_utils.c
+void					outside(t_data *data);
 
 // ft_atoi.c
 int						ft_atoi(const char *nptr);

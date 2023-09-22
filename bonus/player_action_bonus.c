@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:03:29 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/14 16:06:13 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/22 17:48:16 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	keypress(int keysum, t_data *data)
 	double	move;
 
 	res = 0;
-	move = TILE_SIZE / 4;
+	move = TILE_SIZE / 3.9;
 	if (keysum == XK_Escape)
 		return (x_close(data));
 	else if (keysum == XK_Left)

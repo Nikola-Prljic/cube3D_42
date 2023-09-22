@@ -6,7 +6,7 @@
 /*   By: nprljic <nprljic@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:03:29 by rkurnava          #+#    #+#             */
-/*   Updated: 2023/09/14 16:05:59 by nprljic          ###   ########.fr       */
+/*   Updated: 2023/09/22 17:48:24 by nprljic          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static int	left_right(t_data *data, double change, double move)
 	data->rays->player_dir += -change;
 	data->rays->px += x;
 	data->rays->py += y;
+	outside(data);
 	return (0);
 }
 
@@ -55,6 +56,7 @@ static int	up(t_data *data, double move)
 	y = sin(data->rays->player_dir) * move;
 	data->rays->px += x;
 	data->rays->py += y;
+	outside(data);
 	return (0);
 }
 
@@ -74,6 +76,7 @@ static int	down(t_data *data, double move)
 	data->rays->player_dir += -dir;
 	data->rays->px += x;
 	data->rays->py += y;
+	outside(data);
 	return (0);
 }
 
@@ -83,7 +86,7 @@ int	keypress(int keysum, t_data *data)
 	double	move;
 
 	res = 0;
-	move = TILE_SIZE / 4;
+	move = TILE_SIZE / 3.9;
 	if (keysum == XK_Escape)
 		return (x_close(data));
 	else if (keysum == XK_Left)
